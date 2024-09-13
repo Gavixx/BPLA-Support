@@ -180,6 +180,24 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="AdminForm.cpp">
+            <Form>Form2</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>AdminForm.h</DependentOn>
+            <BuildOrder>3</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="ArmyForm.cpp">
+            <Form>Form3</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>ArmyForm.h</DependentOn>
+            <BuildOrder>4</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="LoginForm.cpp">
+            <Form>Form1</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>LoginForm.h</DependentOn>
+            <BuildOrder>2</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Project1.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
@@ -187,13 +205,16 @@
             <BuildOrder>1</BuildOrder>
             <PCH>true</PCH>
         </PCHCompile>
-        <CppCompile Include="Unit1.cpp">
-            <Form>Form1</Form>
+        <CppCompile Include="VolonterForm.cpp">
+            <Form>Form4</Form>
             <FormType>dfm</FormType>
-            <DependentOn>Unit1.h</DependentOn>
-            <BuildOrder>2</BuildOrder>
+            <DependentOn>VolonterForm.h</DependentOn>
+            <BuildOrder>5</BuildOrder>
         </CppCompile>
-        <FormResources Include="Unit1.dfm"/>
+        <FormResources Include="VolonterForm.dfm"/>
+        <FormResources Include="AdminForm.dfm"/>
+        <FormResources Include="ArmyForm.dfm"/>
+        <FormResources Include="LoginForm.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
