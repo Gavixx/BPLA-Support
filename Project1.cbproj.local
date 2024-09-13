@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/09/13 12:35:30.000.513,=D:\Prog\c++ builder\Unit1.cpp</Transaction>
+    <Transaction>2024/09/13 12:35:30.000.377,=D:\Prog\c++ builder\Project1PCH1.h</Transaction>
+    <Transaction>2024/09/13 12:42:43.955,=D:\Prog\c++ builder\Project1PCH1.h</Transaction>
+    <Transaction>2024/09/13 12:42:44.114,=D:\Prog\c++ builder\Unit1.cpp</Transaction>
+    <Transaction>2024/09/13 12:56:31.647,C:\Users\Roman\Desktop\TRPZ\BPLA-Support\Project1PCH1.h=D:\Prog\c++ builder\Project1PCH1.h</Transaction>
+    <Transaction>2024/09/13 12:56:31.663,C:\Users\Roman\Desktop\TRPZ\BPLA-Support\Unit1.cpp=D:\Prog\c++ builder\Unit1.cpp</Transaction>
+    <Transaction>2024/09/13 12:56:31.663,C:\Users\Roman\Desktop\TRPZ\BPLA-Support\Unit1.h=D:\Prog\c++ builder\Unit1.h</Transaction>
+    <Transaction>2024/09/13 12:56:31.663,C:\Users\Roman\Desktop\TRPZ\BPLA-Support\Unit1.dfm=D:\Prog\c++ builder\Unit1.dfm</Transaction>
+    <Transaction>2024/09/13 12:56:31.681,C:\Users\Roman\Desktop\TRPZ\BPLA-Support\Project1.cbproj=D:\Prog\c++ builder\Project1.cbproj</Transaction>
+    <Transaction>2024/09/13 12:56:34.982,C:\Users\Roman\Desktop\TRPZ\BPLA-Support\Project1.cbproj=C:\Users\Roman\Desktop\TRPZ\BPLA-Support\Project1.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>

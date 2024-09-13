@@ -1,0 +1,30 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 441
+  ClientWidth = 624
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  TextHeight = 15
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'Database=testdb'
+      'User_Name=admintest'
+      'Password=admim'
+      'Server=192.168.11.3'
+      'DriverID=MyPhysDriver')
+    Left = 384
+    Top = 120
+  end
+  object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
+    DriverID = 'MyPhysDriver'
+    VendorLib = 'C:\Users\Roman\Desktop\TRPZ\BPLA-Support\lib\libmysql.dll'
+    Left = 248
+    Top = 192
+  end
+end
