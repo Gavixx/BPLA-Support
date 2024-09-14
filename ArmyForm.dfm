@@ -40,7 +40,7 @@ object Form3: TForm3
     OnTitleClick = DBGrid1TitleClick
   end
   object ButtonShowStat: TButton
-    Left = 8
+    Left = 16
     Top = 314
     Width = 241
     Height = 65
@@ -63,7 +63,7 @@ object Form3: TForm3
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
     DriverID = 'MyPhysDriver'
     VendorLib = 'C:\Users\Roman\Desktop\proj\BPLA-Support\lib\libmysql.dll'
-    Left = 872
+    Left = 832
     Top = 664
   end
   object FDConnection1: TFDConnection

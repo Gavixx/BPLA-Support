@@ -42,6 +42,8 @@ __published:	// IDE-managed Components
 	void __fastcall DBGrid1TitleClick(TColumn *Column);
 private:	// User declarations
 	void __fastcall SetDBGridColumnsStyles();
+    void __fastcall DateFieldGetText(TField *Sender, UnicodeString &Text, bool DisplayText);
+
 public:		// User declarations
 	__fastcall TForm3(TComponent* Owner);
 };
