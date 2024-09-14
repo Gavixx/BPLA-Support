@@ -17,86 +17,93 @@ __fastcall TForm3::TForm3(TComponent* Owner)
 	FDQuery1->Connection = FDConnection1;  // Зв'язок з базою даних
 }
 //---------------------------------------------------------------------------
+void __fastcall TForm3::SetDBGridColumnsStyles()
+{
+    DBGrid1->Columns->Items[0]->Width = 200;  // Ширина першої колонки
+    DBGrid1->Columns->Items[0]->Title->Caption = "Тип дрону";
+    DBGrid1->Columns->Items[0]->Title->Alignment = taCenter;
+
+    DBGrid1->Columns->Items[1]->Width = 200;  // Ширина другої колонки
+    DBGrid1->Columns->Items[1]->Title->Caption = "Потрібно";
+    DBGrid1->Columns->Items[1]->Title->Alignment = taCenter;
+    DBGrid1->Columns->Items[1]->Alignment = taCenter;
+
+    DBGrid1->Columns->Items[2]->Width = 200;  // Ширина третьої колонки
+    DBGrid1->Columns->Items[2]->Title->Caption = "Дата запиту";
+    DBGrid1->Columns->Items[2]->Title->Alignment = taCenter;
+    DBGrid1->Columns->Items[2]->Alignment = taCenter;
+
+    DBGrid1->Columns->Items[3]->Width = 150;
+    DBGrid1->Columns->Items[3]->Title->Caption = "Прогрес";
+    DBGrid1->Columns->Items[3]->Title->Alignment = taCenter;
+    DBGrid1->Columns->Items[3]->Alignment = taCenter;
+
+    DBGrid1->Columns->Items[4]->Width = 200;
+    DBGrid1->Columns->Items[4]->Title->Caption = "Отримано";
+    DBGrid1->Columns->Items[4]->Title->Alignment = taCenter;
+    DBGrid1->Columns->Items[4]->Alignment = taCenter;
+}
+
 
 void __fastcall TForm3::ButtonShowStatClick(TObject *Sender)
 {
 	FDQuery1->SQL->Text = "SELECT drone_type, quantity, request_date, status, fulfilled_quantity FROM MilitaryRequests";
 	FDQuery1->Open();
 	DataSource1->DataSet = FDQuery1;
-	DBGrid1->Columns->Items[0]->Width = 200;  // Ширина першої колонки
-	DBGrid1->Columns->Items[0]->Title->Caption = "Тип дрону";
-	DBGrid1->Columns->Items[0]->Title->Alignment = taCenter;
-
-	DBGrid1->Columns->Items[1]->Width = 200;  // Ширина другої колонки
-	DBGrid1->Columns->Items[1]->Title->Caption = "Потрібно";
-	DBGrid1->Columns->Items[1]->Title->Alignment = taCenter;
-	DBGrid1->Columns->Items[1]->Alignment = taCenter;
-
-	DBGrid1->Columns->Items[2]->Width = 200;  // Ширина третьої колонки
-	DBGrid1->Columns->Items[2]->Title->Caption = "Дата запиту";
-	DBGrid1->Columns->Items[2]->Title->Alignment = taCenter;
-	DBGrid1->Columns->Items[2]->Alignment = taCenter;
-
-	DBGrid1->Columns->Items[3]->Width = 150;
-	DBGrid1->Columns->Items[3]->Title->Caption = "Прогрес";
-	DBGrid1->Columns->Items[3]->Title->Alignment = taCenter;
-	DBGrid1->Columns->Items[3]->Alignment = taCenter;
-
-	DBGrid1->Columns->Items[4]->Width = 200;
-	DBGrid1->Columns->Items[4]->Title->Caption = "Отримано";
-	DBGrid1->Columns->Items[4]->Title->Alignment = taCenter;
-	DBGrid1->Columns->Items[4]->Alignment = taCenter;
+	SetDBGridColumnsStyles();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm3::DBGrid1TitleClick(TColumn *Column)
 {
+    // Ім'я поля, за яким відбудеться сортування
+	static String lastSortedColumn = "";  // Остання відсортована колонка
+	static bool sortAscending = true;     // Прапор для напрямку сортування
 
-	 String columnName = Column->Field->FieldName;
-    String sql = FDQuery1->SQL->Text;
+	String columnName = Column->FieldName;
 
-    // Перевірка наявності ORDER BY у SQL запиті
-    int orderByPos = sql.Pos("ORDER BY");
-    if (orderByPos > 0)
+    // Перевірка, чи є активний DataSet, і чи підтримує він SQL
+    if (DataSource1->DataSet && dynamic_cast<TFDQuery*>(DataSource1->DataSet))
     {
-        // Видалити поточний ORDER BY
-        sql = sql.SubString(1, orderByPos - 1).Trim();
+        TFDQuery *query = dynamic_cast<TFDQuery*>(DataSource1->DataSet);
 
-        // Перевірка поточного порядку сортування
-        if (sql.Pos(columnName) > 0)
+        // Отримуємо поточний SQL запит
+        String baseSQL = query->SQL->Text;
+
+		// Спробуємо знайти вже існуюче "ORDER BY"
+		int orderByPos = baseSQL.Pos("ORDER BY");
+        // Якщо "ORDER BY" вже існує, видаляємо його
+        if (orderByPos > 0)
         {
-            // Перевірка поточного порядку сортування
-            if (sql.Pos("DESC") > 0)
-            {
-                // Якщо поточне сортування DESC, змініть на ASC
-                sql = sql.SubString(1, sql.Pos(columnName) - 1) + " ORDER BY " + columnName + " ASC";
-            }
-            else
-            {
-                // Якщо поточне сортування ASC, змініть на DESC
-                sql = sql.SubString(1, sql.Pos(columnName) - 1) + " ORDER BY " + columnName + " DESC";
-            }
+            baseSQL = baseSQL.SubString(1, orderByPos - 1);
+        }
+
+        // Якщо клікаємо по тій самій колонці, змінюємо напрямок сортування
+        if (columnName == lastSortedColumn)
+        {
+            sortAscending = !sortAscending;  // Міняємо прапор
         }
         else
         {
-            // Додати новий ORDER BY
-            sql += " ORDER BY " + columnName + " ASC";
+            // Якщо інша колонка, завжди починаємо з сортування за зростанням
+            sortAscending = true;
         }
-    }
-    else
-    {
-        // Додати новий ORDER BY
-        sql += " ORDER BY " + columnName + " ASC";
-    }
 
-    // Оновлення SQL запиту
-    FDQuery1->SQL->Text = sql;
+        // Зберігаємо поточну колонку як останню відсортовану
+        lastSortedColumn = columnName;
 
-    // Перезапуск запиту
-    FDQuery1->Active = false;
-	FDQuery1->Active = true;
+        // Формуємо запит із новим сортуванням
+        String sortDirection = sortAscending ? "ASC" : "DESC";
+        baseSQL += " ORDER BY " + columnName + " " + sortDirection;
 
+        // Оновлюємо запит і перезавантажуємо дані
+        query->SQL->Text = baseSQL;
+        query->Close();
+		query->Open();
+		SetDBGridColumnsStyles();
+	}
 }
+
 //---------------------------------------------------------------------------
 
 

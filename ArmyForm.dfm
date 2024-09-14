@@ -15,9 +15,9 @@ object Form3: TForm3
     700)
   TextHeight = 15
   object DBGrid1: TDBGrid
-    Left = 7
+    Left = 16
     Top = 8
-    Width = 666
+    Width = 665
     Height = 300
     Constraints.MaxHeight = 300
     Constraints.MaxWidth = 930
@@ -41,7 +41,7 @@ object Form3: TForm3
   end
   object ButtonShowStat: TButton
     Left = 8
-    Top = 376
+    Top = 314
     Width = 241
     Height = 65
     Anchors = []
