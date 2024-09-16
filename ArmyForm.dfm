@@ -40,7 +40,7 @@ object Form3: TForm3
     OnTitleClick = DBGrid1TitleClick
   end
   object ButtonShowStat: TButton
-    Left = 15
+    Left = 14
     Top = 314
     Width = 241
     Height = 65
@@ -54,9 +54,10 @@ object Form3: TForm3
     Font.Style = []
     ParentFont = False
     TabOrder = 1
+    OnClick = ButtonShowStatClick
   end
   object ButtonAddOrder: TButton
-    Left = 303
+    Left = 300
     Top = 314
     Width = 241
     Height = 65

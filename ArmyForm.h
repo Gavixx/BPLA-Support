@@ -41,6 +41,7 @@ __published:	// IDE-managed Components
 	TButton *ButtonAddOrder;
 	void __fastcall DBGrid1TitleClick(TColumn *Column);
 	void __fastcall ButtonAddOrderClick(TObject *Sender);
+	void __fastcall ButtonShowStatClick(TObject *Sender);
 private:	// User declarations
 	void __fastcall SetDBGridColumnsStyles();
     void __fastcall DateFieldGetText(TField *Sender, UnicodeString &Text, bool DisplayText);

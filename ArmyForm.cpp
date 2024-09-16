@@ -133,3 +133,21 @@ void __fastcall TForm3::ButtonAddOrderClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+
+
+void __fastcall TForm3::ButtonShowStatClick(TObject *Sender)
+{
+	FDConnection1->Connected = true;  // Переконайтесь, що з'єднання з базою даних активно
+
+    // Налаштування запиту
+    FDQuery1->Connection = FDConnection1;
+    FDQuery1->SQL->Text = "SELECT drone_type, quantity, request_date, status, fulfilled_quantity FROM MilitaryRequests";
+	FDQuery1->Open();  // Виконує запит та відкриває результати
+
+    // Прив'язка даних
+    DataSource1->DataSet = FDQuery1;
+	DBGrid1->DataSource = DataSource1;
+    SetDBGridColumnsStyles();
+}
+//---------------------------------------------------------------------------
+
