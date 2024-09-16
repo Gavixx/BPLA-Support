@@ -38,8 +38,9 @@ __published:	// IDE-managed Components
 	TFDPhysMySQLDriverLink *FDPhysMySQLDriverLink1;
 	TFDConnection *FDConnection1;
 	TDataSource *DataSource1;
-	void __fastcall ButtonShowStatClick(TObject *Sender);
+	TButton *ButtonAddOrder;
 	void __fastcall DBGrid1TitleClick(TColumn *Column);
+	void __fastcall ButtonAddOrderClick(TObject *Sender);
 private:	// User declarations
 	void __fastcall SetDBGridColumnsStyles();
     void __fastcall DateFieldGetText(TField *Sender, UnicodeString &Text, bool DisplayText);

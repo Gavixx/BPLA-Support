@@ -80,6 +80,9 @@ object Form1: TForm1
     Font.Name = 'Times New Roman'
     Font.Style = []
     ParentFont = False
+    ParentShowHint = False
+    PasswordChar = '*'
+    ShowHint = False
     TabOrder = 2
   end
   object LoginButton: TButton

@@ -180,6 +180,12 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="AddOrderForm.cpp">
+            <Form>Form5</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>AddOrderForm.h</DependentOn>
+            <BuildOrder>6</BuildOrder>
+        </CppCompile>
         <CppCompile Include="AdminForm.cpp">
             <Form>Form2</Form>
             <FormType>dfm</FormType>
@@ -215,6 +221,7 @@
         <FormResources Include="AdminForm.dfm"/>
         <FormResources Include="ArmyForm.dfm"/>
         <FormResources Include="LoginForm.dfm"/>
+        <FormResources Include="AddOrderForm.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

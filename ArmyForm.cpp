@@ -5,6 +5,9 @@
 
 #include "ArmyForm.h"
 #include <DateUtils.hpp>  // Для DayOf() і MonthOf()
+#include "AddOrderForm.h"
+
+
 //---------------------------------------------------------------------------
 
 #pragma package(smart_init)
@@ -62,22 +65,6 @@ void __fastcall TForm3::DateFieldGetText(TField *Sender, UnicodeString &Text, bo
 
 
 
-void __fastcall TForm3::ButtonShowStatClick(TObject *Sender)
-{
-    FDQuery1->SQL->Text = "SELECT drone_type, quantity, request_date, status, fulfilled_quantity FROM MilitaryRequests";
-    FDQuery1->Open();
-
-	// Прив'язуємо подію для форматування дати
-	FDQuery1->FieldByName("request_date")->OnGetText = DateFieldGetText;
-
-    // Встановлюємо DataSet для DataSource
-	DataSource1->DataSet = FDQuery1;
-
-    // Встановлюємо стилі колонок після завантаження даних
-    SetDBGridColumnsStyles();
-}
-
-//---------------------------------------------------------------------------
 
 void __fastcall TForm3::DBGrid1TitleClick(TColumn *Column)
 {
@@ -136,4 +123,13 @@ void __fastcall TForm3::DBGrid1TitleClick(TColumn *Column)
 
 //---------------------------------------------------------------------------
 
+
+void __fastcall TForm3::ButtonAddOrderClick(TObject *Sender)
+{
+	TForm5 *AddOrderForm = new TForm5(this);
+	AddOrderForm->Show();
+    this->Hide();
+
+}
+//---------------------------------------------------------------------------
 
