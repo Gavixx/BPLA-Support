@@ -3,7 +3,7 @@ object Form3: TForm3
   Top = 0
   Caption = 'Army'
   ClientHeight = 700
-  ClientWidth = 950
+  ClientWidth = 1426
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,7 +11,7 @@ object Form3: TForm3
   Font.Name = 'Segoe UI'
   Font.Style = []
   DesignSize = (
-    950
+    1426
     700)
   TextHeight = 15
   object DBGrid1: TDBGrid
@@ -40,7 +40,7 @@ object Form3: TForm3
     OnTitleClick = DBGrid1TitleClick
   end
   object ButtonShowStat: TButton
-    Left = 14
+    Left = 16
     Top = 314
     Width = 241
     Height = 65
@@ -57,7 +57,7 @@ object Form3: TForm3
     OnClick = ButtonShowStatClick
   end
   object ButtonAddOrder: TButton
-    Left = 300
+    Left = 330
     Top = 314
     Width = 241
     Height = 65

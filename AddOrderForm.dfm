@@ -2,8 +2,8 @@ object Form5: TForm5
   Left = 0
   Top = 0
   Caption = 'Add Form'
-  ClientHeight = 652
-  ClientWidth = 1292
+  ClientHeight = 595
+  ClientWidth = 729
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,9 +13,9 @@ object Form5: TForm5
   OnCreate = FormCreate
   TextHeight = 15
   object ButtonAdd: TButton
-    Left = 312
-    Top = 392
-    Width = 393
+    Left = 208
+    Top = 352
+    Width = 305
     Height = 25
     Caption = 'Add'
     TabOrder = 0
@@ -32,28 +32,6 @@ object Form5: TForm5
     TabOrder = 1
     Text = ''
   end
-  object LabeledEditRequestDate: TLabeledEdit
-    Left = 584
-    Top = 232
-    Width = 121
-    Height = 23
-    EditLabel.Width = 69
-    EditLabel.Height = 15
-    EditLabel.Caption = 'Request Date'
-    TabOrder = 2
-    Text = ''
-  end
-  object LabeledEditStatus: TLabeledEdit
-    Left = 760
-    Top = 232
-    Width = 121
-    Height = 23
-    EditLabel.Width = 32
-    EditLabel.Height = 15
-    EditLabel.Caption = 'Status'
-    TabOrder = 3
-    Text = ''
-  end
   object LabeledEditDroneType: TLabeledEdit
     Left = 216
     Top = 232
@@ -62,17 +40,29 @@ object Form5: TForm5
     EditLabel.Width = 59
     EditLabel.Height = 15
     EditLabel.Caption = 'Drone Type'
-    TabOrder = 4
+    TabOrder = 2
     Text = ''
   end
+  object DateTimePickerRequestDate: TDateTimePicker
+    Left = 240
+    Top = 64
+    Width = 185
+    Height = 23
+    Date = 45551.000000000000000000
+    Time = 0.906328009259596000
+    DoubleBuffered = False
+    ParentDoubleBuffered = False
+    TabOrder = 3
+    Visible = False
+  end
   object FDQuery1: TFDQuery
-    Left = 1160
-    Top = 432
+    Left = 240
+    Top = 488
   end
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
     DriverID = 'MyPhysDriver'
     VendorLib = 'C:\Users\Roman\Desktop\proj\BPLA-Support\lib\libmysql.dll'
-    Left = 1072
+    Left = 200
     Top = 488
   end
   object FDConnection1: TFDConnection
@@ -82,7 +72,7 @@ object Form5: TForm5
       'Server=192.168.11.3'
       'Database=Drone_Management'
       'DriverID=MyPhysDriver')
-    Left = 1216
-    Top = 512
+    Left = 280
+    Top = 488
   end
 end

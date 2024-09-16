@@ -218,10 +218,10 @@
             <BuildOrder>5</BuildOrder>
         </CppCompile>
         <FormResources Include="VolonterForm.dfm"/>
-        <FormResources Include="AdminForm.dfm"/>
-        <FormResources Include="ArmyForm.dfm"/>
         <FormResources Include="LoginForm.dfm"/>
         <FormResources Include="AddOrderForm.dfm"/>
+        <FormResources Include="AdminForm.dfm"/>
+        <FormResources Include="ArmyForm.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

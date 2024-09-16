@@ -28,18 +28,19 @@
 #include <FireDAC.Stan.Pool.hpp>
 #include <FireDAC.UI.Intf.hpp>
 #include <FireDAC.VCLUI.Wait.hpp>
+#include <Vcl.ComCtrls.hpp>
+#include "ArmyForm.h"
 //---------------------------------------------------------------------------
 class TForm5 : public TForm
 {
 __published:	// IDE-managed Components
 	TButton *ButtonAdd;
 	TLabeledEdit *LabeledEditQuantity;
-	TLabeledEdit *LabeledEditRequestDate;
-	TLabeledEdit *LabeledEditStatus;
 	TLabeledEdit *LabeledEditDroneType;
 	TFDQuery *FDQuery1;
 	TFDPhysMySQLDriverLink *FDPhysMySQLDriverLink1;
 	TFDConnection *FDConnection1;
+	TDateTimePicker *DateTimePickerRequestDate;
 	void __fastcall ButtonAddClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
 private:	// User declarations
