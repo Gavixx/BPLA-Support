@@ -26,11 +26,13 @@ __fastcall TForm3::TForm3(TComponent* Owner)
 	: TForm(Owner)
 {
 	FDQuery1->Connection = FDConnection1;  // Зв'язок з базою даних
-	LoadDB();
 	GetItemToFillBox();
-
+	LoadDB();
 
 }
+
+
+//     		     Візуал для оформлення таблиці
 //---------------------------------------------------------------------------
 void __fastcall TForm3::SetDBGridColumnsStyles()
 {
@@ -66,7 +68,7 @@ void __fastcall TForm3::SetDBGridColumnsStyles()
 }
 
 
-
+//       	    Для відобреження в форматі "1 ВЕРЕСНЯ"
 void __fastcall TForm3::DateFieldGetText(TField *Sender, UnicodeString &Text, bool DisplayText)
 {
 	TDateTime requestDate = Sender->AsDateTime;  // Отримуємо дату з поля
@@ -80,7 +82,7 @@ void __fastcall TForm3::DateFieldGetText(TField *Sender, UnicodeString &Text, bo
 
 
 
-
+  // 			клік на поля таблиці
 void __fastcall TForm3::DBGrid1TitleClick(TColumn *Column)
 {
 	// Ім'я поля, за яким відбудеться сортування
@@ -138,7 +140,7 @@ void __fastcall TForm3::DBGrid1TitleClick(TColumn *Column)
 
 //---------------------------------------------------------------------------
 
-
+//              Відкриття форми на додавання запиту
 void __fastcall TForm3::ButtonAddOrderClick(TObject *Sender)
 {
 	TForm5 *AddOrderForm = new TForm5(this);
@@ -149,7 +151,7 @@ void __fastcall TForm3::ButtonAddOrderClick(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-
+//              Кнопка для оновлення таблиці(показу бд)
 void __fastcall TForm3::ButtonShowStatClick(TObject *Sender)
 {
 	FDConnection1->Connected = true;  // Переконайтесь, що з'єднання з базою даних активно
@@ -168,7 +170,7 @@ void __fastcall TForm3::ButtonShowStatClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-
+//       	   Функція для підкрузки бд
 void __fastcall TForm3::LoadDB(){
 
 	FDConnection1->Connected = true;  // Переконайтесь, що з'єднання з базою даних активно
@@ -188,6 +190,8 @@ void __fastcall TForm3::LoadDB(){
 }
 
 //---------------------------------------------------------------------------
+
+// 				заповнення box з бд
 
 void __fastcall TForm3::GetItemToFillBox(){
 	//  Drone type
@@ -221,4 +225,21 @@ void __fastcall TForm3::GetItemToFillBox(){
 
 //---------------------------------------------------------------------------
 
+
+
+void __fastcall TForm3::ButtonFilterClick(TObject *Sender)
+{
+    // Отримуємо значення дат з DateTimePicker
+    TDateTime startDate = DateTimePickerStart->Date;
+    TDateTime endDate = DateTimePickerEnd->Date;
+	if (ComboBoxDroneName->Text == "")
+	{
+		ShowMessage("Поле типу дрона пусте!");
+	}
+	else
+	{
+		ShowMessage("Вибраний тип дрона: " + ComboBoxDroneName->Text);
+	}
+}
+//---------------------------------------------------------------------------
 

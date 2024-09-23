@@ -40,7 +40,7 @@ object Form3: TForm3
     OnTitleClick = DBGrid1TitleClick
   end
   object ButtonShowStat: TButton
-    Left = 13
+    Left = 16
     Top = 314
     Width = 241
     Height = 65
@@ -57,7 +57,7 @@ object Form3: TForm3
     OnClick = ButtonShowStatClick
   end
   object ButtonAddOrder: TButton
-    Left = 692
+    Left = 701
     Top = 314
     Width = 241
     Height = 65
@@ -73,13 +73,56 @@ object Form3: TForm3
     TabOrder = 2
     OnClick = ButtonAddOrderClick
   end
-  object Button1: TButton
-    Left = 256
-    Top = 587
+  object ComboBoxDroneName: TComboBox
+    Left = 32
+    Top = 480
+    Width = 145
+    Height = 23
+    TabOrder = 3
+  end
+  object ComboBoxDroneType: TComboBox
+    Left = 200
+    Top = 480
+    Width = 145
+    Height = 23
+    TabOrder = 4
+  end
+  object ComboBoxStatus: TComboBox
+    Left = 368
+    Top = 480
+    Width = 145
+    Height = 23
+    TabOrder = 5
+  end
+  object DateTimePickerStart: TDateTimePicker
+    Left = 536
+    Top = 480
+    Width = 186
+    Height = 23
+    Date = 45558.000000000000000000
+    Format = 'dd MMMM yyyy'
+    Time = 0.885561087961832500
+    DateFormat = dfLong
+    TabOrder = 6
+  end
+  object DateTimePickerEnd: TDateTimePicker
+    Left = 740
+    Top = 480
+    Width = 186
+    Height = 23
+    Date = 45558.000000000000000000
+    Format = 'dd MMMM yyyy'
+    Time = 0.885561087961832500
+    DateFormat = dfLong
+    TabOrder = 7
+  end
+  object ButtonFilter: TButton
+    Left = 308
+    Top = 586
     Width = 241
     Height = 65
     Anchors = []
-    Caption = #1047#1072#1089#1090#1086#1089#1091#1074#1072#1090#1080' '#1092#1110#1083#1100#1090#1088#1080
+    Caption = 'Filter'
     Default = True
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -87,47 +130,8 @@ object Form3: TForm3
     Font.Name = 'Times New Roman'
     Font.Style = []
     ParentFont = False
-    TabOrder = 3
-    OnClick = ButtonShowStatClick
-  end
-  object ComboBoxDroneName: TComboBox
-    Left = 16
-    Top = 480
-    Width = 145
-    Height = 23
-    TabOrder = 4
-  end
-  object ComboBoxDroneType: TComboBox
-    Left = 200
-    Top = 480
-    Width = 145
-    Height = 23
-    TabOrder = 5
-  end
-  object ComboBoxStatus: TComboBox
-    Left = 384
-    Top = 480
-    Width = 145
-    Height = 23
-    TabOrder = 6
-  end
-  object DateTimePickerStart: TDateTimePicker
-    Left = 568
-    Top = 480
-    Width = 186
-    Height = 23
-    Date = 45558.000000000000000000
-    Time = 0.885561087961832500
-    TabOrder = 7
-  end
-  object DateTimePickerEnd: TDateTimePicker
-    Left = 800
-    Top = 480
-    Width = 186
-    Height = 23
-    Date = 45558.000000000000000000
-    Time = 0.885561087961832500
     TabOrder = 8
+    OnClick = ButtonFilterClick
   end
   object FDQuery1: TFDQuery
     Left = 1088
