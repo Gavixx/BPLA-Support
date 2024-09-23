@@ -12,6 +12,13 @@ object Form5: TForm5
   Font.Style = []
   OnCreate = FormCreate
   TextHeight = 15
+  object LabelDroneType: TLabel
+    Left = 238
+    Top = 214
+    Width = 59
+    Height = 15
+    Caption = 'Drone Type'
+  end
   object ButtonAdd: TButton
     Left = 136
     Top = 328
@@ -22,7 +29,7 @@ object Form5: TForm5
     OnClick = ButtonAddClick
   end
   object LabeledEditQuantity: TLabeledEdit
-    Left = 416
+    Left = 408
     Top = 232
     Width = 121
     Height = 23
@@ -37,9 +44,9 @@ object Form5: TForm5
     Top = 232
     Width = 121
     Height = 23
-    EditLabel.Width = 59
+    EditLabel.Width = 67
     EditLabel.Height = 15
-    EditLabel.Caption = 'Drone Type'
+    EditLabel.Caption = 'Drone Name'
     TabOrder = 2
     Text = ''
   end
@@ -62,11 +69,11 @@ object Form5: TForm5
     Height = 23
     TabOrder = 4
     Items.Strings = (
-      #1056#1086#1079#1074#1110#1076#1091#1074#1072#1083#1100#1085#1110
+      'Reconnaissance'
       'FPV'
-      #1044#1083#1103' '#1089#1082#1080#1076#1091
-      #1040#1090#1072#1082#1091#1102#1095#1110
-      #1058#1088#1072#1085#1089#1087#1086#1088#1090#1085#1110)
+      'Combat'
+      'Logistics'
+      'Surveillance')
   end
   object FDQuery1: TFDQuery
     Left = 240

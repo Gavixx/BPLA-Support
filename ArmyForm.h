@@ -28,6 +28,7 @@
 #include <FireDAC.VCLUI.Wait.hpp>
 #include <Vcl.DBGrids.hpp>
 #include <Vcl.Grids.hpp>
+#include <Vcl.ComCtrls.hpp>
 //---------------------------------------------------------------------------
 class TForm3 : public TForm
 {
@@ -40,7 +41,11 @@ __published:	// IDE-managed Components
 	TDataSource *DataSource1;
 	TButton *ButtonAddOrder;
 	TButton *Button1;
-	TComboBox *ComboBox1;
+	TComboBox *ComboBoxDroneName;
+	TComboBox *ComboBoxDroneType;
+	TComboBox *ComboBoxStatus;
+	TDateTimePicker *DateTimePickerStart;
+	TDateTimePicker *DateTimePickerEnd;
 	void __fastcall DBGrid1TitleClick(TColumn *Column);
 	void __fastcall ButtonAddOrderClick(TObject *Sender);
 	void __fastcall ButtonShowStatClick(TObject *Sender);
@@ -49,6 +54,7 @@ private:	// User declarations
 	void __fastcall SetDBGridColumnsStyles();
 	void __fastcall DateFieldGetText(TField *Sender, UnicodeString &Text, bool DisplayText);
 	void __fastcall LoadDB();
+    void __fastcall GetItemToFillBox();
 public:		// User declarations
 	__fastcall TForm3(TComponent* Owner);
 };

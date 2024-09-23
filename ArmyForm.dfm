@@ -40,7 +40,7 @@ object Form3: TForm3
     OnTitleClick = DBGrid1TitleClick
   end
   object ButtonShowStat: TButton
-    Left = 16
+    Left = 13
     Top = 314
     Width = 241
     Height = 65
@@ -57,7 +57,7 @@ object Form3: TForm3
     OnClick = ButtonShowStatClick
   end
   object ButtonAddOrder: TButton
-    Left = 701
+    Left = 692
     Top = 314
     Width = 241
     Height = 65
@@ -74,7 +74,7 @@ object Form3: TForm3
     OnClick = ButtonAddOrderClick
   end
   object Button1: TButton
-    Left = 262
+    Left = 256
     Top = 587
     Width = 241
     Height = 65
@@ -90,13 +90,44 @@ object Form3: TForm3
     TabOrder = 3
     OnClick = ButtonShowStatClick
   end
-  object ComboBox1: TComboBox
+  object ComboBoxDroneName: TComboBox
     Left = 16
-    Top = 464
+    Top = 480
     Width = 145
     Height = 23
     TabOrder = 4
-    Text = 'ComboBox1'
+  end
+  object ComboBoxDroneType: TComboBox
+    Left = 200
+    Top = 480
+    Width = 145
+    Height = 23
+    TabOrder = 5
+  end
+  object ComboBoxStatus: TComboBox
+    Left = 384
+    Top = 480
+    Width = 145
+    Height = 23
+    TabOrder = 6
+  end
+  object DateTimePickerStart: TDateTimePicker
+    Left = 568
+    Top = 480
+    Width = 186
+    Height = 23
+    Date = 45558.000000000000000000
+    Time = 0.885561087961832500
+    TabOrder = 7
+  end
+  object DateTimePickerEnd: TDateTimePicker
+    Left = 800
+    Top = 480
+    Width = 186
+    Height = 23
+    Date = 45558.000000000000000000
+    Time = 0.885561087961832500
+    TabOrder = 8
   end
   object FDQuery1: TFDQuery
     Left = 1088

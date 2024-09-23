@@ -42,6 +42,7 @@ __published:	// IDE-managed Components
 	TFDConnection *FDConnection1;
 	TDateTimePicker *DateTimePickerRequestDate;
 	TComboBox *ComboBoxDroneType;
+	TLabel *LabelDroneType;
 	void __fastcall ButtonAddClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
 private:	// User declarations

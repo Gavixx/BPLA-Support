@@ -26,8 +26,8 @@ __fastcall TForm3::TForm3(TComponent* Owner)
 	: TForm(Owner)
 {
 	FDQuery1->Connection = FDConnection1;  // «в'€зок з базою даних
-
 	LoadDB();
+	GetItemToFillBox();
 
 
 }
@@ -186,5 +186,39 @@ void __fastcall TForm3::LoadDB(){
 	SetDBGridColumnsStyles();
 
 }
+
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::GetItemToFillBox(){
+	//  Drone type
+	FDQuery1->Close();
+	FDQuery1->SQL->Text = "SELECT DISTINCT drone_type FROM DroneModel";
+	FDQuery1->Open();
+	ComboBoxDroneType->Items->Clear();
+	while (!FDQuery1->Eof) {
+		ComboBoxDroneType->Items->Add(FDQuery1->FieldByName("drone_type")->AsString);
+		FDQuery1->Next();
+	}
+	//  Drone name
+	FDQuery1->Close();
+	FDQuery1->SQL->Text = "SELECT DISTINCT drone_name FROM DroneModel";
+	FDQuery1->Open();
+	ComboBoxDroneName->Items->Clear();
+	while (!FDQuery1->Eof) {
+		ComboBoxDroneName->Items->Add(FDQuery1->FieldByName("drone_name")->AsString);
+		FDQuery1->Next();
+	}
+	// Drone Status
+    FDQuery1->Close();
+	FDQuery1->SQL->Text = "SELECT DISTINCT status FROM MilitaryRequests";
+	FDQuery1->Open();
+	ComboBoxStatus->Items->Clear();
+	while (!FDQuery1->Eof) {
+		ComboBoxStatus->Items->Add(FDQuery1->FieldByName("status")->AsString);
+		FDQuery1->Next();
+	}
+}
+
+//---------------------------------------------------------------------------
 
 
