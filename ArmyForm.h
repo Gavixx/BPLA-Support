@@ -39,13 +39,16 @@ __published:	// IDE-managed Components
 	TFDConnection *FDConnection1;
 	TDataSource *DataSource1;
 	TButton *ButtonAddOrder;
+	TButton *Button1;
+	TComboBox *ComboBox1;
 	void __fastcall DBGrid1TitleClick(TColumn *Column);
 	void __fastcall ButtonAddOrderClick(TObject *Sender);
 	void __fastcall ButtonShowStatClick(TObject *Sender);
+
 private:	// User declarations
 	void __fastcall SetDBGridColumnsStyles();
-    void __fastcall DateFieldGetText(TField *Sender, UnicodeString &Text, bool DisplayText);
-
+	void __fastcall DateFieldGetText(TField *Sender, UnicodeString &Text, bool DisplayText);
+	void __fastcall LoadDB();
 public:		// User declarations
 	__fastcall TForm3(TComponent* Owner);
 };

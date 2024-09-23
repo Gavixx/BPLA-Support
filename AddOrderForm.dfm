@@ -13,8 +13,8 @@ object Form5: TForm5
   OnCreate = FormCreate
   TextHeight = 15
   object ButtonAdd: TButton
-    Left = 208
-    Top = 352
+    Left = 136
+    Top = 328
     Width = 305
     Height = 25
     Caption = 'Add'
@@ -22,7 +22,7 @@ object Form5: TForm5
     OnClick = ButtonAddClick
   end
   object LabeledEditQuantity: TLabeledEdit
-    Left = 392
+    Left = 416
     Top = 232
     Width = 121
     Height = 23
@@ -32,8 +32,8 @@ object Form5: TForm5
     TabOrder = 1
     Text = ''
   end
-  object LabeledEditDroneType: TLabeledEdit
-    Left = 216
+  object LabeledEditDroneName: TLabeledEdit
+    Left = 80
     Top = 232
     Width = 121
     Height = 23
@@ -44,7 +44,7 @@ object Form5: TForm5
     Text = ''
   end
   object DateTimePickerRequestDate: TDateTimePicker
-    Left = 240
+    Left = 176
     Top = 64
     Width = 185
     Height = 23
@@ -54,6 +54,19 @@ object Form5: TForm5
     ParentDoubleBuffered = False
     TabOrder = 3
     Visible = False
+  end
+  object ComboBoxDroneType: TComboBox
+    Left = 233
+    Top = 232
+    Width = 145
+    Height = 23
+    TabOrder = 4
+    Items.Strings = (
+      #1056#1086#1079#1074#1110#1076#1091#1074#1072#1083#1100#1085#1110
+      'FPV'
+      #1044#1083#1103' '#1089#1082#1080#1076#1091
+      #1040#1090#1072#1082#1091#1102#1095#1110
+      #1058#1088#1072#1085#1089#1087#1086#1088#1090#1085#1110)
   end
   object FDQuery1: TFDQuery
     Left = 240

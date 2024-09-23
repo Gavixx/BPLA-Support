@@ -30,7 +30,7 @@ try {
 		FDConnection1->Connected = true;
 
 		// SQL-запит для пошуку користувача за логіном
-		FDQuery1->SQL->Text = "SELECT password_hash FROM Users WHERE username = :username";
+		FDQuery1->SQL->Text = "SELECT password FROM Users WHERE username = :username";
 		FDQuery1->ParamByName("username")->AsString = enteredUsername;
 
 		// Виконуємо запит
@@ -39,7 +39,7 @@ try {
 		// Перевіряємо, чи знайдено користувача
 		if (!FDQuery1->Eof) {
 			// Отримуємо пароль із бази даних
-			String storedPassword = FDQuery1->FieldByName("password_hash")->AsString;
+			String storedPassword = FDQuery1->FieldByName("password")->AsString;
 
 			// Перевіряємо, чи збігається введений пароль із тим, що в базі
 			if (enteredPassword == storedPassword) {

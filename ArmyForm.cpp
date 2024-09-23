@@ -6,7 +6,7 @@
 #include "ArmyForm.h"
 #include <DateUtils.hpp>  // Для DayOf() і MonthOf()
 #include "AddOrderForm.h"
-
+#include <windows.h>
 
 //---------------------------------------------------------------------------
 
@@ -15,52 +15,67 @@
 TForm3 *Form3;
 //---------------------------------------------------------------------------
 
+const String monthNames[12] = {"Січня", "Лютого", "Березня", "Квітня", "Травня", "Червня",
+							   "Липня", "Серпня", "Вересня", "Жовтня", "Листопада", "Грудня"};
+
+
+
+
+
 __fastcall TForm3::TForm3(TComponent* Owner)
 	: TForm(Owner)
 {
 	FDQuery1->Connection = FDConnection1;  // Зв'язок з базою даних
+
+	LoadDB();
+
+
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm3::SetDBGridColumnsStyles()
 {
-    DBGrid1->Columns->Items[0]->Width = 200;  // Ширина першої колонки
-    DBGrid1->Columns->Items[0]->Title->Caption = "Тип дрону";
-    DBGrid1->Columns->Items[0]->Title->Alignment = taCenter;
+	DBGrid1->Columns->Items[0]->Width = 200;  // Ширина першої колонки
+	DBGrid1->Columns->Items[0]->Title->Caption = "Назва дрону";
+	DBGrid1->Columns->Items[0]->Title->Alignment = taCenter;
 
-    DBGrid1->Columns->Items[1]->Width = 200;  // Ширина другої колонки
-    DBGrid1->Columns->Items[1]->Title->Caption = "Потрібно";
-    DBGrid1->Columns->Items[1]->Title->Alignment = taCenter;
-    DBGrid1->Columns->Items[1]->Alignment = taCenter;
+	DBGrid1->Columns->Items[1]->Width = 200;  // Ширина другої колонки
+	DBGrid1->Columns->Items[1]->Title->Caption = "Тип дрону";
+	DBGrid1->Columns->Items[1]->Title->Alignment = taCenter;
+	DBGrid1->Columns->Items[1]->Alignment = taCenter;
 
-    DBGrid1->Columns->Items[2]->Width = 200;  // Ширина третьої колонки
-    DBGrid1->Columns->Items[2]->Title->Caption = "Дата запиту";
-    DBGrid1->Columns->Items[2]->Title->Alignment = taCenter;
-    DBGrid1->Columns->Items[2]->Alignment = taCenter;
+	DBGrid1->Columns->Items[2]->Width = 150;  // Ширина третьої колонки
+	DBGrid1->Columns->Items[2]->Title->Caption = "Потрібна к-ть";
+	DBGrid1->Columns->Items[2]->Title->Alignment = taCenter;
+	DBGrid1->Columns->Items[2]->Alignment = taCenter;
 
-    DBGrid1->Columns->Items[3]->Width = 150;
-    DBGrid1->Columns->Items[3]->Title->Caption = "Прогрес";
-    DBGrid1->Columns->Items[3]->Title->Alignment = taCenter;
-    DBGrid1->Columns->Items[3]->Alignment = taCenter;
+	DBGrid1->Columns->Items[3]->Width = 200;
+	DBGrid1->Columns->Items[3]->Title->Caption = "Дата подачі запиту";
+	DBGrid1->Columns->Items[3]->Title->Alignment = taCenter;
+	DBGrid1->Columns->Items[3]->Alignment = taCenter;
 
-    DBGrid1->Columns->Items[4]->Width = 200;
-    DBGrid1->Columns->Items[4]->Title->Caption = "Отримано";
-    DBGrid1->Columns->Items[4]->Title->Alignment = taCenter;
-    DBGrid1->Columns->Items[4]->Alignment = taCenter;
+	DBGrid1->Columns->Items[4]->Width = 200;
+	DBGrid1->Columns->Items[4]->Title->Caption = "Статус";
+	DBGrid1->Columns->Items[4]->Title->Alignment = taCenter;
+	DBGrid1->Columns->Items[4]->Alignment = taCenter;
+
+	DBGrid1->Columns->Items[5]->Width = 200;
+	DBGrid1->Columns->Items[5]->Title->Caption = "Отримано дронів";
+	DBGrid1->Columns->Items[5]->Title->Alignment = taCenter;
+	DBGrid1->Columns->Items[5]->Alignment = taCenter;
+	FDQuery1->FieldByName("request_date")->OnGetText = DateFieldGetText;
 }
 
 
-const String monthNames[12] = {"Січня", "Лютого", "Березня", "Квітня", "Травня", "Червня",
-                               "Липня", "Серпня", "Вересня", "Жовтня", "Листопада", "Грудня"};
 
 void __fastcall TForm3::DateFieldGetText(TField *Sender, UnicodeString &Text, bool DisplayText)
 {
-    TDateTime requestDate = Sender->AsDateTime;  // Отримуємо дату з поля
+	TDateTime requestDate = Sender->AsDateTime;  // Отримуємо дату з поля
 
-    int day = DayOf(requestDate);   // Отримуємо день з дати
-    int month = MonthOf(requestDate);  // Отримуємо місяць з дати
+	int day = DayOf(requestDate);   // Отримуємо день з дати
+	int month = MonthOf(requestDate);  // Отримуємо місяць з дати
 
-    // Формуємо відформатовану дату
-    Text = IntToStr(day) + " " + monthNames[month - 1];
+	// Формуємо відформатовану дату
+	Text = IntToStr(day) + " " + monthNames[month - 1];
 }
 
 
@@ -98,21 +113,21 @@ void __fastcall TForm3::DBGrid1TitleClick(TColumn *Column)
 		else
 		{
 			// Якщо інша колонка, завжди починаємо з сортування за зростанням
-            sortAscending = true;
-        }
+			sortAscending = true;
+		}
 
-        // Зберігаємо поточну колонку як останню відсортовану
-        lastSortedColumn = columnName;
+		// Зберігаємо поточну колонку як останню відсортовану
+		lastSortedColumn = columnName;
 
-        // Формуємо запит із новим сортуванням
+		// Формуємо запит із новим сортуванням
 		String sortDirection = sortAscending ? "ASC" : "DESC";
-        baseSQL += " ORDER BY " + columnName + " " + sortDirection;
+		baseSQL += " ORDER BY " + columnName + " " + sortDirection;
 
-        // Оновлюємо запит і перезавантажуємо дані
-        query->SQL->Text = baseSQL;
+		// Оновлюємо запит і перезавантажуємо дані
+		query->SQL->Text = baseSQL;
 		query->Close();
 		query->Open();
-        	// Прив'язуємо подію для форматування дати
+			// Прив'язуємо подію для форматування дати
 		FDQuery1->FieldByName("request_date")->OnGetText = DateFieldGetText;
 
 		// Встановлюємо DataSet для DataSource
@@ -128,7 +143,7 @@ void __fastcall TForm3::ButtonAddOrderClick(TObject *Sender)
 {
 	TForm5 *AddOrderForm = new TForm5(this);
 	AddOrderForm->Show();
-    this->Hide();
+	this->Hide();
 
 }
 //---------------------------------------------------------------------------
@@ -139,9 +154,11 @@ void __fastcall TForm3::ButtonShowStatClick(TObject *Sender)
 {
 	FDConnection1->Connected = true;  // Переконайтесь, що з'єднання з базою даних активно
 
-    // Налаштування запиту
-    FDQuery1->Connection = FDConnection1;
-	FDQuery1->SQL->Text = "SELECT drone_type, quantity, request_date, status, fulfilled_quantity FROM MilitaryRequests";
+	// Налаштування запиту
+	FDQuery1->Connection = FDConnection1;
+	FDQuery1->SQL->Text = "SELECT DM.drone_name, DM.drone_type, MR.quantity, MR.request_date, MR.status, MR.fulfilled_quantity "
+						   "FROM MilitaryRequests MR "
+						   "JOIN DroneModel DM ON MR.drone_id = DM.drone_id";
 	FDQuery1->Open();  // Виконує запит та відкриває результати
 
     // Прив'язка даних
@@ -150,4 +167,24 @@ void __fastcall TForm3::ButtonShowStatClick(TObject *Sender)
 	SetDBGridColumnsStyles();
 }
 //---------------------------------------------------------------------------
+
+
+void __fastcall TForm3::LoadDB(){
+
+	FDConnection1->Connected = true;  // Переконайтесь, що з'єднання з базою даних активно
+
+	// Налаштування запиту
+	FDQuery1->Connection = FDConnection1;
+	FDQuery1->SQL->Text = "SELECT DM.drone_name, DM.drone_type, MR.quantity, MR.request_date, MR.status, MR.fulfilled_quantity "
+						   "FROM MilitaryRequests MR "
+						   "JOIN DroneModel DM ON MR.drone_id = DM.drone_id";
+	FDQuery1->Open();  // Виконує запит та відкриває результати
+
+	// Прив'язка даних
+	DataSource1->DataSet = FDQuery1;
+	DBGrid1->DataSource = DataSource1;
+	SetDBGridColumnsStyles();
+
+}
+
 

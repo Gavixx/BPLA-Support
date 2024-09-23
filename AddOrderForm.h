@@ -36,11 +36,12 @@ class TForm5 : public TForm
 __published:	// IDE-managed Components
 	TButton *ButtonAdd;
 	TLabeledEdit *LabeledEditQuantity;
-	TLabeledEdit *LabeledEditDroneType;
+	TLabeledEdit *LabeledEditDroneName;
 	TFDQuery *FDQuery1;
 	TFDPhysMySQLDriverLink *FDPhysMySQLDriverLink1;
 	TFDConnection *FDConnection1;
 	TDateTimePicker *DateTimePickerRequestDate;
+	TComboBox *ComboBoxDroneType;
 	void __fastcall ButtonAddClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
 private:	// User declarations

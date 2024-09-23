@@ -45,7 +45,7 @@ object Form3: TForm3
     Width = 241
     Height = 65
     Anchors = []
-    Caption = #1055#1086#1082#1072#1079#1072#1090#1080' '#1079#1072#1084#1086#1074#1083#1077#1085#1085#1103
+    Caption = #1054#1073#1085#1086#1074#1080#1090#1080
     Default = True
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -57,7 +57,7 @@ object Form3: TForm3
     OnClick = ButtonShowStatClick
   end
   object ButtonAddOrder: TButton
-    Left = 330
+    Left = 701
     Top = 314
     Width = 241
     Height = 65
@@ -73,15 +73,40 @@ object Form3: TForm3
     TabOrder = 2
     OnClick = ButtonAddOrderClick
   end
+  object Button1: TButton
+    Left = 262
+    Top = 587
+    Width = 241
+    Height = 65
+    Anchors = []
+    Caption = #1047#1072#1089#1090#1086#1089#1091#1074#1072#1090#1080' '#1092#1110#1083#1100#1090#1088#1080
+    Default = True
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -24
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 3
+    OnClick = ButtonShowStatClick
+  end
+  object ComboBox1: TComboBox
+    Left = 16
+    Top = 464
+    Width = 145
+    Height = 23
+    TabOrder = 4
+    Text = 'ComboBox1'
+  end
   object FDQuery1: TFDQuery
-    Left = 760
-    Top = 544
+    Left = 1088
+    Top = 32
   end
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
     DriverID = 'MyPhysDriver'
     VendorLib = 'C:\Users\Roman\Desktop\proj\BPLA-Support\lib\libmysql.dll'
-    Left = 672
-    Top = 600
+    Left = 1120
+    Top = 32
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
@@ -90,11 +115,11 @@ object Form3: TForm3
       'Server=192.168.11.3'
       'Database=Drone_Management'
       'DriverID=MyPhysDriver')
-    Left = 816
-    Top = 624
+    Left = 1152
+    Top = 32
   end
   object DataSource1: TDataSource
-    Left = 912
-    Top = 624
+    Left = 1184
+    Top = 32
   end
 end
