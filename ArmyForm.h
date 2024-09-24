@@ -29,6 +29,11 @@
 #include <Vcl.DBGrids.hpp>
 #include <Vcl.Grids.hpp>
 #include <Vcl.ComCtrls.hpp>
+#include <Vcl.ActnCtrls.hpp>
+#include <Vcl.ActnMan.hpp>
+#include <Vcl.ActnMenus.hpp>
+#include <Vcl.ToolWin.hpp>
+#include <Vcl.Menus.hpp>
 //---------------------------------------------------------------------------
 class TForm3 : public TForm
 {
@@ -46,10 +51,23 @@ __published:	// IDE-managed Components
 	TDateTimePicker *DateTimePickerStart;
 	TDateTimePicker *DateTimePickerEnd;
 	TButton *ButtonFilter;
+	TButton *ButtonClearFilter;
+	TLabel *LabelFilter;
+	TMainMenu *MainMenu1;
+	TMenuItem *MenuClose;
+	TMenuItem *MenuHelp;
+	TMenuItem *ChangeUser1;
+	TMenuItem *Help1;
+	TMenuItem *Help2;
 	void __fastcall DBGrid1TitleClick(TColumn *Column);
 	void __fastcall ButtonAddOrderClick(TObject *Sender);
 	void __fastcall ButtonShowStatClick(TObject *Sender);
 	void __fastcall ButtonFilterClick(TObject *Sender);
+	void __fastcall ButtonClearFilterClick(TObject *Sender);
+	void __fastcall MenuCloseClick(TObject *Sender);
+	void __fastcall ChangeUser1Click(TObject *Sender);
+	void __fastcall Help1Click(TObject *Sender);
+	void __fastcall Help2Click(TObject *Sender);
 
 private:	// User declarations
 	void __fastcall SetDBGridColumnsStyles();

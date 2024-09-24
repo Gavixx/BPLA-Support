@@ -1,6 +1,6 @@
 object Form5: TForm5
-  Left = 0
-  Top = 0
+  Left = 577
+  Top = 237
   Caption = 'Add Form'
   ClientHeight = 595
   ClientWidth = 729
@@ -10,6 +10,8 @@ object Form5: TForm5
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Menu = MainMenu1
+  Position = poDesigned
   OnCreate = FormCreate
   TextHeight = 15
   object LabelDroneType: TLabel
@@ -38,6 +40,8 @@ object Form5: TForm5
     EditLabel.Caption = 'Quantity'
     TabOrder = 1
     Text = ''
+    OnChange = LabeledEditQuantityChange
+    OnKeyPress = LabeledEditQuantityKeyPress
   end
   object LabeledEditDroneName: TLabeledEdit
     Left = 80
@@ -49,6 +53,7 @@ object Form5: TForm5
     EditLabel.Caption = 'Drone Name'
     TabOrder = 2
     Text = ''
+    OnChange = LabeledEditDroneNameChange
   end
   object DateTimePickerRequestDate: TDateTimePicker
     Left = 176
@@ -63,11 +68,12 @@ object Form5: TForm5
     Visible = False
   end
   object ComboBoxDroneType: TComboBox
-    Left = 233
-    Top = 232
+    Left = 238
+    Top = 235
     Width = 145
     Height = 23
     TabOrder = 4
+    OnChange = ComboBoxDroneTypeChange
     Items.Strings = (
       'Reconnaissance'
       'FPV'
@@ -94,5 +100,13 @@ object Form5: TForm5
       'DriverID=MyPhysDriver')
     Left = 280
     Top = 488
+  end
+  object MainMenu1: TMainMenu
+    Left = 520
+    Top = 424
+    object Close1: TMenuItem
+      Caption = 'Close'
+      OnClick = Close1Click
+    end
   end
 end

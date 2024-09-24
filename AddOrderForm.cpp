@@ -14,8 +14,22 @@
 	{
 	}
 	//---------------------------------------------------------------------------
+
+    	void __fastcall TForm5::FormCreate(TObject *Sender)
+	{
+		FDQuery1->Connection = FDConnection1;
+		DateTimePickerRequestDate->Date = Now();
+		ButtonAdd->Enabled = false;
+	}
+	//---------------------------------------------------------------------------
+
+
 	void __fastcall TForm5::ButtonAddClick(TObject *Sender)
 	{
+		  // Check if the required fields are filled
+
+		// Enable or disable the button based on the result
+
 		FDQuery1->Close();  // Çàêğèòè çàïèò, ÿêùî â³í â³äêğèòèé
 		FDQuery1->SQL->Text = "SELECT drone_id FROM DroneModel WHERE drone_name = :drone_name";
 		FDQuery1->ParamByName("drone_name")->AsString = LabeledEditDroneName->Text;  // Ïåğåäàºìî ïàğàìåòğ drone_name
@@ -65,9 +79,56 @@
 
 	}
 	//---------------------------------------------------------------------------
-	void __fastcall TForm5::FormCreate(TObject *Sender)
-	{
-		FDQuery1->Connection = FDConnection1;
-		DateTimePickerRequestDate->Date = Now();
+
+
+
+    void __fastcall TForm5::CheckFields()
+{
+    // Check if the required fields are filled
+    bool isEnabled = !LabeledEditDroneName->Text.IsEmpty() &&
+                     !ComboBoxDroneType->Text.IsEmpty() &&
+                     !LabeledEditQuantity->Text.IsEmpty();
+
+    // Enable or disable the Add Order button based on the result
+    ButtonAdd->Enabled = isEnabled;
+}
+void __fastcall TForm5::LabeledEditDroneNameChange(TObject *Sender)
+{
+    CheckFields();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm5::ComboBoxDroneTypeChange(TObject *Sender)
+{
+    CheckFields();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm5::LabeledEditQuantityChange(TObject *Sender)
+{
+	CheckFields();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm5::LabeledEditQuantityKeyPress(TObject *Sender, System::WideChar &Key)
+
+{
+  if (!CharIsDigit(Key) && Key != 8) { // 8 is the ASCII code for Backspace
+        Key = 0; // Ignore the key press
 	}
-	//---------------------------------------------------------------------------
+}
+//---------------------------------------------------------------------------
+
+
+bool __fastcall TForm5::CharIsDigit(char c)
+{
+    return (c >= '0' && c <= '9');
+}
+
+//------------------------------------------------------------------------
+void __fastcall TForm5::Close1Click(TObject *Sender)
+{
+	Application->Terminate();
+}
+//---------------------------------------------------------------------------
+

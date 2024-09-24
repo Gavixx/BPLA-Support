@@ -30,6 +30,7 @@
 #include <FireDAC.VCLUI.Wait.hpp>
 #include <Vcl.ComCtrls.hpp>
 #include "ArmyForm.h"
+#include <Vcl.Menus.hpp>
 //---------------------------------------------------------------------------
 class TForm5 : public TForm
 {
@@ -43,9 +44,19 @@ __published:	// IDE-managed Components
 	TDateTimePicker *DateTimePickerRequestDate;
 	TComboBox *ComboBoxDroneType;
 	TLabel *LabelDroneType;
+	TMainMenu *MainMenu1;
+	TMenuItem *Close1;
 	void __fastcall ButtonAddClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
+	void __fastcall LabeledEditDroneNameChange(TObject *Sender);
+	void __fastcall ComboBoxDroneTypeChange(TObject *Sender);
+	void __fastcall LabeledEditQuantityChange(TObject *Sender);
+	void __fastcall LabeledEditQuantityKeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall Close1Click(TObject *Sender);
+
 private:	// User declarations
+	void __fastcall CheckFields();
+    bool __fastcall CharIsDigit(char c);
 public:		// User declarations
 	__fastcall TForm5(TComponent* Owner);
 };

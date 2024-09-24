@@ -10,6 +10,7 @@ object Form1: TForm1
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Menu = MainMenu1
   Position = poDesigned
   TextHeight = 15
   object EnterLoginLabel: TLabel
@@ -131,5 +132,24 @@ object Form1: TForm1
         Name = 'ID'
         ParamType = ptInput
       end>
+  end
+  object MainMenu1: TMainMenu
+    Left = 760
+    Top = 560
+    object Help1: TMenuItem
+      Caption = 'Reference'
+      object Help3: TMenuItem
+        Caption = 'Help'
+        OnClick = Help3Click
+      end
+      object Help4: TMenuItem
+        Caption = 'About us'
+        OnClick = Help4Click
+      end
+    end
+    object Help2: TMenuItem
+      Caption = 'Close'
+      OnClick = Help2Click
+    end
   end
 end

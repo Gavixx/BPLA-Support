@@ -6,7 +6,8 @@
 #include "ArmyForm.h"
 #include <DateUtils.hpp>  // Для DayOf() і MonthOf()
 #include "AddOrderForm.h"
-#include <windows.h>
+#include "LoginForm.h"
+//#include <windows.h>
 
 //---------------------------------------------------------------------------
 
@@ -28,6 +29,7 @@ __fastcall TForm3::TForm3(TComponent* Owner)
 	FDQuery1->Connection = FDConnection1;  // Зв'язок з базою даних
 	GetItemToFillBox();
 	LoadDB();
+	DateTimePickerEnd->Date = Now();
 
 }
 
@@ -164,7 +166,7 @@ void __fastcall TForm3::ButtonShowStatClick(TObject *Sender)
 	FDQuery1->Open();  // Виконує запит та відкриває результати
 
     // Прив'язка даних
-    DataSource1->DataSet = FDQuery1;
+	DataSource1->DataSet = FDQuery1;
 	DBGrid1->DataSource = DataSource1;
 	SetDBGridColumnsStyles();
 }
@@ -213,7 +215,7 @@ void __fastcall TForm3::GetItemToFillBox(){
 		FDQuery1->Next();
 	}
 	// Drone Status
-    FDQuery1->Close();
+	FDQuery1->Close();
 	FDQuery1->SQL->Text = "SELECT DISTINCT status FROM MilitaryRequests";
 	FDQuery1->Open();
 	ComboBoxStatus->Items->Clear();
@@ -229,17 +231,133 @@ void __fastcall TForm3::GetItemToFillBox(){
 
 void __fastcall TForm3::ButtonFilterClick(TObject *Sender)
 {
-    // Отримуємо значення дат з DateTimePicker
-    TDateTime startDate = DateTimePickerStart->Date;
-    TDateTime endDate = DateTimePickerEnd->Date;
-	if (ComboBoxDroneName->Text == "")
+	TDateTime startDate = DateTimePickerStart->Date;
+	TDateTime endDate = DateTimePickerEnd->Date;
+
+	String baseSQL =
+		"SELECT DM.drone_name, DM.drone_type, MR.quantity, MR.request_date, MR.status, MR.fulfilled_quantity "
+		"FROM MilitaryRequests MR "
+		"JOIN DroneModel DM ON MR.drone_id = DM.drone_id "
+		"WHERE MR.request_date BETWEEN :startDate AND :endDate";
+
+	// Додаємо фільтрацію по імені дрону, якщо вибрано елемент
+	if (ComboBoxDroneName->Text != "")
 	{
-		ShowMessage("Поле типу дрона пусте!");
+		String dronename = ComboBoxDroneName->Text;
+		baseSQL += " AND DM.drone_name = :dronename";  // Фільтрація по імені дрону
+
 	}
-	else
+		if (ComboBoxDroneType->Text != "")
 	{
-		ShowMessage("Вибраний тип дрона: " + ComboBoxDroneName->Text);
+		String dronetype = ComboBoxDroneType->Text;
+		baseSQL += " AND DM.drone_type = :dronetype";  // Фільтрація по імені дрону
 	}
+		if (ComboBoxStatus->Text != "")
+	{
+		String status = ComboBoxStatus->Text;
+		baseSQL += " AND MR.status = :status";  // Фільтрація по імені дрону
+	}
+
+
+
+	// Присвоюємо збудований запит до FDQuery1
+	FDQuery1->SQL->Text = baseSQL;
+
+	// Прив'язуємо параметри до відповідних значень
+	FDQuery1->ParamByName("startDate")->AsDate = startDate;
+	FDQuery1->ParamByName("endDate")->AsDate = endDate;
+
+	// Якщо вибрано ім'я дрону, передаємо його як параметр
+    if (ComboBoxDroneName->Text != "")
+	{
+		FDQuery1->ParamByName("dronename")->AsString = ComboBoxDroneName->Text;
+	}
+
+		if (ComboBoxDroneType->Text != "")
+	{
+		FDQuery1->ParamByName("dronetype")->AsString = ComboBoxDroneType->Text;
+	}
+
+		if (ComboBoxStatus->Text != "")
+	{
+		FDQuery1->ParamByName("status")->AsString = ComboBoxStatus->Text;
+	}
+
+
+
+
+	try {
+		FDQuery1->Open();  // Виконати запит
+		DataSource1->DataSet = FDQuery1;
+		DBGrid1->DataSource = DataSource1;
+		SetDBGridColumnsStyles();  // Встановлення стилів колонок
+        ShowMessage("Filtered successfully");
+	} catch (Exception &e) {
+		ShowMessage("Помилка при фільтрації: " + e.Message);
+	}
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::ButtonClearFilterClick(TObject *Sender)
+{
+   ComboBoxDroneType->ItemIndex = -1;
+   ComboBoxDroneName->ItemIndex = -1;
+   ComboBoxStatus->ItemIndex = -1;
+   DateTimePickerStart->Date = StrToDate("01/01/2024");  // Скидаємо DateTimePicker на поточну дату
+   DateTimePickerEnd->Date = Now();    // Те саме для кінцевої дати
+   LoadDB();
+}
+
+
+void __fastcall TForm3::MenuCloseClick(TObject *Sender)
+{
+	Application->Terminate();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::ChangeUser1Click(TObject *Sender)
+{
+	TForm1 *LoginForm = new TForm1(this);
+	LoginForm->Show();
+	this->Close();
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm3::Help1Click(TObject *Sender)
+{
+       ShowMessage("Help\n"
+		"Welcome to the Military Drone Management Application. This software is designed to help military personnel manage drone requests and volunteer contributions efficiently.\n\n"
+
+		"Getting Started:\n"
+		"To get started with the application:\n"
+		"  - Installation: Download the installer from our website and follow the on-screen instructions to install.\n"
+		"  - Launching the Application: Once installed, double-click the application icon to launch.\n\n"
+
+		"Using the Application:\n"
+		"  - Military Requests: To create a new military request, navigate to the \"Military Requests\" tab, fill in the required fields, and click \"Add Request\".\n"
+		"  - Volunteers: Manage volunteer contributions under the \"Volunteers\" section.\n"
+		"  - Drone Models: You can manage drone models under the \"Drone Models\" section. Click \"Add Model\" to enter new drone information.\n\n"
+
+		"Filtering and Searching:\n"
+		"To filter military requests:\n"
+		"  - Use the date pickers to select a date range.\n"
+		"  - If you want to filter by drone name, select the desired name from the dropdown.\n"
+		"  - Click the \"Filter\" button to apply the selected criteria.\n\n"
+
+		"Common Issues and Troubleshooting:\n"
+		"  - Issue: Unable to add a new military request. Solution: Ensure all required fields are filled in correctly.\n"
+		"  - Issue: Application crashes on startup. Solution: Check for updates and VPN connection or reinstall the application.\n");
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::Help2Click(TObject *Sender)
+{
+		ShowMessage( " About Us\n"
+		"This application was developed by the HighTech team. Version: 1.0.\n\n"
+
+		"For additional assistance, please contact support at HighTech@info.com.");
 }
 //---------------------------------------------------------------------------
 

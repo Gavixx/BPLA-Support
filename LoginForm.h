@@ -28,6 +28,7 @@
 #include <FireDAC.DApt.Intf.hpp>
 #include <FireDAC.DatS.hpp>
 #include <FireDAC.Stan.Param.hpp>
+#include <Vcl.Menus.hpp>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
@@ -41,7 +42,15 @@ __published:	// IDE-managed Components
 	TLabel *EnterPasswordLabel;
 	TButton *LoginButton;
 	TFDQuery *FDQuery1;
+	TMainMenu *MainMenu1;
+	TMenuItem *Help1;
+	TMenuItem *Help2;
+	TMenuItem *Help3;
+	TMenuItem *Help4;
 	void __fastcall LoginButtonClick(TObject *Sender);
+	void __fastcall Help2Click(TObject *Sender);
+	void __fastcall Help3Click(TObject *Sender);
+	void __fastcall Help4Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);
