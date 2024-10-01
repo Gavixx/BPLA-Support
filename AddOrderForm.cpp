@@ -4,6 +4,7 @@
 	#pragma hdrstop
 
 	#include "AddOrderForm.h"
+#include "DataModule.h"
 	//---------------------------------------------------------------------------
 	#pragma package(smart_init)
 	#pragma resource "*.dfm"
@@ -114,7 +115,7 @@ void __fastcall TForm5::LabeledEditQuantityKeyPress(TObject *Sender, System::Wid
 
 {
   if (!CharIsDigit(Key) && Key != 8) { // 8 is the ASCII code for Backspace
-        Key = 0; // Ignore the key press
+		Key = 0; // Ignore the key press
 	}
 }
 //---------------------------------------------------------------------------
@@ -122,13 +123,7 @@ void __fastcall TForm5::LabeledEditQuantityKeyPress(TObject *Sender, System::Wid
 
 bool __fastcall TForm5::CharIsDigit(char c)
 {
-    return (c >= '0' && c <= '9');
+	return (c >= '0' && c <= '9');
 }
 
-//------------------------------------------------------------------------
-void __fastcall TForm5::Close1Click(TObject *Sender)
-{
-	Application->Terminate();
-}
-//---------------------------------------------------------------------------
 

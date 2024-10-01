@@ -1,0 +1,66 @@
+//---------------------------------------------------------------------------
+
+#ifndef AdminFormH
+#define AdminFormH
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Data.DB.hpp>
+#include <Vcl.DBGrids.hpp>
+#include <Vcl.Grids.hpp>
+#include <FireDAC.Comp.Client.hpp>
+#include <FireDAC.Comp.DataSet.hpp>
+#include <FireDAC.DApt.hpp>
+#include <FireDAC.DApt.Intf.hpp>
+#include <FireDAC.DatS.hpp>
+#include <FireDAC.Phys.hpp>
+#include <FireDAC.Phys.Intf.hpp>
+#include <FireDAC.Phys.MySQL.hpp>
+#include <FireDAC.Phys.MySQLDef.hpp>
+#include <FireDAC.Stan.Async.hpp>
+#include <FireDAC.Stan.Def.hpp>
+#include <FireDAC.Stan.Error.hpp>
+#include <FireDAC.Stan.Intf.hpp>
+#include <FireDAC.Stan.Option.hpp>
+#include <FireDAC.Stan.Param.hpp>
+#include <FireDAC.Stan.Pool.hpp>
+#include <FireDAC.UI.Intf.hpp>
+#include <FireDAC.VCLUI.Wait.hpp>
+#include <Vcl.Menus.hpp>
+#include <System.Actions.hpp>
+#include <Vcl.ActnList.hpp>
+#include <Vcl.ActnMan.hpp>
+#include <Vcl.PlatformDefaultStyleActnCtrls.hpp>
+#include <System.ImageList.hpp>
+#include <Vcl.ImgList.hpp>
+//---------------------------------------------------------------------------
+class TForm2 : public TForm
+{
+__published:	// IDE-managed Components
+	TDBGrid *DBGrid1;
+	TButton *ButtonShowUsers;
+	TFDQuery *FDQuery1;
+	TFDPhysMySQLDriverLink *FDPhysMySQLDriverLink1;
+	TFDConnection *FDConnection1;
+	TDataSource *DataSource1;
+	TMainMenu *MainMenu1;
+	TMenuItem *Close1;
+	TButton *Button1;
+	TActionManager *ActionManager1;
+	TAction *Action1;
+	TImageList *ImageList1;
+	void __fastcall ButtonShowUsersClick(TObject *Sender);
+	void __fastcall Close1Click(TObject *Sender);
+	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall DBGrid1TitleClick(TColumn *Column);
+private:	// User declarations
+    void __fastcall SetDBGridColumnsStyles();
+public:		// User declarations
+	__fastcall TForm2(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TForm2 *Form2;
+//---------------------------------------------------------------------------
+#endif

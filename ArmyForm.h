@@ -38,12 +38,7 @@
 class TForm3 : public TForm
 {
 __published:	// IDE-managed Components
-	TDBGrid *DBGrid1;
 	TButton *ButtonShowStat;
-	TFDQuery *FDQuery1;
-	TFDPhysMySQLDriverLink *FDPhysMySQLDriverLink1;
-	TFDConnection *FDConnection1;
-	TDataSource *DataSource1;
 	TButton *ButtonAddOrder;
 	TComboBox *ComboBoxDroneName;
 	TComboBox *ComboBoxDroneType;
@@ -59,16 +54,12 @@ __published:	// IDE-managed Components
 	TMenuItem *ChangeUser1;
 	TMenuItem *Help1;
 	TMenuItem *Help2;
+	TDBGrid *DBGrid1;
 	void __fastcall DBGrid1TitleClick(TColumn *Column);
 	void __fastcall ButtonAddOrderClick(TObject *Sender);
 	void __fastcall ButtonShowStatClick(TObject *Sender);
 	void __fastcall ButtonFilterClick(TObject *Sender);
 	void __fastcall ButtonClearFilterClick(TObject *Sender);
-	void __fastcall MenuCloseClick(TObject *Sender);
-	void __fastcall ChangeUser1Click(TObject *Sender);
-	void __fastcall Help1Click(TObject *Sender);
-	void __fastcall Help2Click(TObject *Sender);
-
 private:	// User declarations
 	void __fastcall SetDBGridColumnsStyles();
 	void __fastcall DateFieldGetText(TField *Sender, UnicodeString &Text, bool DisplayText);

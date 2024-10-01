@@ -1,0 +1,146 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "AdminForm.h"
+#include "AddUser.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm2 *Form2;
+//---------------------------------------------------------------------------
+__fastcall TForm2::TForm2(TComponent* Owner)
+	: TForm(Owner)
+{
+
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm2::SetDBGridColumnsStyles()
+{
+	int gridWidth = DBGrid1->ClientWidth; // Ширина всієї таблички
+
+	// Визначаємо загальну кількість колонок
+	int totalColumns = DBGrid1->Columns->Count;
+
+	// Пропорційні коефіцієнти для колонок (ви можете змінювати ці значення, щоб налаштувати пропорції)
+	float coefColumn1 = 0.4; // 40% для першої колонки
+	float coefColumn2 = 0.35; // 35% для другої колонки
+	float coefColumn3 = 0.25; // 25% для третьої колонки
+
+	// Встановлюємо ширину кожної колонки відносно ширини таблиці
+	DBGrid1->Columns->Items[0]->Width = gridWidth * coefColumn1;
+	DBGrid1->Columns->Items[0]->Title->Caption = "ПІБ";
+	DBGrid1->Columns->Items[0]->Title->Alignment = taCenter;
+
+	DBGrid1->Columns->Items[1]->Width = gridWidth * coefColumn2;
+	DBGrid1->Columns->Items[1]->Title->Caption = "Пошта";
+	DBGrid1->Columns->Items[1]->Title->Alignment = taCenter;
+	DBGrid1->Columns->Items[1]->Alignment = taCenter;
+
+	DBGrid1->Columns->Items[2]->Width = gridWidth * coefColumn3;
+	DBGrid1->Columns->Items[2]->Title->Caption = "Телефон";
+	DBGrid1->Columns->Items[2]->Title->Alignment = taCenter;
+	DBGrid1->Columns->Items[2]->Alignment = taCenter;
+
+}
+//
+
+
+
+
+
+void __fastcall TForm2::ButtonShowUsersClick(TObject *Sender)
+{
+    try {
+		FDConnection1->Connected = true;  // Переконайтесь, що з'єднання з базою даних активно
+
+        // Налаштування запиту
+        FDQuery1->Connection = FDConnection1;
+        FDQuery1->SQL->Text = "SELECT name, email, phone FROM Volunteers";  // Додано пробіл перед FROM
+        FDQuery1->Open();  // Виконує запит та відкриває результати
+
+        // Прив'язка даних
+        DataSource1->DataSet = FDQuery1;
+		DBGrid1->DataSource = DataSource1;
+		 SetDBGridColumnsStyles();
+        // Виклик для налаштування стилю колонок, якщо потрібно
+        // SetDBGridColumnsStyles();
+
+    } catch (const Exception &e) {
+        ShowMessage("Помилка при отриманні даних: " + e.Message);
+	}
+
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::Close1Click(TObject *Sender)
+{
+ Application->Terminate();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::Button1Click(TObject *Sender)
+{
+	TForm6 *AddUser = new TForm6(this);
+	AddUser->Show();
+	this->Hide();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::DBGrid1TitleClick(TColumn *Column)
+{
+	// Ім'я поля, за яким відбудеться сортування
+	static String lastSortedColumn = "";  // Остання відсортована колонка
+	static bool sortAscending = true;     // Прапор для напрямку сортування
+
+	String columnName = Column->FieldName;
+
+	// Перевірка, чи є активний DataSet, і чи підтримує він SQL
+	if (DataSource1->DataSet && dynamic_cast<TFDQuery*>(DataSource1->DataSet))
+	{
+		TFDQuery *query = dynamic_cast<TFDQuery*>(DataSource1->DataSet);
+
+		// Отримуємо поточний SQL запит
+		String baseSQL = query->SQL->Text;
+
+		// Спробуємо знайти вже існуюче "ORDER BY"
+		int orderByPos = baseSQL.Pos("ORDER BY");
+		// Якщо "ORDER BY" вже існує, видаляємо його
+		if (orderByPos > 0)
+		{
+			baseSQL = baseSQL.SubString(1, orderByPos - 1);
+		}
+
+		// Якщо клікаємо по тій самій колонці, змінюємо напрямок сортування
+		if (columnName == lastSortedColumn)
+		{
+			sortAscending = !sortAscending;  // Міняємо прапор
+		}
+		else
+		{
+			// Якщо інша колонка, завжди починаємо з сортування за зростанням
+			sortAscending = true;
+		}
+
+		// Зберігаємо поточну колонку як останню відсортовану
+		lastSortedColumn = columnName;
+
+		// Формуємо запит із новим сортуванням
+		String sortDirection = sortAscending ? "ASC" : "DESC";
+		baseSQL += " ORDER BY " + columnName + " " + sortDirection;
+
+		// Оновлюємо запит і перезавантажуємо дані
+		query->SQL->Text = baseSQL;
+		query->Close();
+		query->Open();
+		// Встановлюємо DataSet для DataSource
+		DataSource1->DataSet = FDQuery1;
+		SetDBGridColumnsStyles();
+	}
+}
+
+

@@ -1,0 +1,40 @@
+//---------------------------------------------------------------------------
+
+
+#pragma hdrstop
+
+#include "DataModule.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma classgroup "Vcl.Controls.TControl"
+#pragma resource "*.dfm"
+TDataModule1 *DataModule1;
+//---------------------------------------------------------------------------
+__fastcall TDataModule1::TDataModule1(TComponent* Owner)
+	: TDataModule(Owner)
+{
+	wchar_t buffer[MAX_PATH];
+	GetModuleFileName(NULL, buffer, MAX_PATH);
+	PathRemoveFileSpec(buffer);  // Видаляємо ім'я виконуваного файлу
+	PathRemoveFileSpec(buffer);
+	PathRemoveFileSpec(buffer);
+	String basePath = buffer;
+	String libPath = basePath + L"\\lib\\libmysql.dll";
+
+	try{
+		FDPhysMySQLDriverLink1->VendorLib = libPath;
+	}
+	catch (Exception &e) {
+		ShowMessage("Помилка: " + e.Message);
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TDataModule1::ConnectToDatabase()
+{
+    try {
+        FDConnection1->Connected = true;  // Підключаємося до бази
+    } catch (const Exception &e) {
+        ShowMessage("Помилка підключення до бази: " + e.Message);
+    }
+}
+

@@ -46,14 +46,16 @@ __published:	// IDE-managed Components
 	TLabel *LabelDroneType;
 	TMainMenu *MainMenu1;
 	TMenuItem *Close1;
+	TMenuItem *Reference1;
+	TMenuItem *Help1;
+	TMenuItem *AboutUs1;
+	TMenuItem *ChangeUser1;
 	void __fastcall ButtonAddClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall LabeledEditDroneNameChange(TObject *Sender);
 	void __fastcall ComboBoxDroneTypeChange(TObject *Sender);
 	void __fastcall LabeledEditQuantityChange(TObject *Sender);
 	void __fastcall LabeledEditQuantityKeyPress(TObject *Sender, System::WideChar &Key);
-	void __fastcall Close1Click(TObject *Sender);
-
 private:	// User declarations
 	void __fastcall CheckFields();
     bool __fastcall CharIsDigit(char c);

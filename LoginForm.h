@@ -33,24 +33,19 @@
 class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
-	TFDConnection *FDConnection1;
-	TFDPhysMySQLDriverLink *FDPhysMySQLDriverLink1;
 	TStaticText *StaticText1;
 	TEdit *EditLogin;
 	TLabel *EnterLoginLabel;
 	TEdit *EditPassword;
 	TLabel *EnterPasswordLabel;
 	TButton *LoginButton;
-	TFDQuery *FDQuery1;
 	TMainMenu *MainMenu1;
+	TMenuItem *close1;
+	TMenuItem *Reference1;
 	TMenuItem *Help1;
-	TMenuItem *Help2;
-	TMenuItem *Help3;
-	TMenuItem *Help4;
+	TMenuItem *AboutUs1;
 	void __fastcall LoginButtonClick(TObject *Sender);
-	void __fastcall Help2Click(TObject *Sender);
-	void __fastcall Help3Click(TObject *Sender);
-	void __fastcall Help4Click(TObject *Sender);
+    void __fastcall OpenRoleSpecificForm(String role, String userName);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);

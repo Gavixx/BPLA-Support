@@ -28,13 +28,23 @@
 #include <FireDAC.Stan.Pool.hpp>
 #include <FireDAC.UI.Intf.hpp>
 #include <FireDAC.VCLUI.Wait.hpp>
+#include <Vcl.Menus.hpp>
 //---------------------------------------------------------------------------
 class TForm4 : public TForm
 {
 __published:	// IDE-managed Components
+	TLabel *LabelWelcom;
+	TMainMenu *MainMenu1;
+	TMenuItem *Close1;
+	TMenuItem *Close2;
+	TMenuItem *Help1;
+	TMenuItem *Help2;
+	TMenuItem *ChangeUser1;
 private:	// User declarations
-public:		// User declarations
-	__fastcall TForm4(TComponent* Owner);
+String UserName;
+public:
+    // Конструктор форми з передачею імені користувача
+    __fastcall TForm4(TComponent* Owner, String userName);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm4 *Form4;

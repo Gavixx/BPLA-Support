@@ -56,7 +56,7 @@ object Form5: TForm5
     OnChange = LabeledEditDroneNameChange
   end
   object DateTimePickerRequestDate: TDateTimePicker
-    Left = 176
+    Left = 320
     Top = 64
     Width = 185
     Height = 23
@@ -104,9 +104,20 @@ object Form5: TForm5
   object MainMenu1: TMainMenu
     Left = 520
     Top = 424
+    object Reference1: TMenuItem
+      Caption = 'Reference'
+      object Help1: TMenuItem
+        Action = DataModule1.ActionHelp
+      end
+      object AboutUs1: TMenuItem
+        Action = DataModule1.ActionAboutUs
+      end
+    end
+    object ChangeUser1: TMenuItem
+      Action = DataModule1.ActionChangeUser
+    end
     object Close1: TMenuItem
-      Caption = 'Close'
-      OnClick = Close1Click
+      Action = DataModule1.ActionClose
     end
   end
 end

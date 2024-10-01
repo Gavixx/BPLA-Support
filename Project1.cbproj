@@ -88,7 +88,7 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\release\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
         <ProjectType>CppVCLApplication</ProjectType>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
-        <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;FireDAC.lib;FireDACCommonDriver.lib;FireDACCommon.lib;xmlrtl.lib;vclFireDAC.lib;vcldb.lib;vclwinx.lib;vclimg.lib;bindengine.lib;vclx.lib;FireDACMySQLDriver.lib;adortl.lib</AllPackageLibs>
+        <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;FireDAC.lib;FireDACCommonDriver.lib;FireDACCommon.lib;xmlrtl.lib;vclFireDAC.lib;vcldb.lib;vclwinx.lib;vclimg.lib;bindengine.lib;vclx.lib;FireDACMySQLDriver.lib;adortl.lib;vclactnband.lib</AllPackageLibs>
         <_TCHARMapping>wchar_t</_TCHARMapping>
         <Multithreaded>true</Multithreaded>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
@@ -154,7 +154,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;dbrtl.bpi;FireDAC.bpi;FireDACCommonDriver.bpi;FireDACCommon.bpi;xmlrtl.bpi;vclFireDAC.bpi;vcldb.bpi;vclwinx.bpi;vclimg.bpi;bindengine.bpi;vclx.bpi;FireDACMySQLDriver.bpi;adortl.bpi</LinkPackageImports>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;dbrtl.bpi;FireDAC.bpi;FireDACCommonDriver.bpi;FireDACCommon.bpi;xmlrtl.bpi;vclFireDAC.bpi;vcldb.bpi;vclwinx.bpi;vclimg.bpi;bindengine.bpi;vclx.bpi;FireDACMySQLDriver.bpi;adortl.bpi;vclactnband.bpi</LinkPackageImports>
         <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
         <ILINK_LibraryPath>$(BDSLIB)\$(PLATFORM)$(CC_SUFFIX)\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
@@ -186,23 +186,36 @@
             <DependentOn>AddOrderForm.h</DependentOn>
             <BuildOrder>6</BuildOrder>
         </CppCompile>
+        <CppCompile Include="AddUser.cpp">
+            <Form>Form6</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>AddUser.h</DependentOn>
+            <BuildOrder>7</BuildOrder>
+        </CppCompile>
         <CppCompile Include="AdminForm.cpp">
             <Form>Form2</Form>
             <FormType>dfm</FormType>
             <DependentOn>AdminForm.h</DependentOn>
-            <BuildOrder>3</BuildOrder>
+            <BuildOrder>6</BuildOrder>
         </CppCompile>
         <CppCompile Include="ArmyForm.cpp">
             <Form>Form3</Form>
             <FormType>dfm</FormType>
             <DependentOn>ArmyForm.h</DependentOn>
-            <BuildOrder>4</BuildOrder>
+            <BuildOrder>8</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="DataModule.cpp">
+            <Form>DataModule1</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+            <DependentOn>DataModule.h</DependentOn>
+            <BuildOrder>7</BuildOrder>
         </CppCompile>
         <CppCompile Include="LoginForm.cpp">
             <Form>Form1</Form>
             <FormType>dfm</FormType>
             <DependentOn>LoginForm.h</DependentOn>
-            <BuildOrder>2</BuildOrder>
+            <BuildOrder>5</BuildOrder>
         </CppCompile>
         <CppCompile Include="Project1.cpp">
             <BuildOrder>0</BuildOrder>
@@ -217,9 +230,11 @@
             <DependentOn>VolonterForm.h</DependentOn>
             <BuildOrder>5</BuildOrder>
         </CppCompile>
-        <FormResources Include="VolonterForm.dfm"/>
         <FormResources Include="LoginForm.dfm"/>
+        <FormResources Include="VolonterForm.dfm"/>
+        <FormResources Include="DataModule.dfm"/>
         <FormResources Include="AddOrderForm.dfm"/>
+        <FormResources Include="AddUser.dfm"/>
         <FormResources Include="AdminForm.dfm"/>
         <FormResources Include="ArmyForm.dfm"/>
         <BuildConfiguration Include="Base">

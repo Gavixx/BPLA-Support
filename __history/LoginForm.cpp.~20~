@@ -1,0 +1,89 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+#include "AdminForm.h"
+#include "LoginForm.h"
+#include "ArmyForm.h"
+#include "VolonterForm.h"
+#include "DataModule.h"
+
+
+
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm1 *Form1;
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+	: TForm(Owner)
+{
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::LoginButtonClick(TObject *Sender)
+{
+
+	String enteredUsername = EditLogin->Text;
+	String enteredPassword = EditPassword->Text;
+	if (enteredUsername.IsEmpty() || enteredPassword.IsEmpty()) {
+		ShowMessage("Please enter both username and password");
+	}
+
+	try {
+		DataModule1->ConnectToDatabase();  // Підключаємося до бази даних через DataModule
+
+		// SQL-запит для пошуку користувача за логіном
+		DataModule1->FDQuery1->SQL->Text = "SELECT password FROM Users WHERE username = :username";
+		DataModule1->FDQuery1->ParamByName("username")->AsString = enteredUsername;
+		DataModule1->FDQuery1->Open();
+
+		// Перевіряємо, чи знайдено користувача
+		if (!DataModule1->FDQuery1->Eof) {
+			// Отримуємо пароль із бази даних
+			String storedPassword = DataModule1->FDQuery1->FieldByName("password")->AsString;
+
+			// Перевіряємо, чи збігається введений пароль із тим, що в базі
+			if (enteredPassword == storedPassword) {
+				OpenRoleSpecificForm(enteredUsername);  // Виклик функції для відкриття форми відповідно до ролі
+				this->Hide();  // Ховаємо форму логіну після відкриття нової форми
+			} else {
+				ShowMessage("Invalid login or password");
+			}
+		} else {
+			ShowMessage("Invalid login or password");
+		}
+
+		// Закриваємо запит і відключаємо з'єднання
+		DataModule1->FDQuery1->Close();
+		DataModule1->FDConnection1->Connected = false;
+	}
+	catch (Exception &e) {
+		ShowMessage("Помилка: " + e.Message);
+		DataModule1->FDConnection1->Connected = false;  // Переконуємося, що підключення вимкнене у разі помилки
+	}
+}
+
+
+//---------------------------------------------------------------------------
+
+
+void TForm1::OpenRoleSpecificForm(String username)
+{
+	if (username == "admin") {
+		TForm2 *AdminForm = new TForm2(this);
+		AdminForm->Show();
+	}
+	else if (username == "army") {
+		TForm3 *ArmyForm = new TForm3(this);
+		ArmyForm->Show();
+	}
+	else {
+		TForm4 *VolonterForm = new TForm4(this);
+		VolonterForm->Show();
+	}
+}
+
+//---------------------------------------------------------------------------
+
