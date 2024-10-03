@@ -52,6 +52,7 @@ object DataModule1: TDataModule1
     end
   end
   object DataSource1: TDataSource
+    DataSet = FDQuery1
     Left = 488
     Top = 304
   end

@@ -4,13 +4,14 @@
 #pragma hdrstop
 #include <tchar.h>
 //---------------------------------------------------------------------------
+USEFORM("LoginForm.cpp", Form1);
 USEFORM("VolonterForm.cpp", Form4);
+USEFORM("DataModule.cpp", DataModule1); /* TDataModule: File Type */
 USEFORM("AddOrderForm.cpp", Form5);
 USEFORM("AddUser.cpp", Form6);
-USEFORM("LoginForm.cpp", Form1);
 USEFORM("AdminForm.cpp", Form2);
-USEFORM("DataModule.cpp", DataModule1); /* TDataModule: File Type */
 USEFORM("ArmyForm.cpp", Form3);
+USEFORM("DonateForm.cpp", Form7);
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
@@ -19,9 +20,8 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
 		Application->CreateForm(__classid(TForm1), &Form1);
-		Application->CreateForm(__classid(TForm2), &Form2);
 		Application->CreateForm(__classid(TDataModule1), &DataModule1);
-		Application->CreateForm(__classid(TForm3), &Form3);
+		Application->CreateForm(__classid(TForm7), &Form7);
 		Application->Run();
 	}
 	catch (Exception &exception)

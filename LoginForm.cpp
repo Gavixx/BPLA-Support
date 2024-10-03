@@ -82,7 +82,7 @@ void TForm1::OpenRoleSpecificForm(String role, String userName)
 		ArmyForm->Show();
 	}
 	else if (role == "volunteer") {
-		TForm4 *VolonterForm = new TForm4(this, userName);  // Передаємо ім'я користувача
+		TForm4 *VolonterForm = new TForm4(this, userName);  // Передаємо ім'я користувачаs
 		VolonterForm->Show();
 	}
 	else {

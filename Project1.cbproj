@@ -211,6 +211,12 @@
             <DependentOn>DataModule.h</DependentOn>
             <BuildOrder>7</BuildOrder>
         </CppCompile>
+        <CppCompile Include="DonateForm.cpp">
+            <Form>Form7</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>DonateForm.h</DependentOn>
+            <BuildOrder>9</BuildOrder>
+        </CppCompile>
         <CppCompile Include="LoginForm.cpp">
             <Form>Form1</Form>
             <FormType>dfm</FormType>
@@ -237,6 +243,7 @@
         <FormResources Include="AddUser.dfm"/>
         <FormResources Include="AdminForm.dfm"/>
         <FormResources Include="ArmyForm.dfm"/>
+        <FormResources Include="DonateForm.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
