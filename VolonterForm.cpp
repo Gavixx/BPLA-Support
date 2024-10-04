@@ -6,14 +6,18 @@
 #include "VolonterForm.h"
 #include "DataModule.h"
 #include "DonateForm.h"
+#include "ProfileForm.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TForm4 *Form4;
 //---------------------------------------------------------------------------
-__fastcall TForm4::TForm4(TComponent* Owner, String userName)
-    : TForm(Owner), UserName(userName)
+__fastcall TForm4::TForm4(TComponent* Owner, String userName, int user_id)
+	: TForm(Owner), UserName(userName), UserID(user_id)
 {
+	BalloonHint1->Title = "Порада";
+	BalloonHint1->Description = "Щоб задонатити, будь ласка, спочатку виберіть рядок у таблиці.";
+	BalloonHint1->ShowHint(ButtonDonate);
 }
 //---------------------------------------------------------------------------
 
@@ -50,9 +54,11 @@ void __fastcall TForm4::LoadDB()  {
 
 void __fastcall TForm4::FormShow(TObject *Sender)
 {
-	   LoadDB();
+	LoadDB();
 	// Відображення в Label або інший спосіб показу імені
 	LabelWelcom->Caption = "Welcome, " + UserName + "!";
+	DBGrid1->SelectedRows->Clear();
+	ButtonDonate->Enabled = false;
 }
 //---------------------------------------------------------------------------
 
@@ -65,8 +71,8 @@ void __fastcall TForm4::ButtonShowRequestsClick(TObject *Sender)
 
 void __fastcall TForm4::ButtonDonateClick(TObject *Sender)
 {
-	 TForm7 *DonateForm = new TForm7(this, SelectedRequestID, SelectedDroneName, MaxQuantityNeeded, UserID);
-    DonateForm->Show();
+	TForm7 *DonateForm = new TForm7(this, SelectedRequestID, SelectedDroneName, MaxQuantityNeeded, UserID);
+	DonateForm->Show();
 	this->Hide();
 }
 //---------------------------------------------------------------------------
@@ -121,13 +127,27 @@ void __fastcall TForm4::SetDBGridColumnsStyles()
 void __fastcall TForm4::DBGrid1CellClick(TColumn *Column)
 {
 
-
 	SelectedRequestID = DataModule1->FDQuery1->FieldByName("request_id")->AsInteger;
-	MaxQuantityNeeded = DataModule1->FDQuery1->FieldByName("quantity")->AsInteger;
+	MaxQuantityNeeded = DataModule1->FDQuery1->FieldByName("quantity")->AsInteger - DataModule1->FDQuery1->FieldByName("fulfilled_quantity")->AsInteger ;
 	SelectedDroneName = DataModule1->FDQuery1->FieldByName("drone_name")->AsString;
 
-    // Enable the Contribute button
+	// Enable the Contribute button
 	ButtonDonate->Enabled = true;
+}
+//---------------------------------------------------------------------------
+
+String __fastcall TForm4::GetUserName(){
+	return UserName;
+}
+
+int __fastcall TForm4::GetUserID(){
+	return UserID;
+}
+void __fastcall TForm4::Button1Click(TObject *Sender)
+{
+	TForm8 *ProfileForm = new TForm8(this, UserID);
+	ProfileForm->Show();
+	this->Hide();
 }
 //---------------------------------------------------------------------------
 

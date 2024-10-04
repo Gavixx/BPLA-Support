@@ -1,9 +1,9 @@
 object Form7: TForm7
-  Left = 0
-  Top = 0
+  Left = 1010
+  Top = 201
   Caption = 'Form7'
-  ClientHeight = 746
-  ClientWidth = 1122
+  ClientHeight = 538
+  ClientWidth = 568
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,58 +11,72 @@ object Form7: TForm7
   Font.Name = 'Segoe UI'
   Font.Style = []
   Menu = MainMenu1
+  Position = poDesigned
   TextHeight = 15
-  object LabelDroneDonate: TLabel
-    Left = 40
-    Top = 88
-    Width = 205
-    Height = 15
-    Caption = 'Chose drone what you want to  donate'
-  end
-  object LabelQuantityDonate: TLabel
-    Left = 40
-    Top = 168
-    Width = 217
-    Height = 15
-    Caption = 'Input quantity what you whant to donate'
-  end
   object LabelMaxQuantity: TLabel
-    Left = 301
-    Top = 413
-    Width = 347
-    Height = 15
+    Left = 8
+    Top = 168
+    Width = 148
+    Height = 33
+    Caption = 'MaxQuantity'
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
   end
   object LabelDroneName: TLabel
-    Left = 496
-    Top = 368
-    Width = 92
-    Height = 15
+    Left = 8
+    Top = 104
+    Width = 195
+    Height = 33
     Caption = 'LabelDroneName'
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
   end
-  object ComboBoxDrones: TComboBox
-    Left = 280
-    Top = 85
+  object Label1: TLabel
+    Left = 8
+    Top = 237
+    Width = 379
+    Height = 33
+    Caption = #1042#1074#1077#1076#1110#1090#1100' '#1082#1110#1083#1100#1082#1110#1089#1090#1100' '#1076#1083#1103' '#1074#1110#1076#1087#1088#1072#1074#1082#1080
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+  end
+  object EditQuantity: TEdit
+    Left = 410
+    Top = 248
     Width = 145
     Height = 23
     TabOrder = 0
-    OnChange = ComboBoxDronesChange
-  end
-  object EditQuantity: TEdit
-    Left = 280
-    Top = 165
-    Width = 145
-    Height = 23
-    TabOrder = 1
     OnKeyPress = EditQuantityKeyPress
   end
   object ButtonSend: TButton
-    Left = 64
-    Top = 224
-    Width = 377
+    Left = 8
+    Top = 336
+    Width = 257
     Height = 113
     Caption = 'Send'
-    TabOrder = 2
+    TabOrder = 1
     OnClick = ButtonSendClick
+  end
+  object ButtonCancel: TButton
+    Left = 298
+    Top = 336
+    Width = 257
+    Height = 113
+    Caption = 'Cancel'
+    TabOrder = 2
+    OnClick = ButtonCancelClick
   end
   object MainMenu1: TMainMenu
     Left = 376

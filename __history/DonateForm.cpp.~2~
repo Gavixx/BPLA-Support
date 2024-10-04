@@ -1,0 +1,99 @@
+#include <vcl.h>
+#pragma hdrstop
+
+#include "DonateForm.h"
+#include "DataModule.h"
+#include "VolonterForm.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm7 *Form7;
+//---------------------------------------------------------------------------
+__fastcall TForm7::TForm7(TComponent* Owner, int requestID, String droneName, int maxQuantity, int userID)
+	: TForm(Owner), SelectedRequestID(requestID), SelectedDroneName(droneName), MaxQuantityNeeded(maxQuantity), UserID(userID)
+{
+	LabelDroneName->Caption = "Ви обрали дрон: " + SelectedDroneName;
+	LabelMaxQuantity->Caption = "МАКСИМАЛЬНА КІЛЬКІСТЬ: " + IntToStr(MaxQuantityNeeded);
+	EditQuantity->Text = "1";
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TForm7::EditQuantityKeyPress(TObject *Sender, System::WideChar &Key)
+{
+	// Allow only digits and control characters
+	if (!((Key >= '0' && Key <= '9') || Key == VK_BACK || Key == '\b'))
+	{
+		Key = 0; // Discard the key
+	}
+}
+
+void __fastcall TForm7::ButtonSendClick(TObject *Sender)
+{
+
+	String quantityText = EditQuantity->Text.Trim();
+	int quantityg = StrToIntDef(quantityText, -1);
+
+	if (quantityg > MaxQuantityNeeded)
+	{
+		ShowMessage("Кількість пожертви перевищує максимально необхідну кількість (" + IntToStr(MaxQuantityNeeded) + ").");
+		return;
+	}
+
+	try
+	{
+		// Ensure the database connection is active
+		if (!DataModule1->FDConnection1->Connected)
+		{
+			DataModule1->ConnectToDatabase();
+			if (!DataModule1->FDConnection1->Connected)
+			{
+				throw Exception("Не вдалося підключитися до бази даних.");
+			}
+		}
+
+		// Get drone_id from DroneModel table
+		// Ensure that the Donations table exists in your database
+		TFDQuery *insertDonationQuery = new TFDQuery(NULL);
+		insertDonationQuery->Connection = DataModule1->FDConnection1;
+		insertDonationQuery->SQL->Text = "INSERT INTO Contributions (user_id, request_id, quantity, contribution_date) VALUES (:user_id, :request_id, :quantity, NOW())";
+		insertDonationQuery->ParamByName("user_id")->AsInteger = UserID;
+		insertDonationQuery->ParamByName("request_id")->AsInteger = SelectedRequestID;
+		insertDonationQuery->ParamByName("quantity")->AsInteger = quantityg;
+
+
+		insertDonationQuery->ExecSQL();
+		delete insertDonationQuery;
+
+		// Optionally, update the fulfilled_quantity in MilitaryRequests
+		// ... (code to update MilitaryRequests if needed) ...
+
+		TFDQuery *UpdateRequestQuery = new TFDQuery(NULL);
+		UpdateRequestQuery->Connection = DataModule1->FDConnection1;
+		UpdateRequestQuery->SQL->Text = "UPDATE MilitaryRequests "
+										"SET fulfilled_quantity = fulfilled_quantity + :quantity "
+										"WHERE request_id = :request_id ";
+		UpdateRequestQuery->ParamByName("quantity")->AsInteger = quantityg;
+		UpdateRequestQuery->ParamByName("request_id")->AsInteger = SelectedRequestID;
+
+		UpdateRequestQuery->ExecSQL();
+		delete UpdateRequestQuery;
+
+
+		// After successful donation
+		ShowMessage("Дякуємо за вашу пожертву!");
+
+		TForm4 *VolonterForm = new TForm4(this, VolonterForm->UserName);
+		VolonterForm->Show();
+		this->Close();
+
+
+	}
+	catch (Exception &e)
+	{
+		ShowMessage("Виникла помилка під час обробки вашої пожертви: " + e.Message);
+	}
+}
+//----------------------------------------------------------------
+
+

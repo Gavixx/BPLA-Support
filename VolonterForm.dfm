@@ -50,9 +50,13 @@ object Form4: TForm4
     Top = 110
     Width = 1403
     Height = 330
+    Hint = #1041#1091#1076#1100' '#1083#1072#1089#1082#1072', '#1074#1080#1073#1077#1088#1110#1090#1100' '#1088#1103#1076#1086#1082' '#1091' '#1090#1072#1073#1083#1080#1094#1110', '#1097#1086#1073' '#1087#1088#1086#1076#1086#1074#1078#1080#1090#1080
     Align = alTop
     DataSource = DataModule1.DataSource1
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    ParentShowHint = False
     ReadOnly = True
+    ShowHint = True
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -78,8 +82,22 @@ object Form4: TForm4
     Hint = 'First chose a row on table '
     Caption = 'DONATE'
     Enabled = False
+    ParentShowHint = False
+    ShowHint = True
     TabOrder = 2
     OnClick = ButtonDonateClick
+  end
+  object Button1: TButton
+    Left = 680
+    Top = 446
+    Width = 241
+    Height = 51
+    Hint = 'First chose a row on table '
+    Caption = 'Profile'
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 3
+    OnClick = Button1Click
   end
   object MainMenu1: TMainMenu
     Left = 728
@@ -97,7 +115,13 @@ object Form4: TForm4
       end
     end
     object ChangeUser1: TMenuItem
-      Caption = 'Change User'
+      Action = DataModule1.ActionChangeUser
     end
+  end
+  object BalloonHint1: TBalloonHint
+    HideAfter = 3000
+    Position = hpBelow
+    Left = 616
+    Top = 472
   end
 end

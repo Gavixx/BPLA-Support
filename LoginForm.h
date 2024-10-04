@@ -45,7 +45,7 @@ __published:	// IDE-managed Components
 	TMenuItem *Help1;
 	TMenuItem *AboutUs1;
 	void __fastcall LoginButtonClick(TObject *Sender);
-    void __fastcall OpenRoleSpecificForm(String role, String userName);
+    void __fastcall OpenRoleSpecificForm(String role, String userName,  int user_id);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);

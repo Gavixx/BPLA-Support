@@ -1,0 +1,325 @@
+object Form8: TForm8
+  Left = 0
+  Top = 0
+  Caption = 'Form8'
+  ClientHeight = 507
+  ClientWidth = 700
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Menu = MainMenu1
+  OnCreate = FormCreate
+  TextHeight = 15
+  object LabelUsername: TLabel
+    Left = 8
+    Top = 32
+    Width = 121
+    Height = 41
+    Caption = 'User name'
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label1: TLabel
+    Left = 8
+    Top = 96
+    Width = 65
+    Height = 33
+    Caption = 'Email'
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 8
+    Top = 160
+    Width = 160
+    Height = 33
+    Caption = 'Phone number'
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 8
+    Top = 227
+    Width = 65
+    Height = 33
+    Caption = 'Login'
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 8
+    Top = 296
+    Width = 106
+    Height = 33
+    Caption = 'Password'
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+  end
+  object EditUserName: TEdit
+    Left = 197
+    Top = 29
+    Width = 233
+    Height = 41
+    Enabled = False
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+  end
+  object ButtonEditName: TButton
+    Left = 454
+    Top = 29
+    Width = 97
+    Height = 41
+    Caption = 'Edit'
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    OnClick = ButtonEditNameClick
+  end
+  object ButtonSaveName: TButton
+    Left = 582
+    Top = 29
+    Width = 97
+    Height = 41
+    Caption = 'Save'
+    Enabled = False
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+  end
+  object EditEmail: TEdit
+    Left = 197
+    Top = 93
+    Width = 233
+    Height = 41
+    Enabled = False
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 3
+  end
+  object ButtonEditEmail: TButton
+    Left = 454
+    Top = 93
+    Width = 97
+    Height = 41
+    Caption = 'Edit'
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 4
+    OnClick = ButtonEditEmailClick
+  end
+  object ButtonSaveEmail: TButton
+    Left = 582
+    Top = 93
+    Width = 97
+    Height = 41
+    Caption = 'Save'
+    Enabled = False
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 5
+  end
+  object EditPhone: TEdit
+    Left = 197
+    Top = 157
+    Width = 233
+    Height = 41
+    Enabled = False
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 6
+  end
+  object ButtonPhoneNumber: TButton
+    Left = 454
+    Top = 157
+    Width = 97
+    Height = 41
+    Caption = 'Edit'
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 7
+    OnClick = ButtonPhoneNumberClick
+  end
+  object ButtonSavePhoneNumber: TButton
+    Left = 582
+    Top = 157
+    Width = 97
+    Height = 41
+    Caption = 'Save'
+    Enabled = False
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 8
+  end
+  object EditLogin: TEdit
+    Left = 197
+    Top = 224
+    Width = 233
+    Height = 41
+    Enabled = False
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 9
+  end
+  object ButtonEditLogin: TButton
+    Left = 454
+    Top = 224
+    Width = 97
+    Height = 41
+    Caption = 'Edit'
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 10
+    OnClick = ButtonEditLoginClick
+  end
+  object ButtonSaveLogin: TButton
+    Left = 582
+    Top = 224
+    Width = 97
+    Height = 41
+    Caption = 'Save'
+    Enabled = False
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 11
+  end
+  object EditPassword: TEdit
+    Left = 197
+    Top = 293
+    Width = 233
+    Height = 41
+    DoubleBuffered = True
+    Enabled = False
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentDoubleBuffered = False
+    ParentFont = False
+    PasswordChar = '*'
+    TabOrder = 12
+  end
+  object ButtonExit: TButton
+    Left = 118
+    Top = 365
+    Width = 401
+    Height = 100
+    Caption = 'Exit'
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 13
+  end
+  object ButtonSavePassword: TButton
+    Left = 582
+    Top = 293
+    Width = 97
+    Height = 41
+    Caption = 'Save'
+    Enabled = False
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 14
+  end
+  object ButtonEditPassword: TButton
+    Left = 454
+    Top = 293
+    Width = 97
+    Height = 41
+    Caption = 'Edit'
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 15
+    OnClick = ButtonEditPasswordClick
+  end
+  object MainMenu1: TMainMenu
+    Left = 584
+    Top = 384
+    object Close1: TMenuItem
+      Action = DataModule1.ActionClose
+    end
+  end
+end

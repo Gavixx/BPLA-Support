@@ -223,6 +223,12 @@
             <DependentOn>LoginForm.h</DependentOn>
             <BuildOrder>5</BuildOrder>
         </CppCompile>
+        <CppCompile Include="ProfileForm.cpp">
+            <Form>Form8</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>ProfileForm.h</DependentOn>
+            <BuildOrder>10</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Project1.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
@@ -237,13 +243,14 @@
             <BuildOrder>5</BuildOrder>
         </CppCompile>
         <FormResources Include="LoginForm.dfm"/>
+        <FormResources Include="ProfileForm.dfm"/>
         <FormResources Include="VolonterForm.dfm"/>
-        <FormResources Include="DataModule.dfm"/>
+        <FormResources Include="DonateForm.dfm"/>
         <FormResources Include="AddOrderForm.dfm"/>
         <FormResources Include="AddUser.dfm"/>
         <FormResources Include="AdminForm.dfm"/>
         <FormResources Include="ArmyForm.dfm"/>
-        <FormResources Include="DonateForm.dfm"/>
+        <FormResources Include="DataModule.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

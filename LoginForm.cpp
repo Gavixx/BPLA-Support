@@ -34,7 +34,7 @@ void __fastcall TForm1::LoginButtonClick(TObject *Sender)
 		DataModule1->ConnectToDatabase();  // Підключаємося до бази даних через DataModule
 
 		// SQL-запит для пошуку ролі, пароля та імені користувача за логіном
-		DataModule1->FDQuery1->SQL->Text = "SELECT U.role, U.name, C.password FROM Users U "
+		DataModule1->FDQuery1->SQL->Text = "SELECT U.user_id, U.role, U.name, C.password FROM Users U "
 										   "INNER JOIN UserCredentials C ON U.user_id = C.user_id "
 										   "WHERE C.login = :login";
 		DataModule1->FDQuery1->ParamByName("login")->AsString = enteredUsername;
@@ -46,10 +46,10 @@ void __fastcall TForm1::LoginButtonClick(TObject *Sender)
 			String storedPassword = DataModule1->FDQuery1->FieldByName("password")->AsString;
 			String userRole = DataModule1->FDQuery1->FieldByName("role")->AsString;
 			String userName = DataModule1->FDQuery1->FieldByName("name")->AsString;  // Отримуємо ім'я користувача
-
+			int user_id = DataModule1->FDQuery1->FieldByName("user_id")->AsInteger;
 			// Перевіряємо, чи збігається введений пароль із тим, що в базі
 			if (enteredPassword == storedPassword) {
-				OpenRoleSpecificForm(userRole, userName);  // Передаємо роль і ім'я користувача
+				OpenRoleSpecificForm(userRole, userName, user_id);  // Передаємо роль і ім'я користувача
 				this->Hide();  // Ховаємо форму логіну після відкриття нової форми
 			} else {
 				ShowMessage("Invalid login or password");
@@ -71,7 +71,7 @@ void __fastcall TForm1::LoginButtonClick(TObject *Sender)
 
 //---------------------------------------------------------------------------
 
-void TForm1::OpenRoleSpecificForm(String role, String userName)
+void TForm1::OpenRoleSpecificForm(String role, String userName, int user_id)
 {
 	if (role == "admin") {
 		TForm2 *AdminForm = new TForm2(this);
@@ -82,7 +82,7 @@ void TForm1::OpenRoleSpecificForm(String role, String userName)
 		ArmyForm->Show();
 	}
 	else if (role == "volunteer") {
-		TForm4 *VolonterForm = new TForm4(this, userName);  // Передаємо ім'я користувачаs
+		TForm4 *VolonterForm = new TForm4(this, userName, user_id);  // Передаємо ім'я користувачаs
 		VolonterForm->Show();
 	}
 	else {

@@ -17,22 +17,21 @@ __published:	// IDE-managed Components
 	TMenuItem *CLose2;
 	TMenuItem *Help1;
 	TMenuItem *Help2;
-	TLabel *LabelDroneDonate;
-	TComboBox *ComboBoxDrones;
-	TLabel *LabelQuantityDonate;
 	TEdit *EditQuantity;
 	TButton *ButtonSend;
 	TLabel *LabelMaxQuantity;
 	TLabel *LabelDroneName;
+	TLabel *Label1;
+	TButton *ButtonCancel;
 	void __fastcall ButtonSendClick(TObject *Sender);
 	void __fastcall EditQuantityKeyPress(TObject *Sender, System::WideChar &Key);
-	void __fastcall ComboBoxDronesChange(TObject *Sender);
+	void __fastcall ButtonCancelClick(TObject *Sender);
+//	void __fastcall ComboBoxDronesChange(TObject *Sender);
 private:	// User declarations
-	void __fastcall FillBox();
-	void __fastcall UpdateMaxQuantityNeeded();
+//	void __fastcall UpdateMaxQuantityNeeded();
 	int SelectedRequestID;
     String SelectedDroneName;
-    int MaxQuantityNeeded;
+	int MaxQuantityNeeded;
     int UserID;
 
 public:		// User declarations
