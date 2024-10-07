@@ -7,17 +7,23 @@
 #include "DataModule.h"
 #include "DonateForm.h"
 #include "ProfileForm.h"
+#include <DateUtils.hpp>  // Для DayOf() і MonthOf()
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TForm4 *Form4;
 //---------------------------------------------------------------------------
+
+const String monthNames[12] = {"Січня", "Лютого", "Березня", "Квітня", "Травня", "Червня",
+							   "Липня", "Серпня", "Вересня", "Жовтня", "Листопада", "Грудня"};
+
+
+
+
+
 __fastcall TForm4::TForm4(TComponent* Owner, String userName, int user_id)
 	: TForm(Owner), UserName(userName), UserID(user_id)
 {
-	BalloonHint1->Title = "Порада";
-	BalloonHint1->Description = "Щоб задонатити, будь ласка, спочатку виберіть рядок у таблиці.";
-	BalloonHint1->ShowHint(ButtonDonate);
 }
 //---------------------------------------------------------------------------
 
@@ -56,9 +62,12 @@ void __fastcall TForm4::FormShow(TObject *Sender)
 {
 	LoadDB();
 	// Відображення в Label або інший спосіб показу імені
-	LabelWelcom->Caption = "Welcome, " + UserName + "!";
+	LabelWelcom->Caption = "Вітаємо, " + UserName + "!";
 	DBGrid1->SelectedRows->Clear();
 	ButtonDonate->Enabled = false;
+    BalloonHint1->Title = "Порада";
+	BalloonHint1->Description = "Щоб задонатити, будь ласка, спочатку виберіть рядок у таблиці.";
+	BalloonHint1->ShowHint(ButtonDonate);
 }
 //---------------------------------------------------------------------------
 
@@ -79,49 +88,68 @@ void __fastcall TForm4::ButtonDonateClick(TObject *Sender)
 
 void __fastcall TForm4::SetDBGridColumnsStyles()
 {
-		int gridWidth = DBGrid1->ClientWidth; // Ширина всієї таблички
+	int gridWidth = DBGrid1->ClientWidth; // Загальна ширина таблиці
+	int totalFixedWidth = 0; // Загальна ширина всіх колонок
 
-	// Перевіряємо, чи є достатньо колонок
-	if (DBGrid1->Columns->Count >= 7) {
-		DBGrid1->Columns->Items[0]->Visible = false;
-
-
-		DBGrid1->Columns->Items[1]->Width = 386;
-		DBGrid1->Columns->Items[1]->Title->Caption = "Назва дрону";
-		DBGrid1->Columns->Items[1]->Title->Alignment = taCenter;
-
-		DBGrid1->Columns->Items[2]->Width = 275;
-		DBGrid1->Columns->Items[2]->Title->Caption = "Тип дрону";
-		DBGrid1->Columns->Items[2]->Title->Alignment = taCenter;
-		DBGrid1->Columns->Items[2]->Alignment = taCenter;
-
-		DBGrid1->Columns->Items[3]->Width = 231;
-		DBGrid1->Columns->Items[3]->Title->Caption = "Потрібна к-ть";
-		DBGrid1->Columns->Items[3]->Title->Alignment = taCenter;
-		DBGrid1->Columns->Items[3]->Alignment = taCenter;
-
-		DBGrid1->Columns->Items[4]->Width = 231;
-		DBGrid1->Columns->Items[4]->Title->Caption = "Дата подачі запиту";
-		DBGrid1->Columns->Items[4]->Title->Alignment = taCenter;
-		DBGrid1->Columns->Items[4]->Alignment = taCenter;
-
-		DBGrid1->Columns->Items[5]->Width = 231;
-		DBGrid1->Columns->Items[5]->Title->Caption = "Статус";
-		DBGrid1->Columns->Items[5]->Title->Alignment = taCenter;
-		DBGrid1->Columns->Items[5]->Alignment = taCenter;
-
-		DBGrid1->Columns->Items[6]->Width = 154;
-		DBGrid1->Columns->Items[6]->Title->Caption = "Отримано дронів";
-		DBGrid1->Columns->Items[6]->Title->Alignment = taCenter;
-		DBGrid1->Columns->Items[6]->Alignment = taCenter;
-
-		// Обробник для відображення дати
-//		DataModule1->FDQuery1->FieldByName("request_date")->OnGetText = DateFieldGetText;
-	} else {
-		ShowMessage("Недостатньо колонок для налаштування ширини.");
+	// Спочатку встановлюємо фіксовану ширину для всіх колонок і рахуємо загальну ширину
+	for (int i = 0; i < DBGrid1->Columns->Count; i++) {
+		if (i == 0) {
+			DBGrid1->Columns->Items[i]->Visible = false; // Сховати ID запиту
+		} else {
+			DBGrid1->Columns->Items[i]->Width = gridWidth / DBGrid1->Columns->Count; // Встановити однакову ширину
+			totalFixedWidth += DBGrid1->Columns->Items[i]->Width;
+		}
 	}
+
+	// Вираховуємо невикористаний простір і додаємо його до кожної колонки
+	int remainingWidth = gridWidth - totalFixedWidth;
+	int extraWidthPerColumn = remainingWidth / (DBGrid1->Columns->Count - 1);
+
+	for (int i = 1; i < DBGrid1->Columns->Count; i++) {
+		DBGrid1->Columns->Items[i]->Width += extraWidthPerColumn; // Додаємо залишкову ширину до кожної колонки
+	}
+
+	// Додаємо налаштування заголовків і вирівнювання для кожної колонки
+	DBGrid1->Columns->Items[1]->Title->Caption = "Назва дрону";
+	DBGrid1->Columns->Items[1]->Title->Alignment = taCenter;
+
+	DBGrid1->Columns->Items[2]->Title->Caption = "Тип дрону";
+	DBGrid1->Columns->Items[2]->Title->Alignment = taCenter;
+	DBGrid1->Columns->Items[2]->Alignment = taCenter;
+
+	DBGrid1->Columns->Items[3]->Title->Caption = "Потрібна к-ть";
+	DBGrid1->Columns->Items[3]->Title->Alignment = taCenter;
+	DBGrid1->Columns->Items[3]->Alignment = taCenter;
+
+	DBGrid1->Columns->Items[4]->Title->Caption = "Дата подачі запиту";
+	DBGrid1->Columns->Items[4]->Title->Alignment = taCenter;
+	DBGrid1->Columns->Items[4]->Alignment = taCenter;
+
+	DBGrid1->Columns->Items[5]->Title->Caption = "Статус";
+	DBGrid1->Columns->Items[5]->Title->Alignment = taCenter;
+	DBGrid1->Columns->Items[5]->Alignment = taCenter;
+
+	DBGrid1->Columns->Items[6]->Title->Caption = "Отримано дронів";
+	DBGrid1->Columns->Items[6]->Title->Alignment = taCenter;
+	DBGrid1->Columns->Items[6]->Alignment = taCenter;
+
+	// Обробник для відображення дати
+	DataModule1->FDQuery1->FieldByName("request_date")->OnGetText = DateFieldGetText;
 }
 
+
+
+
+void __fastcall TForm4::DateFieldGetText(TField *Sender, UnicodeString &Text, bool DisplayText)
+{
+	TDateTime requestDate = Sender->AsDateTime;  // Отримуємо дату з поля
+
+	int day = DayOf(requestDate);   // Отримуємо день з дати
+	int month = MonthOf(requestDate);  // Отримуємо місяць з дати
+
+	// Формуємо відформатовану дату
+	Text = IntToStr(day) + " " + monthNames[month - 1];
+}
 
 
 void __fastcall TForm4::DBGrid1CellClick(TColumn *Column)
@@ -149,5 +177,15 @@ void __fastcall TForm4::Button1Click(TObject *Sender)
 	ProfileForm->Show();
 	this->Hide();
 }
+//---------------------------------------------------------------------------
+
+void __fastcall TForm4::FormClose(TObject *Sender, TCloseAction &Action)
+{
+	if(DataModule1->GetChangeUserState() == false){
+	Action = caFree;   // Звільняє пам'ять після закриття
+	Application->Terminate();  // Завершує застосунок
+	}
+}
+
 //---------------------------------------------------------------------------
 

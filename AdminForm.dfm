@@ -1,26 +1,29 @@
 object Form2: TForm2
-  Left = 559
-  Top = 182
+  Left = 361
+  Top = 36
   Caption = 'Admin panel'
-  ClientHeight = 823
-  ClientWidth = 1133
+  ClientHeight = 700
+  ClientWidth = 1135
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  Position = poDesigned
+  Menu = MainMenu1
+  Position = poScreenCenter
+  OnClose = FormClose
+  OnShow = FormShow
   DesignSize = (
-    1133
-    823)
+    1135
+    700)
   TextHeight = 15
   object LabelFilter: TLabel
-    Left = 25
-    Top = 464
-    Width = 473
+    Left = 376
+    Top = 487
+    Width = 156
     Height = 36
-    Caption = 'CHOSE FILTER PARAMETERS'
+    Caption = #1060#1110#1083#1100#1090#1088' '#1087#1086':'
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
     Font.Height = -32
@@ -34,6 +37,7 @@ object Form2: TForm2
     Top = 0
     Width = 1117
     Height = 385
+    ReadOnly = True
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -47,27 +51,18 @@ object Form2: TForm2
     Top = 400
     Width = 161
     Height = 41
-    Caption = 'Show Users'
+    Caption = #1042#1110#1076#1086#1073#1088#1072#1079#1080#1090#1080' '#1082#1086#1088#1080#1089#1090#1091#1074#1072#1095#1110#1074
     ImageIndex = 0
     TabOrder = 1
     OnClick = ButtonShowUsersClick
   end
-  object ButtonAddUser: TButton
-    Left = 296
-    Top = 400
-    Width = 169
-    Height = 41
-    Caption = 'ButtonAddUser'
-    TabOrder = 2
-    OnClick = ButtonAddUserClick
-  end
   object ButtonShowRequests: TButton
-    Left = 942
+    Left = 461
     Top = 400
     Width = 183
     Height = 41
-    Caption = 'Show requests'
-    TabOrder = 3
+    Caption = #1042#1110#1076#1086#1073#1088#1072#1079#1080#1090#1080' '#1079#1072#1087#1080#1090#1080
+    TabOrder = 2
     OnClick = ButtonShowRequestsClick
   end
   object DBGridRequests: TDBGrid
@@ -75,22 +70,40 @@ object Form2: TForm2
     Top = 0
     Width = 1117
     Height = 385
-    TabOrder = 4
+    ReadOnly = True
+    TabOrder = 3
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -12
     TitleFont.Name = 'Segoe UI'
     TitleFont.Style = []
     Visible = False
-    OnTitleClick = DBGridUsersTitleClick
+    OnTitleClick = DBGridRequestsTitleClick
   end
   object ButtonFilter: TButton
-    Left = 212
-    Top = 729
-    Width = 145
+    Left = 608
+    Top = 597
+    Width = 160
     Height = 65
     Anchors = []
-    Caption = 'Filter'
+    Caption = #1047#1072#1089#1090#1086#1089#1091#1074#1072#1090#1080
+    Default = True
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -24
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 4
+    OnClick = ButtonFilterClick
+  end
+  object ButtonClearFilter: TButton
+    Left = 376
+    Top = 597
+    Width = 169
+    Height = 65
+    Anchors = []
+    Caption = #1054#1073#1080#1095#1080#1089#1090#1080#1090#1080
     Default = True
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -99,29 +112,12 @@ object Form2: TForm2
     Font.Style = []
     ParentFont = False
     TabOrder = 5
-    ExplicitTop = 701
+    OnClick = ButtonClearFilterClick
   end
-  object ButtonClearFilter: TButton
-    Left = 32
-    Top = 729
-    Width = 145
-    Height = 65
-    Anchors = []
-    Caption = 'Clear Filers'
-    Default = True
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -24
-    Font.Name = 'Times New Roman'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 6
-    ExplicitTop = 701
-  end
-  object CheckListBox1: TCheckListBox
-    Left = 504
-    Top = 447
-    Width = 137
+  object CheckListBoxChouse: TCheckListBox
+    Left = 575
+    Top = 473
+    Width = 193
     Height = 73
     Color = clMenu
     Font.Charset = RUSSIAN_CHARSET
@@ -131,55 +127,56 @@ object Form2: TForm2
     Font.Style = []
     ItemHeight = 33
     Items.Strings = (
-      'Volonters'
-      'Requests')
+      #1042#1085#1077#1089#1082#1080
+      #1047#1072#1087#1080#1090#1080)
     ParentFont = False
-    TabOrder = 7
+    TabOrder = 6
+    OnClickCheck = CheckListBoxChouseClickCheck
   end
-  object GroupBox1: TGroupBox
-    Left = 13
-    Top = 511
-    Width = 344
+  object GroupBoxRequests: TGroupBox
+    Left = 8
+    Top = 473
+    Width = 356
     Height = 198
-    Caption = 'Requests'
+    Caption = #1047#1072#1087#1080#1090#1080
     Enabled = False
-    TabOrder = 8
+    TabOrder = 7
     object Label1: TLabel
       Left = 12
       Top = 31
-      Width = 65
+      Width = 29
       Height = 15
-      Caption = 'Drone name'
+      Caption = #1044#1088#1086#1085
     end
     object Label2: TLabel
       Left = 12
       Top = 76
-      Width = 58
+      Width = 56
       Height = 15
-      Caption = 'Drone type'
+      Caption = #1058#1080#1087' '#1076#1088#1086#1085#1091
     end
     object LabelFrom: TLabel
       Left = 12
       Top = 128
-      Width = 28
+      Width = 7
       Height = 15
-      Caption = 'From'
+      Caption = #1047
     end
     object Label3: TLabel
       Left = 200
       Top = 31
-      Width = 32
+      Width = 26
       Height = 15
-      Caption = 'Status'
+      Caption = #1057#1090#1072#1085
     end
     object LabelTo: TLabel
       Left = 196
       Top = 128
-      Width = 12
+      Width = 16
       Height = 15
-      Caption = 'To'
+      Caption = #1055#1086
     end
-    object ComboBox1: TComboBox
+    object ComboBoxDroneName: TComboBox
       Left = 12
       Top = 47
       Width = 145
@@ -187,7 +184,7 @@ object Form2: TForm2
       AutoComplete = False
       TabOrder = 0
     end
-    object ComboBox2: TComboBox
+    object ComboBoxDroneType: TComboBox
       Left = 12
       Top = 92
       Width = 145
@@ -195,7 +192,7 @@ object Form2: TForm2
       AutoComplete = False
       TabOrder = 1
     end
-    object DateTimePickerFrom: TDateTimePicker
+    object DateTimePickerRequestsStart: TDateTimePicker
       Left = 12
       Top = 143
       Width = 145
@@ -206,7 +203,7 @@ object Form2: TForm2
       DateFormat = dfLong
       TabOrder = 2
     end
-    object ComboBox3: TComboBox
+    object ComboBoxStatus: TComboBox
       Left = 196
       Top = 47
       Width = 145
@@ -214,7 +211,7 @@ object Form2: TForm2
       AutoComplete = False
       TabOrder = 3
     end
-    object DateTimePickerTo: TDateTimePicker
+    object DateTimePickerRequestsEnd: TDateTimePicker
       Left = 196
       Top = 143
       Width = 145
@@ -226,50 +223,57 @@ object Form2: TForm2
       TabOrder = 4
     end
   end
-  object GroupBox2: TGroupBox
-    Left = 765
-    Top = 511
+  object GroupBoxContributions: TGroupBox
+    Left = 781
+    Top = 473
     Width = 344
     Height = 198
-    Caption = 'Volunter Contributions'
+    Caption = #1042#1085#1077#1089#1082#1080
     Enabled = False
-    TabOrder = 9
+    TabOrder = 8
     object Label4: TLabel
       Left = 12
       Top = 31
-      Width = 65
+      Width = 64
       Height = 15
-      Caption = 'Drone name'
+      Caption = #1050#1086#1088#1080#1089#1090#1091#1074#1072#1095
     end
     object Label5: TLabel
       Left = 12
       Top = 76
-      Width = 58
+      Width = 29
       Height = 15
-      Caption = 'Drone type'
+      Caption = #1044#1088#1086#1085
     end
     object Label6: TLabel
       Left = 12
       Top = 128
-      Width = 28
+      Width = 7
       Height = 15
-      Caption = 'From'
+      Caption = #1047
     end
     object Label7: TLabel
       Left = 200
       Top = 31
-      Width = 32
+      Width = 64
       Height = 15
-      Caption = 'Status'
+      Caption = #1054#1088#1075#1072#1085#1110#1079#1072#1094#1110#1103
     end
     object Label8: TLabel
       Left = 196
       Top = 128
-      Width = 12
+      Width = 16
       Height = 15
-      Caption = 'To'
+      Caption = #1055#1086
     end
-    object ComboBox4: TComboBox
+    object Label9: TLabel
+      Left = 196
+      Top = 76
+      Width = 56
+      Height = 15
+      Caption = #1058#1080#1087' '#1076#1088#1086#1085#1072
+    end
+    object ComboBoxUserName: TComboBox
       Left = 12
       Top = 47
       Width = 145
@@ -277,7 +281,7 @@ object Form2: TForm2
       AutoComplete = False
       TabOrder = 0
     end
-    object ComboBox5: TComboBox
+    object ComboBoxDroName: TComboBox
       Left = 12
       Top = 92
       Width = 145
@@ -285,7 +289,7 @@ object Form2: TForm2
       AutoComplete = False
       TabOrder = 1
     end
-    object DateTimePicker1: TDateTimePicker
+    object DateTimePickerContributionsStart: TDateTimePicker
       Left = 12
       Top = 143
       Width = 145
@@ -296,7 +300,7 @@ object Form2: TForm2
       DateFormat = dfLong
       TabOrder = 2
     end
-    object ComboBox6: TComboBox
+    object ComboBoxOrg: TComboBox
       Left = 196
       Top = 47
       Width = 145
@@ -304,7 +308,7 @@ object Form2: TForm2
       AutoComplete = False
       TabOrder = 3
     end
-    object DateTimePicker2: TDateTimePicker
+    object DateTimePickerContributionsEnd: TDateTimePicker
       Left = 196
       Top = 143
       Width = 145
@@ -314,6 +318,90 @@ object Form2: TForm2
       Time = 0.885561087961832500
       DateFormat = dfLong
       TabOrder = 4
+    end
+    object ComboBoxDroType: TComboBox
+      Left = 196
+      Top = 92
+      Width = 145
+      Height = 23
+      AutoComplete = False
+      TabOrder = 5
+    end
+  end
+  object ButtonShowContributions: TButton
+    Left = 942
+    Top = 400
+    Width = 183
+    Height = 41
+    Caption = #1055#1086#1082#1072#1079#1072#1090#1080' '#1074#1085#1077#1089#1082#1080
+    TabOrder = 9
+    OnClick = ButtonShowContributionsClick
+  end
+  object DBGridContributions: TDBGrid
+    Left = 8
+    Top = 0
+    Width = 1117
+    Height = 385
+    ReadOnly = True
+    TabOrder = 10
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -12
+    TitleFont.Name = 'Segoe UI'
+    TitleFont.Style = []
+    Visible = False
+    OnTitleClick = DBGridContributionsTitleClick
+  end
+  object MainMenu1: TMainMenu
+    Left = 800
+    Top = 416
+    object Close1: TMenuItem
+      Action = DataModule1.ActionClose
+      Caption = #1047#1072#1082#1088#1080#1090#1080
+      ShortCut = 32883
+    end
+    object Close2: TMenuItem
+      Action = DataModule1.ActionChangeUser
+      Caption = #1047#1084#1110#1085#1080#1090#1080' '#1082#1086#1088#1080#1089#1090#1091#1074#1072#1095#1072
+      ShortCut = 120
+    end
+    object Extra1: TMenuItem
+      Caption = #1044#1086#1076#1072#1090#1082#1086#1074#1086
+      object AddUser: TMenuItem
+        Caption = #1044#1086#1076#1072#1090#1080' '#1082#1086#1088#1080#1089#1090#1091#1074#1072#1095#1072
+        ShortCut = 16469
+        OnClick = AddUserClick
+      end
+      object AddOrg: TMenuItem
+        Caption = #1044#1086#1076#1072#1090#1080' '#1086#1088#1075#1072#1085#1110#1079#1072#1094#1110#1102
+        ShortCut = 16463
+        OnClick = AddOrgClick
+      end
+      object DeleteUser: TMenuItem
+        Caption = #1042#1080#1076#1072#1083#1080#1090#1080' '#1082#1086#1088#1080#1089#1090#1091#1074#1072#1095#1072
+        ShortCut = 16430
+        OnClick = DeleteUserClick
+      end
+      object ChangeUserData: TMenuItem
+        Caption = #1047#1084#1110#1085#1080#1090#1080' '#1076#1072#1085#1110' '#1082#1086#1088#1080#1089#1090#1091#1074#1072#1095#1072
+        OnClick = ChangeUserDataClick
+      end
+      object AddRequests: TMenuItem
+        Caption = #1044#1086#1076#1072#1090#1080' '#1079#1072#1087#1080#1090
+        ShortCut = 16466
+        OnClick = AddRequestsClick
+      end
+    end
+    object Reference: TMenuItem
+      Caption = #1044#1086#1074#1110#1076#1082#1072
+      object N1: TMenuItem
+        Action = DataModule1.ActionHelp
+        ShortCut = 112
+      end
+      object N2: TMenuItem
+        Action = DataModule1.ActionAboutUs
+        ShortCut = 113
+      end
     end
   end
 end

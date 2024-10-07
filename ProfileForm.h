@@ -39,6 +39,10 @@ __published:	// IDE-managed Components
 	TMainMenu *MainMenu1;
 	TMenuItem *Close1;
 	TMemo *MemoHistory;
+	TLabel *Label5;
+	TButton *ButtonEditOrganizations;
+	TButton *ButtonSaveOrganizations;
+	TComboBox *ComboBoxOrg;
 	void __fastcall ButtonEditNameClick(TObject *Sender);
 	void __fastcall ButtonEditEmailClick(TObject *Sender);
 	void __fastcall ButtonPhoneNumberClick(TObject *Sender);
@@ -51,10 +55,17 @@ __published:	// IDE-managed Components
 	void __fastcall ButtonSaveLoginClick(TObject *Sender);
 	void __fastcall ButtonSavePasswordClick(TObject *Sender);
 	void __fastcall ButtonExitClick(TObject *Sender);
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+	void __fastcall ButtonEditOrganizationsClick(TObject *Sender);
+	void __fastcall ButtonSaveOrganizationsClick(TObject *Sender);
 private:	// User declarations
 	int UserID;
+	String OrganizationName;
+
 	void __fastcall LoadData();
-    void __fastcall LoadHistory();
+	void __fastcall LoadHistory();
+
+	void __fastcall GetItemFillOrg();
 public:		// User declarations
 	__fastcall TForm8(TComponent* Owner, int userID);
 };

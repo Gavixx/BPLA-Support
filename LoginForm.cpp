@@ -19,7 +19,6 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 
 }
 //---------------------------------------------------------------------------
-
 void __fastcall TForm1::LoginButtonClick(TObject *Sender)
 {
 	String enteredUsername = EditLogin->Text;
@@ -68,9 +67,7 @@ void __fastcall TForm1::LoginButtonClick(TObject *Sender)
 	}
 }
 
-
 //---------------------------------------------------------------------------
-
 void TForm1::OpenRoleSpecificForm(String role, String userName, int user_id)
 {
 	if (role == "admin") {
@@ -90,6 +87,6 @@ void TForm1::OpenRoleSpecificForm(String role, String userName, int user_id)
 	}
 }
 
-
 //---------------------------------------------------------------------------
+
 

@@ -55,14 +55,22 @@ __published:	// IDE-managed Components
 	TMenuItem *Help1;
 	TMenuItem *Help2;
 	TDBGrid *DBGrid1;
+	TLabel *Label1;
+	TLabel *Label2;
+	TLabel *Label3;
+	TLabel *Label4;
+	TLabel *Label5;
 	void __fastcall DBGrid1TitleClick(TColumn *Column);
 	void __fastcall ButtonAddOrderClick(TObject *Sender);
 	void __fastcall ButtonShowStatClick(TObject *Sender);
 	void __fastcall ButtonFilterClick(TObject *Sender);
 	void __fastcall ButtonClearFilterClick(TObject *Sender);
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 private:	// User declarations
 	void __fastcall SetDBGridColumnsStyles();
+
 	void __fastcall DateFieldGetText(TField *Sender, UnicodeString &Text, bool DisplayText);
+
 	void __fastcall LoadDB();
     void __fastcall GetItemToFillBox();
 public:		// User declarations

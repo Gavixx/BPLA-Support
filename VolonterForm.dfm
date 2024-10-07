@@ -2,8 +2,8 @@ object Form4: TForm4
   Left = 234
   Top = 146
   Caption = 'Volonter '
-  ClientHeight = 784
-  ClientWidth = 1403
+  ClientHeight = 554
+  ClientWidth = 951
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,13 +11,13 @@ object Form4: TForm4
   Font.Name = 'Segoe UI'
   Font.Style = []
   Menu = MainMenu1
-  Position = poDesigned
+  Position = poScreenCenter
   OnShow = FormShow
   TextHeight = 15
   object LabelWelcom: TLabel
     Left = 0
     Top = 0
-    Width = 1403
+    Width = 951
     Height = 55
     Align = alTop
     Alignment = taCenter
@@ -32,23 +32,23 @@ object Form4: TForm4
   object LabelRequests: TLabel
     Left = 0
     Top = 55
-    Width = 1403
+    Width = 951
     Height = 55
     Align = alTop
     Alignment = taCenter
-    Caption = 'Active Tasks'
+    Caption = #1040#1082#1090#1080#1074#1085#1110' '#1079#1072#1087#1080#1090#1080
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
     Font.Height = -48
     Font.Name = 'Times New Roman'
     Font.Style = [fsBold]
     ParentFont = False
-    ExplicitWidth = 258
+    ExplicitWidth = 342
   end
   object DBGrid1: TDBGrid
     Left = 0
     Top = 110
-    Width = 1403
+    Width = 951
     Height = 330
     Hint = #1041#1091#1076#1100' '#1083#1072#1089#1082#1072', '#1074#1080#1073#1077#1088#1110#1090#1100' '#1088#1103#1076#1086#1082' '#1091' '#1090#1072#1073#1083#1080#1094#1110', '#1097#1086#1073' '#1087#1088#1086#1076#1086#1074#1078#1080#1090#1080
     Align = alTop
@@ -70,7 +70,14 @@ object Form4: TForm4
     Top = 446
     Width = 225
     Height = 51
-    Caption = 'Show Active Requests'
+    Caption = #1055#1086#1082#1072#1079#1072#1090#1080' '#1079#1072#1087#1080#1090#1080
+    Default = True
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 1
     OnClick = ButtonShowRequestsClick
   end
@@ -80,20 +87,34 @@ object Form4: TForm4
     Width = 241
     Height = 51
     Hint = 'First chose a row on table '
-    Caption = 'DONATE'
+    Caption = #1044#1086#1085#1072#1090
+    Default = True
     Enabled = False
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
     ParentShowHint = False
     ShowHint = True
     TabOrder = 2
     OnClick = ButtonDonateClick
   end
   object Button1: TButton
-    Left = 680
+    Left = 704
     Top = 446
     Width = 241
     Height = 51
     Hint = 'First chose a row on table '
-    Caption = 'Profile'
+    Caption = #1055#1088#1086#1092#1110#1083#1100
+    Default = True
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
     ParentShowHint = False
     ShowHint = True
     TabOrder = 3
@@ -104,18 +125,24 @@ object Form4: TForm4
     Top = 408
     object Close1: TMenuItem
       Action = DataModule1.ActionClose
+      Caption = #1047#1072#1082#1088#1080#1090#1080
+      ShortCut = 32883
     end
     object Close2: TMenuItem
-      Caption = 'Reference'
+      Caption = #1044#1086#1074#1110#1076#1082#1072
       object Help1: TMenuItem
-        Caption = 'Help'
+        Caption = #1044#1086#1087#1086#1084#1086#1075#1072
+        ShortCut = 112
       end
       object Help2: TMenuItem
-        Caption = 'About us'
+        Caption = #1055#1088#1086' '#1085#1072#1089
+        ShortCut = 113
       end
     end
     object ChangeUser1: TMenuItem
       Action = DataModule1.ActionChangeUser
+      Caption = #1047#1084#1110#1085#1080#1090#1080' '#1082#1086#1088#1080#1089#1090#1091#1074#1072#1095#1072
+      ShortCut = 16469
     end
   end
   object BalloonHint1: TBalloonHint

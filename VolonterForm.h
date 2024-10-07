@@ -50,17 +50,24 @@ __published:	// IDE-managed Components
 	void __fastcall ButtonShowRequestsClick(TObject *Sender);
 	void __fastcall ButtonDonateClick(TObject *Sender);
 	void __fastcall DBGrid1CellClick(TColumn *Column);
-	String __fastcall GetUserName();
-	int __fastcall GetUserID();
 	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 private:	// User declarations
 	String UserName;
 	int UserID;
 	int SelectedRequestID;
 	int MaxQuantityNeeded;
 	String SelectedDroneName;
+
 	void __fastcall LoadDB();
+
 	void __fastcall SetDBGridColumnsStyles();
+
+	void __fastcall DateFieldGetText(TField *Sender, UnicodeString &Text, bool DisplayText);
+
+	String __fastcall GetUserName();
+
+	int __fastcall GetUserID();
 public:
 	// Конструктор форми з передачею імені користувача
 	__fastcall TForm4(TComponent* Owner, String userName, int user_id);

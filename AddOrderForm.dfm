@@ -1,9 +1,9 @@
 object Form5: TForm5
   Left = 577
   Top = 237
-  Caption = 'Add Form'
-  ClientHeight = 595
-  ClientWidth = 729
+  Caption = #1057#1090#1074#1086#1088#1080#1090#1080' '#1079#1072#1087#1080#1090
+  ClientHeight = 360
+  ClientWidth = 547
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,53 +11,91 @@ object Form5: TForm5
   Font.Name = 'Segoe UI'
   Font.Style = []
   Menu = MainMenu1
-  Position = poDesigned
+  Position = poScreenCenter
+  OnClose = FormClose
   OnCreate = FormCreate
   TextHeight = 15
   object LabelDroneType: TLabel
-    Left = 238
-    Top = 214
-    Width = 59
-    Height = 15
-    Caption = 'Drone Type'
+    Left = 182
+    Top = 68
+    Width = 122
+    Height = 33
+    Caption = #1058#1080#1087' '#1076#1088#1086#1085#1091
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
   end
   object ButtonAdd: TButton
-    Left = 136
-    Top = 328
+    Left = 104
+    Top = 200
     Width = 305
-    Height = 25
-    Caption = 'Add'
+    Height = 49
+    Caption = #1057#1090#1074#1086#1088#1080#1090#1080' '#1079#1072#1087#1080#1090
+    Default = True
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 0
     OnClick = ButtonAddClick
   end
   object LabeledEditQuantity: TLabeledEdit
-    Left = 408
-    Top = 232
+    Left = 368
+    Top = 104
     Width = 121
-    Height = 23
-    EditLabel.Width = 46
-    EditLabel.Height = 15
-    EditLabel.Caption = 'Quantity'
+    Height = 41
+    EditLabel.Width = 113
+    EditLabel.Height = 33
+    EditLabel.Caption = #1050#1110#1083#1100#1082#1110#1089#1090#1100
+    EditLabel.Font.Charset = RUSSIAN_CHARSET
+    EditLabel.Font.Color = clWindowText
+    EditLabel.Font.Height = -28
+    EditLabel.Font.Name = 'Times New Roman'
+    EditLabel.Font.Style = []
+    EditLabel.ParentFont = False
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 1
     Text = ''
     OnChange = LabeledEditQuantityChange
     OnKeyPress = LabeledEditQuantityKeyPress
   end
   object LabeledEditDroneName: TLabeledEdit
-    Left = 80
-    Top = 232
+    Left = 24
+    Top = 104
     Width = 121
-    Height = 23
-    EditLabel.Width = 67
-    EditLabel.Height = 15
-    EditLabel.Caption = 'Drone Name'
+    Height = 41
+    EditLabel.Width = 62
+    EditLabel.Height = 33
+    EditLabel.Caption = #1044#1088#1086#1085
+    EditLabel.Font.Charset = RUSSIAN_CHARSET
+    EditLabel.Font.Color = clWindowText
+    EditLabel.Font.Height = -28
+    EditLabel.Font.Name = 'Times New Roman'
+    EditLabel.Font.Style = []
+    EditLabel.ParentFont = False
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 2
     Text = ''
     OnChange = LabeledEditDroneNameChange
   end
   object DateTimePickerRequestDate: TDateTimePicker
-    Left = 320
-    Top = 64
+    Left = 8
+    Top = 8
     Width = 185
     Height = 23
     Date = 45551.000000000000000000
@@ -68,10 +106,16 @@ object Form5: TForm5
     Visible = False
   end
   object ComboBoxDroneType: TComboBox
-    Left = 238
-    Top = 235
+    Left = 182
+    Top = 107
     Width = 145
-    Height = 23
+    Height = 41
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 4
     OnChange = ComboBoxDroneTypeChange
     Items.Strings = (
@@ -81,43 +125,26 @@ object Form5: TForm5
       'Logistics'
       'Surveillance')
   end
-  object FDQuery1: TFDQuery
-    Left = 240
-    Top = 488
-  end
-  object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
-    DriverID = 'MyPhysDriver'
-    VendorLib = 'C:\Users\Roman\Desktop\proj\BPLA-Support\lib\libmysql.dll'
-    Left = 200
-    Top = 488
-  end
-  object FDConnection1: TFDConnection
-    Params.Strings = (
-      'User_Name=admin'
-      'Password=admin'
-      'Server=192.168.11.3'
-      'Database=Drone_Management'
-      'DriverID=MyPhysDriver')
-    Left = 280
-    Top = 488
-  end
   object MainMenu1: TMainMenu
-    Left = 520
-    Top = 424
+    Left = 480
+    Top = 240
     object Reference1: TMenuItem
-      Caption = 'Reference'
+      Caption = #1044#1086#1074#1110#1076#1082#1072
       object Help1: TMenuItem
         Action = DataModule1.ActionHelp
+        Caption = #1044#1086#1087#1086#1084#1086#1075#1072
+        ShortCut = 112
       end
       object AboutUs1: TMenuItem
         Action = DataModule1.ActionAboutUs
+        Caption = #1055#1088#1086' '#1085#1072#1089
+        ShortCut = 113
       end
-    end
-    object ChangeUser1: TMenuItem
-      Action = DataModule1.ActionChangeUser
     end
     object Close1: TMenuItem
       Action = DataModule1.ActionClose
+      Caption = #1047#1072#1082#1088#1080#1090#1080
+      ShortCut = 32883
     end
   end
 end

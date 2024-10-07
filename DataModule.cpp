@@ -14,6 +14,7 @@ TDataModule1 *DataModule1;
 __fastcall TDataModule1::TDataModule1(TComponent* Owner)
 	: TDataModule(Owner)
 {
+	changeuser = false;
 	wchar_t buffer[MAX_PATH];
 	GetModuleFileName(NULL, buffer, MAX_PATH);
 	PathRemoveFileSpec(buffer);  // Видаляємо ім'я виконуваного файлу
@@ -83,9 +84,14 @@ void __fastcall TDataModule1::ActionAboutUsExecute(TObject *Sender)
 
 void __fastcall TDataModule1::ActionChangeUserExecute(TObject *Sender)
 {
+	changeuser = true;
     // Створюємо форму входу
     TForm1 *LoginForm = new TForm1(this);
 	Screen->ActiveForm->Close();
 	LoginForm->Show();
+}
+
+bool __fastcall TDataModule1::GetChangeUserState(){
+	return changeuser;
 }
 

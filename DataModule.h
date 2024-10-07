@@ -46,10 +46,12 @@ __published:	// IDE-managed Components
 	void __fastcall ActionAboutUsExecute(TObject *Sender);
 	void __fastcall ActionChangeUserExecute(TObject *Sender);
 private:	// User declarations
+	bool changeuser;
 
 public:		// User declarations
 	__fastcall TDataModule1(TComponent* Owner);
 	void __fastcall ConnectToDatabase();
+	bool __fastcall GetChangeUserState();
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TDataModule1 *DataModule1;

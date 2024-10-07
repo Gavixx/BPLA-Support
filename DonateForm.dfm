@@ -1,9 +1,9 @@
 object Form7: TForm7
   Left = 1010
   Top = 201
-  Caption = 'Form7'
-  ClientHeight = 538
-  ClientWidth = 568
+  Caption = #1044#1086#1085#1072#1090
+  ClientHeight = 509
+  ClientWidth = 690
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,7 +11,8 @@ object Form7: TForm7
   Font.Name = 'Segoe UI'
   Font.Style = []
   Menu = MainMenu1
-  Position = poDesigned
+  Position = poScreenCenter
+  OnClose = FormClose
   TextHeight = 15
   object LabelMaxQuantity: TLabel
     Left = 8
@@ -53,10 +54,16 @@ object Form7: TForm7
     ParentFont = False
   end
   object EditQuantity: TEdit
-    Left = 410
-    Top = 248
+    Left = 415
+    Top = 237
     Width = 145
-    Height = 23
+    Height = 41
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 0
     OnKeyPress = EditQuantityKeyPress
   end
@@ -65,16 +72,30 @@ object Form7: TForm7
     Top = 336
     Width = 257
     Height = 113
-    Caption = 'Send'
+    Caption = #1053#1072#1076#1110#1089#1083#1072#1090#1080
+    Default = True
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 1
     OnClick = ButtonSendClick
   end
   object ButtonCancel: TButton
-    Left = 298
+    Left = 415
     Top = 336
     Width = 257
     Height = 113
-    Caption = 'Cancel'
+    Caption = #1042#1080#1093#1110#1076
+    Default = True
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 2
     OnClick = ButtonCancelClick
   end
@@ -83,14 +104,18 @@ object Form7: TForm7
     Top = 424
     object CLose1: TMenuItem
       Action = DataModule1.ActionClose
+      Caption = #1047#1072#1082#1088#1080#1090#1080
+      ShortCut = 32883
     end
     object CLose2: TMenuItem
-      Caption = 'Reference'
+      Caption = #1044#1086#1074#1110#1076#1082#1072
       object Help1: TMenuItem
-        Caption = 'Help'
+        Caption = #1044#1086#1087#1086#1084#1086#1075#1072
+        ShortCut = 112
       end
       object Help2: TMenuItem
-        Caption = 'About us'
+        Caption = #1055#1088#1086' '#1085#1072#1089
+        ShortCut = 113
       end
     end
   end

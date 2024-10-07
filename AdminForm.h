@@ -43,46 +43,80 @@ class TForm2 : public TForm
 __published:	// IDE-managed Components
 	TDBGrid *DBGridUsers;
 	TButton *ButtonShowUsers;
-	TButton *ButtonAddUser;
 	TButton *ButtonShowRequests;
 	TDBGrid *DBGridRequests;
 	TLabel *LabelFilter;
 	TButton *ButtonFilter;
 	TButton *ButtonClearFilter;
-	TCheckListBox *CheckListBox1;
-	TGroupBox *GroupBox1;
-	TComboBox *ComboBox1;
+	TCheckListBox *CheckListBoxChouse;
+	TGroupBox *GroupBoxRequests;
+	TComboBox *ComboBoxDroneName;
 	TLabel *Label1;
-	TComboBox *ComboBox2;
+	TComboBox *ComboBoxDroneType;
 	TLabel *Label2;
-	TDateTimePicker *DateTimePickerFrom;
+	TDateTimePicker *DateTimePickerRequestsStart;
 	TLabel *LabelFrom;
-	TComboBox *ComboBox3;
+	TComboBox *ComboBoxStatus;
 	TLabel *Label3;
-	TDateTimePicker *DateTimePickerTo;
+	TDateTimePicker *DateTimePickerRequestsEnd;
 	TLabel *LabelTo;
-	TGroupBox *GroupBox2;
+	TGroupBox *GroupBoxContributions;
 	TLabel *Label4;
 	TLabel *Label5;
 	TLabel *Label6;
 	TLabel *Label7;
 	TLabel *Label8;
-	TComboBox *ComboBox4;
-	TComboBox *ComboBox5;
-	TDateTimePicker *DateTimePicker1;
-	TComboBox *ComboBox6;
-	TDateTimePicker *DateTimePicker2;
+	TComboBox *ComboBoxUserName;
+	TComboBox *ComboBoxDroName;
+	TDateTimePicker *DateTimePickerContributionsStart;
+	TComboBox *ComboBoxOrg;
+	TDateTimePicker *DateTimePickerContributionsEnd;
+	TMainMenu *MainMenu1;
+	TMenuItem *Close1;
+	TMenuItem *Close2;
+	TButton *ButtonShowContributions;
+	TDBGrid *DBGridContributions;
+	TLabel *Label9;
+	TComboBox *ComboBoxDroType;
+	TMenuItem *Extra1;
+	TMenuItem *AddUser;
+	TMenuItem *AddOrg;
+	TMenuItem *DeleteUser;
+	TMenuItem *ChangeUserData;
+	TMenuItem *AddRequests;
+	TMenuItem *Reference;
+	TMenuItem *N1;
+	TMenuItem *N2;
 	void __fastcall ButtonShowUsersClick(TObject *Sender);
-	void __fastcall ButtonAddUserClick(TObject *Sender);
 	void __fastcall DBGridUsersTitleClick(TColumn *Column);
 	void __fastcall ButtonShowRequestsClick(TObject *Sender);
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+	void __fastcall CheckListBoxChouseClickCheck(TObject *Sender);
+	void __fastcall ButtonShowContributionsClick(TObject *Sender);
+	void __fastcall DBGridContributionsTitleClick(TColumn *Column);
+	void __fastcall ButtonFilterClick(TObject *Sender);
+	void __fastcall ButtonClearFilterClick(TObject *Sender);
+	void __fastcall AddUserClick(TObject *Sender);
+	void __fastcall AddOrgClick(TObject *Sender);
+	void __fastcall DeleteUserClick(TObject *Sender);
+	void __fastcall ChangeUserDataClick(TObject *Sender);
+	void __fastcall FormShow(TObject *Sender);
+	void __fastcall DBGridRequestsTitleClick(TColumn *Column);
+	void __fastcall AddRequestsClick(TObject *Sender);
 
 private:	// User declarations
 	void __fastcall LoadRequests();
 	void __fastcall LoadUsers();
+	void __fastcall LoadContributions();
+
 	void __fastcall SetDBGridColumnsStylesUsers();
 	void __fastcall SetDBGridColumnsStylesRequests();
+	void __fastcall SetDBGridColumnsStylesContributions();
+
 	void __fastcall DateFieldGetText(TField *Sender, UnicodeString &Text, bool DisplayText);
+
+	void __fastcall FillRequestsBox();
+	void __fastcall FillContributionsBox();
 public:		// User declarations
 	__fastcall TForm2(TComponent* Owner);
 

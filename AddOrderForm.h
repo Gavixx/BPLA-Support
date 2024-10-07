@@ -38,9 +38,6 @@ __published:	// IDE-managed Components
 	TButton *ButtonAdd;
 	TLabeledEdit *LabeledEditQuantity;
 	TLabeledEdit *LabeledEditDroneName;
-	TFDQuery *FDQuery1;
-	TFDPhysMySQLDriverLink *FDPhysMySQLDriverLink1;
-	TFDConnection *FDConnection1;
 	TDateTimePicker *DateTimePickerRequestDate;
 	TComboBox *ComboBoxDroneType;
 	TLabel *LabelDroneType;
@@ -49,15 +46,16 @@ __published:	// IDE-managed Components
 	TMenuItem *Reference1;
 	TMenuItem *Help1;
 	TMenuItem *AboutUs1;
-	TMenuItem *ChangeUser1;
 	void __fastcall ButtonAddClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall LabeledEditDroneNameChange(TObject *Sender);
 	void __fastcall ComboBoxDroneTypeChange(TObject *Sender);
 	void __fastcall LabeledEditQuantityChange(TObject *Sender);
 	void __fastcall LabeledEditQuantityKeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 private:	// User declarations
 	void __fastcall CheckFields();
+
     bool __fastcall CharIsDigit(char c);
 public:		// User declarations
 	__fastcall TForm5(TComponent* Owner);

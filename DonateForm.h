@@ -26,6 +26,7 @@ __published:	// IDE-managed Components
 	void __fastcall ButtonSendClick(TObject *Sender);
 	void __fastcall EditQuantityKeyPress(TObject *Sender, System::WideChar &Key);
 	void __fastcall ButtonCancelClick(TObject *Sender);
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 //	void __fastcall ComboBoxDronesChange(TObject *Sender);
 private:	// User declarations
 //	void __fastcall UpdateMaxQuantityNeeded();

@@ -1,8 +1,8 @@
 object Form8: TForm8
-  Left = 126
-  Top = 128
-  Caption = 'Form8'
-  ClientHeight = 444
+  Left = 36
+  Top = 73
+  Caption = #1055#1088#1086#1092#1110#1083#1100
+  ClientHeight = 539
   ClientWidth = 1599
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -11,15 +11,16 @@ object Form8: TForm8
   Font.Name = 'Segoe UI'
   Font.Style = []
   Menu = MainMenu1
-  Position = poDesigned
+  Position = poScreenCenter
+  OnClose = FormClose
   OnCreate = FormCreate
   TextHeight = 15
   object LabelUsername: TLabel
     Left = 8
     Top = 8
-    Width = 116
+    Width = 43
     Height = 33
-    Caption = 'User name'
+    Caption = #1055#1030#1041
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
     Font.Height = -28
@@ -30,9 +31,9 @@ object Form8: TForm8
   object Label1: TLabel
     Left = 8
     Top = 72
-    Width = 65
+    Width = 79
     Height = 33
-    Caption = 'Email'
+    Caption = #1055#1086#1096#1090#1072
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
     Font.Height = -28
@@ -43,9 +44,9 @@ object Form8: TForm8
   object Label2: TLabel
     Left = 8
     Top = 136
-    Width = 160
+    Width = 100
     Height = 33
-    Caption = 'Phone number'
+    Caption = #1058#1077#1083#1077#1092#1086#1085
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
     Font.Height = -28
@@ -55,10 +56,10 @@ object Form8: TForm8
   end
   object Label3: TLabel
     Left = 8
-    Top = 203
-    Width = 65
+    Top = 275
+    Width = 66
     Height = 33
-    Caption = 'Login'
+    Caption = #1051#1086#1075#1110#1085
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
     Font.Height = -28
@@ -68,10 +69,23 @@ object Form8: TForm8
   end
   object Label4: TLabel
     Left = 8
-    Top = 272
-    Width = 106
+    Top = 344
+    Width = 86
     Height = 33
-    Caption = 'Password'
+    Caption = #1055#1072#1088#1086#1083#1100
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 8
+    Top = 208
+    Width = 139
+    Height = 33
+    Caption = #1054#1088#1075#1072#1085#1110#1079#1072#1094#1110#1103
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
     Font.Height = -28
@@ -80,7 +94,7 @@ object Form8: TForm8
     ParentFont = False
   end
   object EditUserName: TEdit
-    Left = 197
+    Left = 175
     Top = 5
     Width = 233
     Height = 41
@@ -94,11 +108,12 @@ object Form8: TForm8
     TabOrder = 0
   end
   object ButtonEditName: TButton
-    Left = 454
+    Left = 422
     Top = 5
-    Width = 97
+    Width = 120
     Height = 41
-    Caption = 'Edit'
+    Caption = #1047#1084#1110#1085#1080#1090#1080
+    Default = True
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
     Font.Height = -28
@@ -109,11 +124,12 @@ object Form8: TForm8
     OnClick = ButtonEditNameClick
   end
   object ButtonSaveName: TButton
-    Left = 582
+    Left = 559
     Top = 5
-    Width = 97
+    Width = 120
     Height = 41
-    Caption = 'Save'
+    Caption = #1047#1073#1077#1088#1077#1075#1090#1080
+    Default = True
     Enabled = False
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
@@ -125,7 +141,7 @@ object Form8: TForm8
     OnClick = ButtonSaveNameClick
   end
   object EditEmail: TEdit
-    Left = 197
+    Left = 175
     Top = 69
     Width = 233
     Height = 41
@@ -139,11 +155,12 @@ object Form8: TForm8
     TabOrder = 3
   end
   object ButtonEditEmail: TButton
-    Left = 454
+    Left = 422
     Top = 69
-    Width = 97
+    Width = 120
     Height = 41
-    Caption = 'Edit'
+    Caption = #1047#1084#1110#1085#1080#1090#1080
+    Default = True
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
     Font.Height = -28
@@ -154,11 +171,12 @@ object Form8: TForm8
     OnClick = ButtonEditEmailClick
   end
   object ButtonSaveEmail: TButton
-    Left = 582
+    Left = 559
     Top = 69
-    Width = 97
+    Width = 120
     Height = 41
-    Caption = 'Save'
+    Caption = #1047#1073#1077#1088#1077#1075#1090#1080
+    Default = True
     Enabled = False
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
@@ -170,7 +188,7 @@ object Form8: TForm8
     OnClick = ButtonSaveEmailClick
   end
   object EditPhone: TEdit
-    Left = 197
+    Left = 175
     Top = 133
     Width = 233
     Height = 41
@@ -185,11 +203,12 @@ object Form8: TForm8
     TabOrder = 6
   end
   object ButtonPhoneNumber: TButton
-    Left = 454
+    Left = 422
     Top = 133
-    Width = 97
+    Width = 120
     Height = 41
-    Caption = 'Edit'
+    Caption = #1047#1084#1110#1085#1080#1090#1080
+    Default = True
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
     Font.Height = -28
@@ -200,11 +219,12 @@ object Form8: TForm8
     OnClick = ButtonPhoneNumberClick
   end
   object ButtonSavePhoneNumber: TButton
-    Left = 582
+    Left = 559
     Top = 133
-    Width = 97
+    Width = 120
     Height = 41
-    Caption = 'Save'
+    Caption = #1047#1073#1077#1088#1077#1075#1090#1080
+    Default = True
     Enabled = False
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
@@ -216,8 +236,8 @@ object Form8: TForm8
     OnClick = ButtonSavePhoneNumberClick
   end
   object EditLogin: TEdit
-    Left = 197
-    Top = 200
+    Left = 175
+    Top = 272
     Width = 233
     Height = 41
     Enabled = False
@@ -230,11 +250,12 @@ object Form8: TForm8
     TabOrder = 9
   end
   object ButtonEditLogin: TButton
-    Left = 454
-    Top = 200
-    Width = 97
+    Left = 422
+    Top = 272
+    Width = 120
     Height = 41
-    Caption = 'Edit'
+    Caption = #1047#1084#1110#1085#1080#1090#1080
+    Default = True
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
     Font.Height = -28
@@ -245,11 +266,12 @@ object Form8: TForm8
     OnClick = ButtonEditLoginClick
   end
   object ButtonSaveLogin: TButton
-    Left = 582
-    Top = 200
-    Width = 97
+    Left = 559
+    Top = 272
+    Width = 120
     Height = 41
-    Caption = 'Save'
+    Caption = #1047#1073#1077#1088#1077#1075#1090#1080
+    Default = True
     Enabled = False
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
@@ -261,8 +283,8 @@ object Form8: TForm8
     OnClick = ButtonSaveLoginClick
   end
   object EditPassword: TEdit
-    Left = 197
-    Top = 269
+    Left = 175
+    Top = 341
     Width = 233
     Height = 41
     DoubleBuffered = True
@@ -279,10 +301,11 @@ object Form8: TForm8
   end
   object ButtonExit: TButton
     Left = 8
-    Top = 333
+    Top = 421
     Width = 671
     Height = 100
-    Caption = 'Exit'
+    Caption = #1042#1080#1081#1090#1080
+    Default = True
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
     Font.Height = -28
@@ -293,11 +316,12 @@ object Form8: TForm8
     OnClick = ButtonExitClick
   end
   object ButtonSavePassword: TButton
-    Left = 582
-    Top = 269
-    Width = 97
+    Left = 559
+    Top = 341
+    Width = 120
     Height = 41
-    Caption = 'Save'
+    Caption = #1047#1073#1077#1088#1077#1075#1090#1080
+    Default = True
     Enabled = False
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
@@ -309,11 +333,12 @@ object Form8: TForm8
     OnClick = ButtonSavePasswordClick
   end
   object ButtonEditPassword: TButton
-    Left = 454
-    Top = 269
-    Width = 97
+    Left = 422
+    Top = 341
+    Width = 120
     Height = 41
-    Caption = 'Edit'
+    Caption = #1047#1084#1110#1085#1080#1090#1080
+    Default = True
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
     Font.Height = -28
@@ -324,10 +349,10 @@ object Form8: TForm8
     OnClick = ButtonEditPasswordClick
   end
   object MemoHistory: TMemo
-    Left = 694
-    Top = 5
+    Left = 700
+    Top = 8
     Width = 891
-    Height = 428
+    Height = 513
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
     Font.Height = -24
@@ -339,11 +364,60 @@ object Form8: TForm8
     ScrollBars = ssVertical
     TabOrder = 16
   end
+  object ButtonEditOrganizations: TButton
+    Left = 422
+    Top = 205
+    Width = 120
+    Height = 41
+    Caption = #1047#1084#1110#1085#1080#1090#1080
+    Default = True
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 17
+    OnClick = ButtonEditOrganizationsClick
+  end
+  object ButtonSaveOrganizations: TButton
+    Left = 559
+    Top = 205
+    Width = 120
+    Height = 41
+    Caption = #1047#1073#1077#1088#1077#1075#1090#1080
+    Default = True
+    Enabled = False
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 18
+    OnClick = ButtonSaveOrganizationsClick
+  end
+  object ComboBoxOrg: TComboBox
+    Left = 175
+    Top = 205
+    Width = 233
+    Height = 41
+    Style = csDropDownList
+    Enabled = False
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 19
+  end
   object MainMenu1: TMainMenu
     Left = 584
     Top = 384
     object Close1: TMenuItem
       Action = DataModule1.ActionClose
+      Caption = #1047#1072#1082#1088#1080#1090#1080
     end
   end
 end

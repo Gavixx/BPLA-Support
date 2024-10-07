@@ -3,7 +3,7 @@ object Form3: TForm3
   Top = 146
   Caption = 'Army'
   ClientHeight = 690
-  ClientWidth = 1079
+  ClientWidth = 1140
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,17 +11,18 @@ object Form3: TForm3
   Font.Name = 'Segoe UI'
   Font.Style = []
   Menu = MainMenu1
-  Position = poDesigned
+  Position = poScreenCenter
+  OnClose = FormClose
   DesignSize = (
-    1079
+    1140
     690)
   TextHeight = 15
   object LabelFilter: TLabel
     Left = 258
     Top = 458
-    Width = 464
+    Width = 493
     Height = 36
-    Caption = 'CHOSE FILTER PARAMETERS'
+    Caption = #1054#1073#1077#1088#1110#1090#1100' '#1087#1072#1088#1072#1084#1077#1090#1088#1080' '#1076#1083#1103' '#1092#1110#1083#1100#1090#1088#1072#1094#1110#1111
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
     Font.Height = -32
@@ -30,8 +31,73 @@ object Form3: TForm3
     ParentFont = False
     Layout = tlCenter
   end
+  object Label1: TLabel
+    Left = 104
+    Top = 504
+    Width = 62
+    Height = 33
+    Caption = #1044#1088#1086#1085
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 280
+    Top = 504
+    Width = 122
+    Height = 33
+    Caption = #1058#1080#1087' '#1076#1088#1086#1085#1091
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 448
+    Top = 504
+    Width = 79
+    Height = 33
+    Caption = #1057#1090#1072#1090#1091#1089
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 616
+    Top = 504
+    Width = 14
+    Height = 33
+    Caption = #1047
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 820
+    Top = 504
+    Width = 33
+    Height = 33
+    Caption = #1055#1086
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+  end
   object ButtonShowStat: TButton
-    Left = 23
+    Left = 58
     Top = 343
     Width = 241
     Height = 65
@@ -48,7 +114,7 @@ object Form3: TForm3
     OnClick = ButtonShowStatClick
   end
   object ButtonAddOrder: TButton
-    Left = 809
+    Left = 836
     Top = 343
     Width = 241
     Height = 65
@@ -65,58 +131,88 @@ object Form3: TForm3
     OnClick = ButtonAddOrderClick
   end
   object ComboBoxDroneName: TComboBox
-    Left = 32
-    Top = 514
+    Left = 104
+    Top = 543
     Width = 145
-    Height = 23
+    Height = 41
     AutoComplete = False
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 2
   end
   object ComboBoxDroneType: TComboBox
-    Left = 200
-    Top = 514
+    Left = 280
+    Top = 543
     Width = 145
-    Height = 23
+    Height = 41
     AutoComplete = False
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 3
   end
   object ComboBoxStatus: TComboBox
-    Left = 368
-    Top = 514
+    Left = 448
+    Top = 543
     Width = 145
-    Height = 23
+    Height = 41
     AutoComplete = False
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 4
   end
   object DateTimePickerStart: TDateTimePicker
-    Left = 536
-    Top = 514
+    Left = 616
+    Top = 543
     Width = 186
-    Height = 23
+    Height = 41
     Date = 45292.000000000000000000
     Format = 'dd MMMM yyyy'
     Time = 0.885561087961832500
     DateFormat = dfLong
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 5
   end
   object DateTimePickerEnd: TDateTimePicker
-    Left = 740
-    Top = 514
+    Left = 820
+    Top = 543
     Width = 186
-    Height = 23
+    Height = 41
     Date = 45560.000000000000000000
     Format = 'dd MMMM yyyy'
     Time = 0.885561087961832500
     DateFormat = dfLong
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 6
   end
   object ButtonFilter: TButton
-    Left = 576
-    Top = 575
+    Left = 579
+    Top = 607
     Width = 241
     Height = 65
     Anchors = []
-    Caption = 'Filter'
+    Caption = #1047#1072#1089#1090#1086#1089#1091#1074#1072#1090#1080
     Default = True
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -128,12 +224,12 @@ object Form3: TForm3
     OnClick = ButtonFilterClick
   end
   object ButtonClearFilter: TButton
-    Left = 262
-    Top = 567
+    Left = 265
+    Top = 607
     Width = 241
     Height = 65
     Anchors = []
-    Caption = 'Clear Filers'
+    Caption = #1054#1095#1080#1089#1090#1080#1090#1080
     Default = True
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -147,7 +243,7 @@ object Form3: TForm3
   object DBGrid1: TDBGrid
     Left = 8
     Top = 8
-    Width = 1063
+    Width = 1124
     Height = 297
     TabOrder = 9
     TitleFont.Charset = DEFAULT_CHARSET
@@ -161,19 +257,27 @@ object Form3: TForm3
     Top = 600
     object ChangeUser1: TMenuItem
       Action = DataModule1.ActionChangeUser
-    end
-    object MenuHelp: TMenuItem
-      Caption = 'Reference'
-      ShortCut = 112
-      object Help1: TMenuItem
-        Action = DataModule1.ActionHelp
-      end
-      object Help2: TMenuItem
-        Action = DataModule1.ActionAboutUs
-      end
+      Caption = #1047#1084#1110#1085#1080#1090#1080' '#1082#1086#1088#1080#1089#1090#1091#1074#1072#1095#1072
+      ShortCut = 120
     end
     object MenuClose: TMenuItem
       Action = DataModule1.ActionClose
+      Caption = #1047#1072#1082#1088#1080#1090#1080
+      ShortCut = 32883
+    end
+    object MenuHelp: TMenuItem
+      Caption = #1044#1086#1074#1110#1076#1082#1072
+      ShortCut = 112
+      object Help1: TMenuItem
+        Action = DataModule1.ActionHelp
+        Caption = #1044#1086#1087#1086#1084#1086#1075#1072
+        ShortCut = 112
+      end
+      object Help2: TMenuItem
+        Action = DataModule1.ActionAboutUs
+        Caption = #1055#1088#1086' '#1085#1072#1089
+        ShortCut = 113
+      end
     end
   end
 end

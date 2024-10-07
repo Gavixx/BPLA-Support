@@ -13,7 +13,7 @@ __fastcall TForm7::TForm7(TComponent* Owner, int requestID, String droneName, in
 	: TForm(Owner), SelectedRequestID(requestID), SelectedDroneName(droneName), MaxQuantityNeeded(maxQuantity), UserID(userID)
 {
 	LabelDroneName->Caption = "Ви обрали дрон: " + SelectedDroneName;
-	LabelMaxQuantity->Caption = "МАКСИМАЛЬНА КІЛЬКІСТЬ: " + IntToStr(MaxQuantityNeeded);
+	LabelMaxQuantity->Caption = "МАКСИМАЛЬНА КІЛЬКІСТЬ ЯКУ ВИ МОЖЕТЕ ВІДПРАВИТИ: " + IntToStr(MaxQuantityNeeded);
 	EditQuantity->Text = "1";
 }
 
@@ -61,11 +61,11 @@ void __fastcall TForm7::ButtonSendClick(TObject *Sender)
 
 		// Insert into Contributions
 		std::unique_ptr<TFDQuery> insertDonationQuery(new TFDQuery(NULL));
-        insertDonationQuery->Connection = DataModule1->FDConnection1;
-        insertDonationQuery->SQL->Text = "INSERT INTO Contributions (user_id, request_id, quantity, contribution_date) VALUES (:user_id, :request_id, :quantity, NOW())";
+		insertDonationQuery->Connection = DataModule1->FDConnection1;
+		insertDonationQuery->SQL->Text = "INSERT INTO Contributions (user_id, request_id, quantity, contribution_date) VALUES (:user_id, :request_id, :quantity, NOW())";
 		insertDonationQuery->ParamByName("user_id")->AsInteger = UserID;
-        insertDonationQuery->ParamByName("request_id")->AsInteger = SelectedRequestID;
-        insertDonationQuery->ParamByName("quantity")->AsInteger = quantityg;
+		insertDonationQuery->ParamByName("request_id")->AsInteger = SelectedRequestID;
+		insertDonationQuery->ParamByName("quantity")->AsInteger = quantityg;
 		insertDonationQuery->ExecSQL();
 
 
@@ -78,10 +78,10 @@ void __fastcall TForm7::ButtonSendClick(TObject *Sender)
 										"WHERE request_id = :request_id";
 		}
 		else{
-            updateRequestQuery->SQL->Text = "UPDATE MilitaryRequests "
+			updateRequestQuery->SQL->Text = "UPDATE MilitaryRequests "
 										"SET fulfilled_quantity = fulfilled_quantity + :quantity "
 										"WHERE request_id = :request_id";
-        }
+		}
 
 		updateRequestQuery->ParamByName("quantity")->AsInteger = quantityg;
 		updateRequestQuery->ParamByName("request_id")->AsInteger = SelectedRequestID;
@@ -90,10 +90,7 @@ void __fastcall TForm7::ButtonSendClick(TObject *Sender)
 		ShowMessage("Дякуємо за вашу пожертву!");
 
 		TForm4 *VolonterForm = dynamic_cast<TForm4*>(Owner);
-		if (VolonterForm)
-		{
-			VolonterForm->Show();
-		}
+		VolonterForm->Show();
 		this->Close();
 	}
 	catch (Exception &e)
@@ -109,7 +106,19 @@ void __fastcall TForm7::ButtonCancelClick(TObject *Sender)
 	{
 		VolonterForm->Show();
 	}
-	this->Close();
+	this->Close();  // Закриваємо тільки поточну форму
 }
+
+//---------------------------------------------------------------------------
+
+void __fastcall TForm7::FormClose(TObject *Sender, TCloseAction &Action)
+{
+	TForm4 *VolonterForm = dynamic_cast<TForm4*>(Owner);
+	if (VolonterForm)
+	{
+		VolonterForm->Show();  // Показуємо форму волонтера, але не закриваємо вручну форму
+	}
+}
+
 //---------------------------------------------------------------------------
 

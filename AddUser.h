@@ -43,9 +43,25 @@ __published:	// IDE-managed Components
 	TMenuItem *Reference1;
 	TMenuItem *Aboutus1;
 	TMenuItem *Help1;
-	TMenuItem *ChangeUser1;
+	TButton *ButtonCancel;
+	TLabel *Label3;
+	TComboBox *ComboBoxRole;
+	TLabel *Label4;
+	TComboBox *ComboBoxOrg;
+	TLabel *Label5;
+	TLabel *Label6;
+	TEdit *EditLogin;
+	TEdit *EditPassword;
+	TLabel *Label7;
+	TEdit *EditConfiirmPassword;
+	TLabel *Label8;
+	TLabel *Label9;
 	void __fastcall ButtonAddUserClick(TObject *Sender);
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+	void __fastcall ButtonCancelClick(TObject *Sender);
+	void __fastcall FormShow(TObject *Sender);
 private:	// User declarations
+	void __fastcall FillBoxs();
 public:		// User declarations
 	__fastcall TForm6(TComponent* Owner);
 };
