@@ -3,7 +3,7 @@ object Form7: TForm7
   Top = 201
   Caption = #1044#1086#1085#1072#1090
   ClientHeight = 509
-  ClientWidth = 1043
+  ClientWidth = 690
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -68,7 +68,7 @@ object Form7: TForm7
     OnKeyPress = EditQuantityKeyPress
   end
   object ButtonSend: TButton
-    Left = 168
+    Left = 8
     Top = 336
     Width = 257
     Height = 113
@@ -89,7 +89,7 @@ object Form7: TForm7
     OnClick = ButtonSendClick
   end
   object ButtonCancel: TButton
-    Left = 623
+    Left = 415
     Top = 336
     Width = 257
     Height = 113

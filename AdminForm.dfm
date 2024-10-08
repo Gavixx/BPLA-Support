@@ -95,7 +95,7 @@ object Form2: TForm2
     OnTitleClick = DBGridRequestsTitleClick
   end
   object ButtonFilter: TButton
-    Left = 590
+    Left = 586
     Top = 597
     Width = 172
     Height = 65
@@ -115,9 +115,10 @@ object Form2: TForm2
     ParentFont = False
     TabOrder = 4
     OnClick = ButtonFilterClick
+    ExplicitLeft = 590
   end
   object ButtonClearFilter: TButton
-    Left = 374
+    Left = 372
     Top = 597
     Width = 175
     Height = 65
@@ -137,6 +138,7 @@ object Form2: TForm2
     ParentFont = False
     TabOrder = 5
     OnClick = ButtonClearFilterClick
+    ExplicitLeft = 374
   end
   object CheckListBoxChouse: TCheckListBox
     Left = 575
@@ -387,11 +389,9 @@ object Form2: TForm2
     Top = 416
     object Close1: TMenuItem
       Action = DataModule1.ActionClose
-      Caption = #1047#1072#1082#1088#1080#1090#1080
     end
     object Close2: TMenuItem
       Action = DataModule1.ActionChangeUser
-      Caption = #1047#1084#1110#1085#1080#1090#1080' '#1082#1086#1088#1080#1089#1090#1091#1074#1072#1095#1072
     end
     object Extra1: TMenuItem
       Caption = #1044#1086#1076#1072#1090#1082#1086#1074#1086
