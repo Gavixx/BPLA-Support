@@ -1,6 +1,7 @@
 object Form2: TForm2
   Left = 361
   Top = 36
+  BorderStyle = bsSingle
   Caption = 'Admin panel'
   ClientHeight = 700
   ClientWidth = 1135
@@ -49,10 +50,16 @@ object Form2: TForm2
   object ButtonShowUsers: TButton
     Left = 8
     Top = 400
-    Width = 161
+    Width = 189
     Height = 41
     Caption = #1042#1110#1076#1086#1073#1088#1072#1079#1080#1090#1080' '#1082#1086#1088#1080#1089#1090#1091#1074#1072#1095#1110#1074
-    ImageIndex = 0
+    Default = True
+    DisabledImageIndex = 0
+    ImageAlignment = iaRight
+    ImageIndex = 2
+    ImageMargins.Top = 2
+    ImageMargins.Right = 10
+    Images = DataModule1.ImageList1
     TabOrder = 1
     OnClick = ButtonShowUsersClick
   end
@@ -62,6 +69,13 @@ object Form2: TForm2
     Width = 183
     Height = 41
     Caption = #1042#1110#1076#1086#1073#1088#1072#1079#1080#1090#1080' '#1079#1072#1087#1080#1090#1080
+    Default = True
+    DisabledImageIndex = 0
+    ImageAlignment = iaRight
+    ImageIndex = 2
+    ImageMargins.Top = 2
+    ImageMargins.Right = 10
+    Images = DataModule1.ImageList1
     TabOrder = 2
     OnClick = ButtonShowRequestsClick
   end
@@ -81,9 +95,9 @@ object Form2: TForm2
     OnTitleClick = DBGridRequestsTitleClick
   end
   object ButtonFilter: TButton
-    Left = 608
+    Left = 590
     Top = 597
-    Width = 160
+    Width = 172
     Height = 65
     Anchors = []
     Caption = #1047#1072#1089#1090#1086#1089#1091#1074#1072#1090#1080
@@ -93,23 +107,33 @@ object Form2: TForm2
     Font.Height = -24
     Font.Name = 'Times New Roman'
     Font.Style = []
+    ImageAlignment = iaRight
+    ImageIndex = 6
+    ImageMargins.Top = 3
+    ImageMargins.Right = 10
+    Images = DataModule1.ImageList1
     ParentFont = False
     TabOrder = 4
     OnClick = ButtonFilterClick
   end
   object ButtonClearFilter: TButton
-    Left = 376
+    Left = 374
     Top = 597
-    Width = 169
+    Width = 175
     Height = 65
     Anchors = []
-    Caption = #1054#1073#1080#1095#1080#1089#1090#1080#1090#1080
+    Caption = #1054#1095#1080#1089#1090#1080#1090#1080
     Default = True
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -24
     Font.Name = 'Times New Roman'
     Font.Style = []
+    ImageAlignment = iaRight
+    ImageIndex = 1
+    ImageMargins.Top = 3
+    ImageMargins.Right = 10
+    Images = DataModule1.ImageList1
     ParentFont = False
     TabOrder = 5
     OnClick = ButtonClearFilterClick
@@ -117,7 +141,7 @@ object Form2: TForm2
   object CheckListBoxChouse: TCheckListBox
     Left = 575
     Top = 473
-    Width = 193
+    Width = 146
     Height = 73
     Color = clMenu
     Font.Charset = RUSSIAN_CHARSET
@@ -334,6 +358,12 @@ object Form2: TForm2
     Width = 183
     Height = 41
     Caption = #1055#1086#1082#1072#1079#1072#1090#1080' '#1074#1085#1077#1089#1082#1080
+    Default = True
+    ImageAlignment = iaRight
+    ImageIndex = 2
+    ImageMargins.Top = 2
+    ImageMargins.Right = 10
+    Images = DataModule1.ImageList1
     TabOrder = 9
     OnClick = ButtonShowContributionsClick
   end
@@ -358,12 +388,10 @@ object Form2: TForm2
     object Close1: TMenuItem
       Action = DataModule1.ActionClose
       Caption = #1047#1072#1082#1088#1080#1090#1080
-      ShortCut = 32883
     end
     object Close2: TMenuItem
       Action = DataModule1.ActionChangeUser
       Caption = #1047#1084#1110#1085#1080#1090#1080' '#1082#1086#1088#1080#1089#1090#1091#1074#1072#1095#1072
-      ShortCut = 120
     end
     object Extra1: TMenuItem
       Caption = #1044#1086#1076#1072#1090#1082#1086#1074#1086
@@ -396,11 +424,9 @@ object Form2: TForm2
       Caption = #1044#1086#1074#1110#1076#1082#1072
       object N1: TMenuItem
         Action = DataModule1.ActionHelp
-        ShortCut = 112
       end
       object N2: TMenuItem
         Action = DataModule1.ActionAboutUs
-        ShortCut = 113
       end
     end
   end

@@ -1,6 +1,7 @@
 object Form3: TForm3
   Left = 487
   Top = 146
+  BorderStyle = bsSingle
   Caption = 'Army'
   ClientHeight = 690
   ClientWidth = 1140
@@ -18,9 +19,9 @@ object Form3: TForm3
     690)
   TextHeight = 15
   object LabelFilter: TLabel
-    Left = 258
-    Top = 458
-    Width = 493
+    Left = 294
+    Top = 442
+    Width = 508
     Height = 36
     Caption = #1054#1073#1077#1088#1110#1090#1100' '#1087#1072#1088#1072#1084#1077#1090#1088#1080' '#1076#1083#1103' '#1092#1110#1083#1100#1090#1088#1072#1094#1110#1111
     Font.Charset = RUSSIAN_CHARSET
@@ -97,9 +98,9 @@ object Form3: TForm3
     ParentFont = False
   end
   object ButtonShowStat: TButton
-    Left = 58
+    Left = 56
     Top = 343
-    Width = 241
+    Width = 257
     Height = 65
     Anchors = []
     Caption = #1054#1073#1085#1086#1074#1080#1090#1080
@@ -109,12 +110,17 @@ object Form3: TForm3
     Font.Height = -24
     Font.Name = 'Times New Roman'
     Font.Style = []
+    ImageAlignment = iaRight
+    ImageIndex = 9
+    ImageMargins.Top = 3
+    ImageMargins.Right = 40
+    Images = DataModule1.ImageList1
     ParentFont = False
     TabOrder = 0
     OnClick = ButtonShowStatClick
   end
   object ButtonAddOrder: TButton
-    Left = 836
+    Left = 826
     Top = 343
     Width = 241
     Height = 65
@@ -126,6 +132,11 @@ object Form3: TForm3
     Font.Height = -24
     Font.Name = 'Times New Roman'
     Font.Style = []
+    ImageAlignment = iaRight
+    ImageIndex = 0
+    ImageMargins.Top = 3
+    ImageMargins.Right = 10
+    Images = DataModule1.ImageList1
     ParentFont = False
     TabOrder = 1
     OnClick = ButtonAddOrderClick
@@ -207,7 +218,7 @@ object Form3: TForm3
     TabOrder = 6
   end
   object ButtonFilter: TButton
-    Left = 579
+    Left = 571
     Top = 607
     Width = 241
     Height = 65
@@ -219,12 +230,17 @@ object Form3: TForm3
     Font.Height = -24
     Font.Name = 'Times New Roman'
     Font.Style = []
+    ImageAlignment = iaRight
+    ImageIndex = 6
+    ImageMargins.Top = 3
+    ImageMargins.Right = 45
+    Images = DataModule1.ImageList1
     ParentFont = False
     TabOrder = 7
     OnClick = ButtonFilterClick
   end
   object ButtonClearFilter: TButton
-    Left = 265
+    Left = 261
     Top = 607
     Width = 241
     Height = 65
@@ -236,6 +252,11 @@ object Form3: TForm3
     Font.Height = -24
     Font.Name = 'Times New Roman'
     Font.Style = []
+    ImageAlignment = iaRight
+    ImageIndex = 1
+    ImageMargins.Top = 3
+    ImageMargins.Right = 50
+    Images = DataModule1.ImageList1
     ParentFont = False
     TabOrder = 8
     OnClick = ButtonClearFilterClick
@@ -258,25 +279,19 @@ object Form3: TForm3
     object ChangeUser1: TMenuItem
       Action = DataModule1.ActionChangeUser
       Caption = #1047#1084#1110#1085#1080#1090#1080' '#1082#1086#1088#1080#1089#1090#1091#1074#1072#1095#1072
-      ShortCut = 120
     end
     object MenuClose: TMenuItem
       Action = DataModule1.ActionClose
       Caption = #1047#1072#1082#1088#1080#1090#1080
-      ShortCut = 32883
     end
     object MenuHelp: TMenuItem
       Caption = #1044#1086#1074#1110#1076#1082#1072
       ShortCut = 112
       object Help1: TMenuItem
         Action = DataModule1.ActionHelp
-        Caption = #1044#1086#1087#1086#1084#1086#1075#1072
-        ShortCut = 112
       end
       object Help2: TMenuItem
         Action = DataModule1.ActionAboutUs
-        Caption = #1055#1088#1086' '#1085#1072#1089
-        ShortCut = 113
       end
     end
   end

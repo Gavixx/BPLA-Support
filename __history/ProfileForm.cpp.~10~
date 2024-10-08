@@ -1,0 +1,509 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "ProfileForm.h"
+#include "DataModule.h"
+#include "VolonterForm.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm8 *Form8;
+//---------------------------------------------------------------------------
+__fastcall TForm8::TForm8(TComponent* Owner, int userID)
+	: TForm(Owner), UserID(userID)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm8::ButtonEditOrganizationsClick(TObject *Sender)
+{
+	ComboBoxOrg->Enabled = true;
+	ButtonSaveOrganizations->Enabled = true;
+	ButtonEditOrganizations->Enabled = false;
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm8::ButtonEditNameClick(TObject *Sender)
+{
+	EditUserName->Enabled = true;
+	ButtonSaveName->Enabled = true;
+	ButtonEditName->Enabled = false;
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm8::ButtonEditEmailClick(TObject *Sender)
+{
+	EditEmail->Enabled = true;
+	ButtonSaveEmail->Enabled = true;
+	ButtonEditEmail->Enabled = false;
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm8::ButtonPhoneNumberClick(TObject *Sender)
+{
+	EditPhone->Enabled = true;
+	ButtonSavePhoneNumber->Enabled = true;
+	ButtonPhoneNumber->Enabled = false;
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm8::ButtonEditLoginClick(TObject *Sender)
+{
+	EditLogin->Enabled = true;
+	ButtonSaveLogin->Enabled = true;
+	ButtonEditLogin->Enabled = false;
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm8::ButtonEditPasswordClick(TObject *Sender)
+{
+	EditPassword->Enabled = true;
+	ButtonSavePassword->Enabled = true;
+	ButtonEditPassword->Enabled = false;
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm8::FormCreate(TObject *Sender)
+{
+	LoadData();
+	LoadHistory();
+	GetItemFillOrg();
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm8::LoadData(){
+	   try
+	{
+		if (!DataModule1->FDConnection1->Connected)
+		{
+			DataModule1->ConnectToDatabase();
+			if (!DataModule1->FDConnection1->Connected)
+			{
+				throw Exception("Не вдалося підключитися до бази даних.");
+			}
+		}
+
+		std::unique_ptr<TFDQuery> selectProfileQuery(new TFDQuery(NULL));
+		selectProfileQuery->Connection = DataModule1->FDConnection1;
+		selectProfileQuery->SQL->Text = "SELECT u.name, u.email, u.phone, uc.login, uc.password, o.name AS organization_name "
+										"FROM Users u "
+										"JOIN UserCredentials uc ON u.user_id = uc.user_id "
+										"JOIN Organizations o ON u.organization_id = o.organization_id "
+										"WHERE u.user_id = :user_id";
+
+		selectProfileQuery->ParamByName("user_id")->AsInteger = UserID;
+		selectProfileQuery->Open();
+
+		if (!selectProfileQuery->Eof)
+		{
+			EditUserName->Text = selectProfileQuery->FieldByName("name")->AsString;
+			EditEmail->Text = selectProfileQuery->FieldByName("email")->AsString;
+			EditPhone->Text = selectProfileQuery->FieldByName("phone")->AsString;
+			EditLogin->Text = selectProfileQuery->FieldByName("login")->AsString;
+			EditPassword->Text = selectProfileQuery->FieldByName("password")->AsString;
+			OrganizationName = selectProfileQuery->FieldByName("organization_name")->AsString;
+		}
+	}
+	catch (Exception &e)
+	{
+		ShowMessage("Помилка під час завантаження даних профілю: " + e.Message);
+	}
+
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm8::ButtonSaveNameClick(TObject *Sender)
+{
+	if (EditUserName->Text.Trim().IsEmpty())
+	{
+		ShowMessage("Поле має бути заповнено.");
+		return;
+	}
+	try
+	{
+		if (!DataModule1->FDConnection1->Connected)
+		{
+			DataModule1->ConnectToDatabase();
+			if (!DataModule1->FDConnection1->Connected)
+			{
+				throw Exception("Не вдалося підключитися до бази даних.");
+			}
+		}
+
+		std::unique_ptr<TFDQuery> updateProfileQuery(new TFDQuery(NULL));
+		updateProfileQuery->Connection = DataModule1->FDConnection1;
+		updateProfileQuery->SQL->Text = "UPDATE Users SET name = :name WHERE user_id = :user_id";
+
+		updateProfileQuery->ParamByName("name")->AsString = EditUserName->Text;
+		updateProfileQuery->ParamByName("user_id")->AsInteger = UserID;
+
+		updateProfileQuery->ExecSQL();
+
+		EditUserName->Enabled = false;
+		ButtonSaveName->Enabled = false;
+		ButtonEditName->Enabled = true;
+
+		ShowMessage("Зміни успішно збережено!");
+	}
+	catch (Exception &e)
+	{
+		ShowMessage("Помилка під час збереження змін: " + e.Message);
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm8::ButtonSaveEmailClick(TObject *Sender)
+{
+	if (EditEmail->Text.Trim().IsEmpty())
+	{
+		ShowMessage("Поле має бути заповнено.");
+		return;
+	}
+	try
+	{
+		if (!DataModule1->FDConnection1->Connected)
+		{
+			DataModule1->ConnectToDatabase();
+			if (!DataModule1->FDConnection1->Connected)
+			{
+				throw Exception("Не вдалося підключитися до бази даних.");
+			}
+		}
+
+		std::unique_ptr<TFDQuery> updateProfileQuery(new TFDQuery(NULL));
+		updateProfileQuery->Connection = DataModule1->FDConnection1;
+		updateProfileQuery->SQL->Text = "UPDATE Users SET email = :email WHERE user_id = :user_id";
+		updateProfileQuery->ParamByName("email")->AsString = EditEmail->Text;
+		updateProfileQuery->ParamByName("user_id")->AsInteger = UserID;
+		updateProfileQuery->ExecSQL();
+
+		EditEmail->Enabled = false;
+		ButtonSaveEmail->Enabled = false;
+		ButtonEditEmail->Enabled = true;
+
+		ShowMessage("Зміни успішно збережено!");
+	}
+	catch (Exception &e)
+	{
+		ShowMessage("Помилка під час збереження змін: " + e.Message);
+	}
+
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm8::ButtonSavePhoneNumberClick(TObject *Sender)
+{
+	if (EditPhone->Text.Trim().IsEmpty())
+	{
+		ShowMessage("Поле має бути заповнено.");
+		return;
+	}
+	try
+	{
+		if (!DataModule1->FDConnection1->Connected)
+		{
+			DataModule1->ConnectToDatabase();
+			if (!DataModule1->FDConnection1->Connected)
+			{
+				throw Exception("Не вдалося підключитися до бази даних.");
+			}
+		}
+
+		std::unique_ptr<TFDQuery> updateProfileQuery(new TFDQuery(NULL));
+		updateProfileQuery->Connection = DataModule1->FDConnection1;
+		updateProfileQuery->SQL->Text = "UPDATE Users SET phone = :phone WHERE user_id = :user_id";
+		updateProfileQuery->ParamByName("phone")->AsString = EditPhone->Text;
+		updateProfileQuery->ParamByName("user_id")->AsInteger = UserID;
+		updateProfileQuery->ExecSQL();
+
+		EditPhone->Enabled = false;
+		ButtonSavePhoneNumber->Enabled = false;
+		ButtonPhoneNumber->Enabled = true;
+
+		ShowMessage("Зміни успішно збережено!");
+	}
+	catch (Exception &e)
+	{
+		ShowMessage("Помилка під час збереження змін: " + e.Message);
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm8::ButtonSaveLoginClick(TObject *Sender)
+{
+	if (EditLogin->Text.Trim().IsEmpty())
+		{
+			ShowMessage("Поле має бути заповнено.");
+			return;
+		}
+		try
+		{
+			if (!DataModule1->FDConnection1->Connected)
+			{
+				DataModule1->ConnectToDatabase();
+				if (!DataModule1->FDConnection1->Connected)
+				{
+					throw Exception("Не вдалося підключитися до бази даних.");
+				}
+			}
+
+			std::unique_ptr<TFDQuery> updateProfileQuery(new TFDQuery(NULL));
+			updateProfileQuery->Connection = DataModule1->FDConnection1;
+			updateProfileQuery->SQL->Text = "UPDATE UserCredentials SET login = :login WHERE user_id = :user_id";
+			updateProfileQuery->ParamByName("login")->AsString = EditLogin->Text;
+			updateProfileQuery->ParamByName("user_id")->AsInteger = UserID;
+			updateProfileQuery->ExecSQL();
+
+			EditLogin->Enabled = false;
+			ButtonSaveLogin->Enabled = false;
+			ButtonEditLogin->Enabled = true;
+
+			ShowMessage("Зміни успішно збережено!");
+		}
+		catch (Exception &e)
+		{
+			ShowMessage("Помилка під час збереження змін: " + e.Message);
+		}
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm8::ButtonSavePasswordClick(TObject *Sender)
+{
+	if (EditPassword->Text.Trim().IsEmpty())
+	{
+		ShowMessage("Поле має бути заповнено.");
+		return;
+	}
+
+	// Додатковий запит для підтвердження пароля
+	String confirmPassword;
+	if (!InputQuery("Підтвердження пароля", "Будь ласка, введіть новий пароль ще раз:", confirmPassword))
+	{
+		// Якщо користувач натиснув скасування, то зупиняємо процес
+		return;
+	}
+
+	// Перевірка чи введений пароль і підтвердження співпадають
+	if (EditPassword->Text != confirmPassword)
+	{
+		ShowMessage("Паролі не співпадають. Будь ласка, спробуйте ще раз.");
+		return;
+	}
+
+	// Основний процес оновлення пароля
+	try
+	{
+		if (!DataModule1->FDConnection1->Connected)
+		{
+			DataModule1->ConnectToDatabase();
+			if (!DataModule1->FDConnection1->Connected)
+			{
+				throw Exception("Не вдалося підключитися до бази даних.");
+			}
+		}
+
+		std::unique_ptr<TFDQuery> updateProfileQuery(new TFDQuery(NULL));
+		updateProfileQuery->Connection = DataModule1->FDConnection1;
+		updateProfileQuery->SQL->Text = "UPDATE UserCredentials SET password = :password WHERE user_id = :user_id";
+		updateProfileQuery->ParamByName("password")->AsString = EditPassword->Text;
+		updateProfileQuery->ParamByName("user_id")->AsInteger = UserID;
+		updateProfileQuery->ExecSQL();
+
+		EditPassword->Enabled = false;
+		ButtonSavePassword->Enabled = false;
+		ButtonEditPassword->Enabled = true;
+		ShowMessage("Зміни успішно збережено!");
+	}
+	catch (Exception &e)
+	{
+		ShowMessage("Помилка під час збереження змін: " + e.Message);
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm8::ButtonExitClick(TObject *Sender)
+{
+	TForm4 *VolonterForm = dynamic_cast<TForm4*>(Owner);
+	VolonterForm->Show();
+	this->Close();
+}
+//---------------------------------------------------------------------------
+ void __fastcall TForm8::LoadHistory(){
+   try
+	{
+		if (!DataModule1->FDConnection1->Connected)
+		{
+			DataModule1->ConnectToDatabase();
+			if (!DataModule1->FDConnection1->Connected)
+			{
+				throw Exception("Не вдалося підключитися до бази даних.");
+			}
+		}
+
+		std::unique_ptr<TFDQuery> selectHistoryQuery(new TFDQuery(NULL));
+		selectHistoryQuery->Connection = DataModule1->FDConnection1;
+		selectHistoryQuery->SQL->Text =    "SELECT c.request_id, c.quantity, c.contribution_date, d.drone_name "
+										   "FROM Contributions c "
+										   "JOIN MilitaryRequests r ON c.request_id = r.request_id "
+										   "JOIN DroneModel d ON r.drone_id = d.drone_id "
+										   "JOIN Users u ON c.user_id = u.user_id "
+										   "WHERE c.user_id = :user_id "
+										   "ORDER BY c.contribution_date DESC ";
+
+
+		selectHistoryQuery->ParamByName("user_id")->AsInteger = UserID;
+		selectHistoryQuery->Open();
+
+		MemoHistory->Clear();
+		MemoHistory->Lines->Add("	Історія донатів:");
+		MemoHistory->Lines->Add("----------------------------------------------------------------------------------------------------------------");
+
+		while (!selectHistoryQuery->Eof)
+			{
+				String historyLine;
+				historyLine = "     Запит ID: " + selectHistoryQuery->FieldByName("request_id")->AsString + "	\n" +
+							  "     Дрон: " + selectHistoryQuery->FieldByName("drone_name")->AsString + "	\n" +
+							  "     Кількість: " + selectHistoryQuery->FieldByName("quantity")->AsString + "	\n" +
+							  "     Дата: " + selectHistoryQuery->FieldByName("contribution_date")->AsDateTime.FormatString("dd mmmm") + "	\n";
+
+				MemoHistory->Lines->Add(historyLine);
+				MemoHistory->Lines->Add("----------------------------------------------------------------------------------------------------------------");
+				selectHistoryQuery->Next();
+			}
+
+
+		MemoHistory->Visible = true;
+	}
+	catch (Exception &e)
+	{
+		ShowMessage("Помилка під час завантаження історії донатів: " + e.Message);
+	}
+
+
+
+ }
+//---------------------------------------------------------------------------
+void __fastcall TForm8::FormClose(TObject *Sender, TCloseAction &Action)
+{
+	TForm4 *VolonterForm = dynamic_cast<TForm4*>(Owner);
+	if (VolonterForm)
+	{
+		VolonterForm->Show();
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm8::ButtonSaveOrganizationsClick(TObject *Sender)
+{
+	if (ComboBoxOrg->Text.Trim().IsEmpty())
+	{
+		ShowMessage("Поле має бути заповнено.");
+		return;
+	}
+	try
+	{
+		if (!DataModule1->FDConnection1->Connected)
+		{
+			DataModule1->ConnectToDatabase();
+			if (!DataModule1->FDConnection1->Connected)
+			{
+				throw Exception("Не вдалося підключитися до бази даних.");
+			}
+		}
+
+		// Створюємо запит для перевірки, чи існує організація
+		std::unique_ptr<TFDQuery> checkOrganizationQuery(new TFDQuery(NULL));
+		checkOrganizationQuery->Connection = DataModule1->FDConnection1;
+		checkOrganizationQuery->SQL->Text = "SELECT organization_id FROM Organizations WHERE name = :org_name";
+		checkOrganizationQuery->ParamByName("org_name")->AsString = ComboBoxOrg->Text.Trim();
+		checkOrganizationQuery->Open();
+
+		// Якщо не знайдено організацію, виводимо повідомлення
+		if (checkOrganizationQuery->Eof)
+		{
+			ShowMessage("Вибачте, даної організації нема в базі. Зверніться, будь ласка, до адміністратора.");
+			ComboBoxOrg->Text = OrganizationName;
+			return;
+		}
+
+		int organizationID = checkOrganizationQuery->FieldByName("organization_id")->AsInteger;
+
+		// Якщо організація існує, оновлюємо інформацію про користувача
+		std::unique_ptr<TFDQuery> updateOrganizationQuery(new TFDQuery(NULL));
+		updateOrganizationQuery->Connection = DataModule1->FDConnection1;
+
+		// Оновлюємо інформацію про організацію для користувача
+		updateOrganizationQuery->SQL->Text = "UPDATE Users SET organization_id = :org_id WHERE user_id = :user_id";
+		updateOrganizationQuery->ParamByName("org_id")->AsInteger = organizationID;  // Ідентифікатор організації
+		updateOrganizationQuery->ParamByName("user_id")->AsInteger = UserID;  // Ідентифікатор користувача
+		updateOrganizationQuery->ExecSQL();
+
+		ComboBoxOrg->Enabled = false;
+		ButtonSaveOrganizations->Enabled = false;
+
+		ShowMessage("Організацію успішно оновлено!");
+	}
+	catch (Exception &e)
+	{
+		ShowMessage("Помилка під час збереження змін: " + e.Message);
+	}
+}
+//---------------------------------------------------------------------------
+ void __fastcall TForm8::GetItemFillOrg(){
+
+		try
+	{
+		// Перевіряємо підключення до бази даних
+		if (!DataModule1->FDConnection1->Connected)
+		{
+			DataModule1->ConnectToDatabase();
+			if (!DataModule1->FDConnection1->Connected)
+			{
+				throw Exception("Не вдалося підключитися до бази даних.");
+			}
+		}
+
+		// Очищаємо попередній вміст ComboBox
+		ComboBoxOrg->Items->Clear();
+
+		// Створюємо запит для отримання всіх організацій
+		std::unique_ptr<TFDQuery> selectOrganizationsQuery(new TFDQuery(NULL));
+		selectOrganizationsQuery->Connection = DataModule1->FDConnection1;
+		selectOrganizationsQuery->SQL->Text = "SELECT organization_id, name FROM Organizations";
+		selectOrganizationsQuery->Open();
+
+		// Створюємо змінну для збереження організації користувача
+		int userOrganizationID = -1;
+
+		// Створюємо запит для отримання організації користувача
+		std::unique_ptr<TFDQuery> selectUserOrganizationQuery(new TFDQuery(NULL));
+		selectUserOrganizationQuery->Connection = DataModule1->FDConnection1;
+		selectUserOrganizationQuery->SQL->Text = "SELECT organization_id FROM Users WHERE user_id = :user_id";
+		selectUserOrganizationQuery->ParamByName("user_id")->AsInteger = UserID;
+		selectUserOrganizationQuery->Open();
+
+		// Отримуємо organization_id користувача
+		if (!selectUserOrganizationQuery->Eof)
+		{
+			userOrganizationID = selectUserOrganizationQuery->FieldByName("organization_id")->AsInteger;
+		}
+
+		// Заповнюємо ComboBox усіма організаціями і шукаємо ту, що відповідає користувачеві
+		int userOrgIndex = -1;
+		while (!selectOrganizationsQuery->Eof)
+		{
+			int organizationID = selectOrganizationsQuery->FieldByName("organization_id")->AsInteger;
+			String organizationName = selectOrganizationsQuery->FieldByName("name")->AsString;
+
+			// Додаємо організацію до ComboBox
+			ComboBoxOrg->Items->AddObject(organizationName, reinterpret_cast<TObject*>(organizationID));
+
+			// Перевіряємо, чи відповідає ця організація організації користувача
+			if (organizationID == userOrganizationID)
+			{
+				userOrgIndex = ComboBoxOrg->Items->Count - 1;  // Зберігаємо індекс організації користувача
+			}
+
+			selectOrganizationsQuery->Next();
+		}
+
+		// Якщо знайдена організація користувача, вибираємо її в ComboBox
+		if (userOrgIndex != -1)
+		{
+			ComboBoxOrg->ItemIndex = userOrgIndex;
+		}
+	}
+	catch (Exception &e)
+	{
+		ShowMessage("Помилка під час завантаження організацій: " + e.Message);
+	}
+
+ }
+

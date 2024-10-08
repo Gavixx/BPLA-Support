@@ -1,8 +1,9 @@
 object Form5: TForm5
   Left = 577
   Top = 237
+  BorderStyle = bsSingle
   Caption = #1057#1090#1074#1086#1088#1080#1090#1080' '#1079#1072#1087#1080#1090
-  ClientHeight = 360
+  ClientHeight = 298
   ClientWidth = 547
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -29,17 +30,22 @@ object Form5: TForm5
     ParentFont = False
   end
   object ButtonAdd: TButton
-    Left = 104
+    Left = 24
     Top = 200
-    Width = 305
+    Width = 169
     Height = 49
-    Caption = #1057#1090#1074#1086#1088#1080#1090#1080' '#1079#1072#1087#1080#1090
+    Caption = #1057#1090#1074#1086#1088#1080#1090#1080
     Default = True
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
     Font.Height = -28
     Font.Name = 'Times New Roman'
     Font.Style = []
+    ImageAlignment = iaRight
+    ImageIndex = 0
+    ImageMargins.Top = 3
+    ImageMargins.Right = 10
+    Images = DataModule1.ImageList1
     ParentFont = False
     TabOrder = 0
     OnClick = ButtonAddClick
@@ -125,6 +131,26 @@ object Form5: TForm5
       'Logistics'
       'Surveillance')
   end
+  object Button1: TButton
+    Left = 324
+    Top = 200
+    Width = 165
+    Height = 49
+    Caption = #1042#1080#1081#1090#1080
+    Default = True
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ImageAlignment = iaRight
+    ImageIndex = 8
+    ImageMargins.Top = 3
+    ImageMargins.Right = 15
+    Images = DataModule1.ImageList1
+    ParentFont = False
+    TabOrder = 5
+  end
   object MainMenu1: TMainMenu
     Left = 480
     Top = 240
@@ -132,19 +158,14 @@ object Form5: TForm5
       Caption = #1044#1086#1074#1110#1076#1082#1072
       object Help1: TMenuItem
         Action = DataModule1.ActionHelp
-        Caption = #1044#1086#1087#1086#1084#1086#1075#1072
-        ShortCut = 112
       end
       object AboutUs1: TMenuItem
         Action = DataModule1.ActionAboutUs
-        Caption = #1055#1088#1086' '#1085#1072#1089
-        ShortCut = 113
       end
     end
     object Close1: TMenuItem
       Action = DataModule1.ActionClose
       Caption = #1047#1072#1082#1088#1080#1090#1080
-      ShortCut = 32883
     end
   end
 end

@@ -157,6 +157,11 @@
         <LinkPackageImports>rtl.bpi;vcl.bpi;dbrtl.bpi;FireDAC.bpi;FireDACCommonDriver.bpi;FireDACCommon.bpi;xmlrtl.bpi;vclFireDAC.bpi;vcldb.bpi;vclwinx.bpi;vclimg.bpi;bindengine.bpi;vclx.bpi;FireDACMySQLDriver.bpi;adortl.bpi;vclactnband.bpi</LinkPackageImports>
         <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
         <ILINK_LibraryPath>$(BDSLIB)\$(PLATFORM)$(CC_SUFFIX)\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <Icon_MainIcon>Project1_Icon.ico</Icon_MainIcon>
+        <UWP_CppLogo44>Project1_Icon.ico</UWP_CppLogo44>
+        <UWP_CppLogo150>Project1_Icon.ico</UWP_CppLogo150>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -210,6 +215,12 @@
             <DependentOn>ArmyForm.h</DependentOn>
             <BuildOrder>8</BuildOrder>
         </CppCompile>
+        <CppCompile Include="CryptoUtils.cpp">
+            <BuildOrder>13</BuildOrder>
+        </CppCompile>
+        <None Include="CryptoUtils.h">
+            <BuildOrder>12</BuildOrder>
+        </None>
         <CppCompile Include="DataModule.cpp">
             <Form>DataModule1</Form>
             <FormType>dfm</FormType>
@@ -248,16 +259,16 @@
             <DependentOn>VolonterForm.h</DependentOn>
             <BuildOrder>5</BuildOrder>
         </CppCompile>
-        <FormResources Include="ProfileForm.dfm"/>
         <FormResources Include="LoginForm.dfm"/>
         <FormResources Include="DonateForm.dfm"/>
+        <FormResources Include="DataModule.dfm"/>
+        <FormResources Include="ProfileForm.dfm"/>
         <FormResources Include="VolonterForm.dfm"/>
         <FormResources Include="AddUser.dfm"/>
         <FormResources Include="AddOrg.dfm"/>
         <FormResources Include="AddOrderForm.dfm"/>
-        <FormResources Include="DataModule.dfm"/>
-        <FormResources Include="ArmyForm.dfm"/>
         <FormResources Include="AdminForm.dfm"/>
+        <FormResources Include="ArmyForm.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -284,6 +295,10 @@
                 <Source>
                     <Source Name="MainSource">Project1.cpp</Source>
                 </Source>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k290.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp290.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+                </Excluded_Packages>
             </CPlusPlusBuilder.Personality>
             <Deployment Version="4">
                 <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx32\libcgcrtl.dylib" Class="DependencyModule">
@@ -345,6 +360,13 @@
                 <DeployFile LocalName=".\Win32\Debug\Project1.tds" Configuration="Debug" Class="DebugSymbols">
                     <Platform Name="Win32">
                         <RemoteName>Project1.tds</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Project1_Icon.ico" Configuration="Debug" Class="UWP_CppLogo44">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets\</RemoteDir>
+                        <RemoteName>Logo44x44.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

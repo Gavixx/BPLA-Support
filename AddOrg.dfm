@@ -70,7 +70,7 @@ object Form9: TForm9
   object ButtonAdd: TButton
     Left = 28
     Top = 232
-    Width = 233
+    Width = 213
     Height = 81
     Caption = #1044#1086#1076#1072#1090#1080
     Default = True
@@ -79,14 +79,19 @@ object Form9: TForm9
     Font.Height = -28
     Font.Name = 'Times New Roman'
     Font.Style = []
+    ImageAlignment = iaRight
+    ImageIndex = 0
+    ImageMargins.Top = 3
+    ImageMargins.Right = 30
+    Images = DataModule1.ImageList1
     ParentFont = False
     TabOrder = 2
     OnClick = ButtonAddClick
   end
   object ButtonCancel: TButton
-    Left = 328
+    Left = 344
     Top = 232
-    Width = 233
+    Width = 217
     Height = 81
     Caption = #1042#1080#1081#1090#1080
     Default = True
@@ -95,6 +100,11 @@ object Form9: TForm9
     Font.Height = -28
     Font.Name = 'Times New Roman'
     Font.Style = []
+    ImageAlignment = iaRight
+    ImageIndex = 8
+    ImageMargins.Top = 3
+    ImageMargins.Right = 30
+    Images = DataModule1.ImageList1
     ParentFont = False
     TabOrder = 3
     OnClick = ButtonCancelClick

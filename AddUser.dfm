@@ -1,6 +1,7 @@
 object Form6: TForm6
   Left = 613
   Top = 219
+  BorderStyle = bsSingle
   Caption = #1044#1086#1076#1072#1074#1072#1085#1085#1103' '#1082#1086#1088#1080#1089#1090#1091#1074#1072#1095#1072
   ClientHeight = 445
   ClientWidth = 836
@@ -189,9 +190,9 @@ object Form6: TForm6
     TabOrder = 2
   end
   object ButtonAddUser: TButton
-    Left = 216
+    Left = 200
     Top = 368
-    Width = 136
+    Width = 152
     Height = 41
     Caption = #1057#1090#1074#1086#1088#1080#1090#1080
     Default = True
@@ -200,14 +201,19 @@ object Form6: TForm6
     Font.Height = -28
     Font.Name = 'Times New Roman'
     Font.Style = []
+    ImageAlignment = iaRight
+    ImageIndex = 0
+    ImageMargins.Top = 3
+    ImageMargins.Right = 6
+    Images = DataModule1.ImageList1
     ParentFont = False
     TabOrder = 3
     OnClick = ButtonAddUserClick
   end
   object ButtonCancel: TButton
-    Left = 479
+    Left = 456
     Top = 368
-    Width = 105
+    Width = 137
     Height = 41
     Caption = #1042#1080#1081#1090#1080
     Default = True
@@ -216,6 +222,11 @@ object Form6: TForm6
     Font.Height = -28
     Font.Name = 'Times New Roman'
     Font.Style = []
+    ImageAlignment = iaRight
+    ImageIndex = 7
+    ImageMargins.Top = 3
+    ImageMargins.Right = 10
+    Images = DataModule1.ImageList1
     ParentFont = False
     TabOrder = 4
     OnClick = ButtonCancelClick
@@ -312,6 +323,7 @@ object Form6: TForm6
     end
     object Close1: TMenuItem
       Action = DataModule1.ActionClose
+      Caption = #1047#1072#1082#1088#1080#1090#1080
     end
   end
 end

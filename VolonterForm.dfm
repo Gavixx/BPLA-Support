@@ -1,6 +1,7 @@
 object Form4: TForm4
   Left = 234
   Top = 146
+  BorderStyle = bsSingle
   Caption = 'Volonter '
   ClientHeight = 554
   ClientWidth = 951
@@ -68,7 +69,7 @@ object Form4: TForm4
   object ButtonShowRequests: TButton
     Left = 0
     Top = 446
-    Width = 225
+    Width = 233
     Height = 51
     Caption = #1055#1086#1082#1072#1079#1072#1090#1080' '#1079#1072#1087#1080#1090#1080
     Default = True
@@ -77,14 +78,19 @@ object Form4: TForm4
     Font.Height = -28
     Font.Name = 'Times New Roman'
     Font.Style = []
+    ImageAlignment = iaRight
+    ImageIndex = 2
+    ImageMargins.Top = 3
+    ImageMargins.Right = 5
+    Images = DataModule1.ImageList1
     ParentFont = False
     TabOrder = 1
     OnClick = ButtonShowRequestsClick
   end
   object ButtonDonate: TButton
-    Left = 328
+    Left = 360
     Top = 446
-    Width = 241
+    Width = 193
     Height = 51
     Hint = 'First chose a row on table '
     Caption = #1044#1086#1085#1072#1090
@@ -95,6 +101,10 @@ object Form4: TForm4
     Font.Height = -28
     Font.Name = 'Times New Roman'
     Font.Style = []
+    ImageAlignment = iaRight
+    ImageIndex = 7
+    ImageMargins.Right = 20
+    Images = DataModule1.ImageList1
     ParentFont = False
     ParentShowHint = False
     ShowHint = True
@@ -114,6 +124,11 @@ object Form4: TForm4
     Font.Height = -28
     Font.Name = 'Times New Roman'
     Font.Style = []
+    ImageAlignment = iaRight
+    ImageIndex = 10
+    ImageMargins.Top = 2
+    ImageMargins.Right = 20
+    Images = DataModule1.ImageList1
     ParentFont = False
     ParentShowHint = False
     ShowHint = True
@@ -125,8 +140,6 @@ object Form4: TForm4
     Top = 408
     object Close1: TMenuItem
       Action = DataModule1.ActionClose
-      Caption = #1047#1072#1082#1088#1080#1090#1080
-      ShortCut = 32883
     end
     object Close2: TMenuItem
       Caption = #1044#1086#1074#1110#1076#1082#1072
@@ -141,8 +154,6 @@ object Form4: TForm4
     end
     object ChangeUser1: TMenuItem
       Action = DataModule1.ActionChangeUser
-      Caption = #1047#1084#1110#1085#1080#1090#1080' '#1082#1086#1088#1080#1089#1090#1091#1074#1072#1095#1072
-      ShortCut = 16469
     end
   end
   object BalloonHint1: TBalloonHint

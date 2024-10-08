@@ -28,6 +28,9 @@
 #include <Vcl.ActnList.hpp>
 #include <Vcl.ActnMan.hpp>
 #include <Vcl.PlatformDefaultStyleActnCtrls.hpp>
+#include <System.ImageList.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.ImgList.hpp>
 //---------------------------------------------------------------------------
 class TDataModule1 : public TDataModule
 {
@@ -41,6 +44,7 @@ __published:	// IDE-managed Components
 	TAction *ActionHelp;
 	TAction *ActionAboutUs;
 	TAction *ActionClose;
+	TImageList *ImageList1;
 	void __fastcall ActionCloseExecute(TObject *Sender);
 	void __fastcall ActionHelpExecute(TObject *Sender);
 	void __fastcall ActionAboutUsExecute(TObject *Sender);

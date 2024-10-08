@@ -79,6 +79,11 @@ object Form7: TForm7
     Font.Height = -28
     Font.Name = 'Times New Roman'
     Font.Style = []
+    ImageAlignment = iaRight
+    ImageIndex = 7
+    ImageMargins.Top = 1
+    ImageMargins.Right = 30
+    Images = DataModule1.ImageList1
     ParentFont = False
     TabOrder = 1
     OnClick = ButtonSendClick
@@ -95,6 +100,11 @@ object Form7: TForm7
     Font.Height = -28
     Font.Name = 'Times New Roman'
     Font.Style = []
+    ImageAlignment = iaRight
+    ImageIndex = 8
+    ImageMargins.Top = 3
+    ImageMargins.Right = 30
+    Images = DataModule1.ImageList1
     ParentFont = False
     TabOrder = 2
     OnClick = ButtonCancelClick
@@ -104,8 +114,6 @@ object Form7: TForm7
     Top = 424
     object CLose1: TMenuItem
       Action = DataModule1.ActionClose
-      Caption = #1047#1072#1082#1088#1080#1090#1080
-      ShortCut = 32883
     end
     object CLose2: TMenuItem
       Caption = #1044#1086#1074#1110#1076#1082#1072

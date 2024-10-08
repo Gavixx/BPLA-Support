@@ -1,0 +1,88 @@
+// CryptoUtils.cpp
+#include "CryptoUtils.h"
+
+namespace CryptoUtils {
+
+    std::string HashPassword(const std::string& password) {
+        HCRYPTPROV hProv = 0;
+        HCRYPTHASH hHash = 0;
+        BYTE rgbHash[32]; // SHA-256 produces 32-byte hash
+        DWORD cbHash = 0;
+        std::string hashedPassword;
+
+        // Отримання контексту криптопровайдера
+        if (!CryptAcquireContext(&hProv, NULL, NULL, PROV_RSA_AES, CRYPT_VERIFYCONTEXT)) {
+            throw std::runtime_error("CryptAcquireContext не вдалося");
+        }
+
+        // Створення об'єкта хешу
+        if (!CryptCreateHash(hProv, CALG_SHA_256, 0, 0, &hHash)) {
+            CryptReleaseContext(hProv, 0);
+            throw std::runtime_error("CryptCreateHash не вдалося");
+        }
+
+        // Хешування даних
+        if (!CryptHashData(hHash, reinterpret_cast<const BYTE*>(password.c_str()), password.length(), 0)) {
+            CryptDestroyHash(hHash);
+            CryptReleaseContext(hProv, 0);
+            throw std::runtime_error("CryptHashData не вдалося");
+        }
+
+        // Отримання результату хешування
+        cbHash = sizeof(rgbHash);
+        if (CryptGetHashParam(hHash, HP_HASHVAL, rgbHash, &cbHash, 0)) {
+            // Перетворення хешу в шістнадцятковий рядок для збереження у БД
+            char hexHash[65];
+            for (DWORD i = 0; i < cbHash; ++i) {
+                sprintf_s(&hexHash[i * 2], 3, "%02x", rgbHash[i]);
+            }
+            hexHash[64] = '\0';
+            hashedPassword = std::string(hexHash);
+        } else {
+            CryptDestroyHash(hHash);
+            CryptReleaseContext(hProv, 0);
+            throw std::runtime_error("CryptGetHashParam не вдалося");
+        }
+
+        // Звільнення ресурсів
+        CryptDestroyHash(hHash);
+        CryptReleaseContext(hProv, 0);
+
+        return hashedPassword;
+    }
+
+    std::string BytesToBase64(const std::vector<BYTE>& data) {
+        DWORD requiredSize = 0;
+        if (!CryptBinaryToStringA(data.data(), data.size(), CRYPT_STRING_BASE64 | CRYPT_STRING_NOCRLF, NULL, &requiredSize)) {
+            throw std::runtime_error("CryptBinaryToStringA не вдалося визначити розмір");
+        }
+
+        std::string base64Str(requiredSize, '\0');
+        if (!CryptBinaryToStringA(data.data(), data.size(), CRYPT_STRING_BASE64 | CRYPT_STRING_NOCRLF, &base64Str[0], &requiredSize)) {
+            throw std::runtime_error("CryptBinaryToStringA не вдалося конвертувати дані");
+        }
+
+        // Видалення додаткового нульового символу
+        if (!base64Str.empty() && base64Str.back() == '\0') {
+            base64Str.pop_back();
+        }
+
+        return base64Str;
+    }
+
+    std::vector<BYTE> Base64ToBytes(const std::string& base64Str) {
+        DWORD binarySize = 0;
+        if (!CryptStringToBinaryA(base64Str.c_str(), base64Str.length(), CRYPT_STRING_BASE64, NULL, &binarySize, NULL, NULL)) {
+            throw std::runtime_error("CryptStringToBinaryA не вдалося визначити розмір");
+        }
+
+        std::vector<BYTE> binaryData(binarySize);
+        if (!CryptStringToBinaryA(base64Str.c_str(), base64Str.length(), CRYPT_STRING_BASE64, binaryData.data(), &binarySize, NULL, NULL)) {
+            throw std::runtime_error("CryptStringToBinaryA не вдалося конвертувати дані");
+        }
+
+        return binaryData;
+    }
+
+} // namespace CryptoUtils
+

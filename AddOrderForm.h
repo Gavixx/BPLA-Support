@@ -46,6 +46,7 @@ __published:	// IDE-managed Components
 	TMenuItem *Reference1;
 	TMenuItem *Help1;
 	TMenuItem *AboutUs1;
+	TButton *Button1;
 	void __fastcall ButtonAddClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall LabeledEditDroneNameChange(TObject *Sender);

@@ -300,10 +300,10 @@ object Form8: TForm8
     TabOrder = 12
   end
   object ButtonExit: TButton
-    Left = 8
-    Top = 421
-    Width = 671
-    Height = 100
+    Left = 232
+    Top = 429
+    Width = 193
+    Height = 68
     Caption = #1042#1080#1081#1090#1080
     Default = True
     Font.Charset = RUSSIAN_CHARSET
@@ -311,6 +311,11 @@ object Form8: TForm8
     Font.Height = -28
     Font.Name = 'Times New Roman'
     Font.Style = []
+    ImageAlignment = iaRight
+    ImageIndex = 8
+    ImageMargins.Top = 2
+    ImageMargins.Right = 20
+    Images = DataModule1.ImageList1
     ParentFont = False
     TabOrder = 13
     OnClick = ButtonExitClick
@@ -417,7 +422,6 @@ object Form8: TForm8
     Top = 384
     object Close1: TMenuItem
       Action = DataModule1.ActionClose
-      Caption = #1047#1072#1082#1088#1080#1090#1080
     end
   end
 end

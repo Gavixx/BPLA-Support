@@ -1,0 +1,18 @@
+// CryptoUtils.h
+#ifndef CRYPTOUTILS_H
+#define CRYPTOUTILS_H
+
+#include <string>
+#include <vector>
+#include <stdexcept>
+#include <windows.h>
+#include <wincrypt.h>
+#include <atlenc.h>
+
+namespace CryptoUtils {
+    std::string BytesToBase64(const std::vector<BYTE>& data);
+    std::vector<BYTE> Base64ToBytes(const std::string& base64Str);
+}
+
+#endif // CRYPTOUTILS_H
+
